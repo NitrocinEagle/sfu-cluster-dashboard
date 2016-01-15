@@ -12,8 +12,8 @@
     <link href="static/css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container header">
-        <div class="navbar-collapse collapse ">
+    <div class="container">
+        <div class="navbar-collapse collapse header">
             <div class="nav navbar-nav navbar-left header-logo">
                 Dashboard
             </div>
@@ -55,51 +55,43 @@
         <div class="row">
             <div class="col-md-3">
                 <nav class="navmenu navmenu-default menu" role="navigation">
-                    <ul class="nav navmenu-nav">
-                        <li class="active"><a href="#">Общая информация</a></li>
-                        <li>
-                            <a href="#">
-                                Настройки
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Плагины <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu navmenu-nav" role="menu">
-                                <li><a href="#">CPU_Load</a></li>
-                                <li><a href="#">RAM_Load</a></li>
-                                <li><a href="#">HDD_Usage</a></li>
-                                <li><a href="#">Network</a></li>
-                                <li><a href="#">Users_CPU_Load</a></li>
-                                <li><a href="#">Users_RAM_Load</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Что-то еще
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Людкшься
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Created by mist :D
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Что еще запихать сюда?
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Тёма - няша ^_^
-                            </a>
-                        </li>
+                   <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    </li>
+                    <li>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    </li>
+                    <li>
+                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo" class="collapsed" aria-expanded="false"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse" aria-expanded="false" style="height: 0px;">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                    </li>
+                    <li>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    </li>
+                </ul>
                     </ul>
                 </nav> 
                 <hr>
