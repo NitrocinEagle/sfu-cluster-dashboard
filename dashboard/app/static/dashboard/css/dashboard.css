@@ -23,8 +23,17 @@
 }
 
 a {
-    color: #fff;
+    color: orange;
 }
 .navmenu {
     width: 100%;
+}
+.monitoring_state_ok {
+    color: green;
+}
+.monitoring_state_warning {
+    color: orange;
+}
+.monitoring_state_critical {
+    color: red;
 }

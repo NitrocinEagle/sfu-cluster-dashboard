@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
-PROJECT_ROOT = '/var/www/sfu-cluster-dashboard/dashboard'
+PROJECT_ROOT = '/home/mist/Development/sfu-cluster-dashboard/dashboard'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, "tpl"),

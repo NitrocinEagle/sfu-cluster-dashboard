@@ -6,129 +6,282 @@
     <script src="static/assets/jquery/jquery-2.1.4.min.js"></script>
     <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="static/assets/bootstrap/js/npm.js"></script>
+    <script src="static/assets/chart/Chart.min.js"></script>
+    <script src="static/assets/chart/canvasjs.min.js"></script>
+    <script src="static/js/graphs.js"></script>
     <!-- CSS -->
     <link href="static/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="static/assets/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="static/assets/bootstrap/css/font-awesome.min.css" rel="stylesheet">
     <link href="static/css/dashboard.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container header">
-        <div class="navbar-collapse collapse ">
-            <div class="nav navbar-nav navbar-left header-logo">
-                Dashboard
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-xs dropdown-toggle nav-element-middle" data-toggle="dropdown">
-                            Переключить узел <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">localhost(127.0.0.1)</a></li>
-                            <li><a href="#">server1(192.168.1.1)</a></li>
-                            <li><a href="#">server2(192.168.1.2)</a></li>
-                            <li><a href="#">server3(192.168.1.3)</a></li>
-                            <li><a href="#">server4(192.168.1.4)</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-warning-sign"></span>
-                        Оповещения 
-                        <span class="label label-danger">10</span>
-                        <span class="caret"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-user"></span> Профиль <span class="caret"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <span class="glyphicon glyphicon-cog"></span> Настройки <span class="caret"></span>
-                    </a>
-                </li>
-            </ul>
+<div class="container header">
+    <div class="navbar-collapse collapse ">
+        <div class="nav navbar-nav navbar-left header-logo">
+            Dashboard
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <nav class="navmenu navmenu-default menu" role="navigation">
-                    <ul class="nav navmenu-nav">
-                        <li class="active"><a href="#">Общая информация</a></li>
-                        <li>
-                            <a href="#">
-                                Настройки
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Плагины <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu navmenu-nav" role="menu">
-                                <li><a href="#">CPU_Load</a></li>
-                                <li><a href="#">RAM_Load</a></li>
-                                <li><a href="#">HDD_Usage</a></li>
-                                <li><a href="#">Network</a></li>
-                                <li><a href="#">Users_CPU_Load</a></li>
-                                <li><a href="#">Users_RAM_Load</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Что-то еще
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Людкшься
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Created by mist :D
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Что еще запихать сюда?
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Тёма - няша ^_^
-                            </a>
-                        </li>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default btn-xs dropdown-toggle nav-element-middle"
+                            data-toggle="dropdown">
+                        Переключить узел <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">localhost(127.0.0.1)</a></li>
+                        <li><a href="#">server1(192.168.1.1)</a></li>
+                        <li><a href="#">server2(192.168.1.2)</a></li>
+                        <li><a href="#">server3(192.168.1.3)</a></li>
+                        <li><a href="#">server4(192.168.1.4)</a></li>
                     </ul>
-                </nav> 
-                <hr>
-            </div>
-            <div class="col-md-9">
-                <br>
-                <div class="panel panel-default">
-                    <div class="panel-heading" align="center">
-                        Общая информация по серверу
-                    </div>
-                    <div class="panel-body">
-                        <p>Инфа по серверу: <br>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    Оповещения
+                    <span class="label label-danger">10</span>
+                    <span class="caret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-user"></span> Профиль <span class="caret"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="glyphicon glyphicon-cog"></span> Настройки <span class="caret"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <nav class="navmenu navmenu-default menu" role="navigation">
+                <ul class="nav navmenu-nav">
+                    <li class="active"><a href="#">Общая информация</a></li>
+                    <li>
+                        <a href="#">
+                            Настройки
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Плагины <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu navmenu-nav" role="menu">
+                            <li><a href="#">CPU_Load</a></li>
+                            <li><a href="#">RAM_Load</a></li>
+                            <li><a href="#">HDD_Usage</a></li>
+                            <li><a href="#">Network</a></li>
+                            <li><a href="#">Users_CPU_Load</a></li>
+                            <li><a href="#">Users_RAM_Load</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Что-то еще
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Людкшься
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Created by mist :D
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Что еще запихать сюда?
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Тёма - няша ^_^
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <hr>
+        </div>
+        <div class="col-md-9">
+            <h3>Общая информация по серверу</h3>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-check-square-o fa-2x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Сервер мониторинга</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
                             OS: Lunix <br>
                             CPU: Intelь iCore7 <br>
                             CPU_cores: 42 <br>
                             RAM: 2048 Mb <br>
                             DB: PostgreSQL-9.3 <br>
-                        </p>
+                        </div>
                     </div>
                 </div>
-                <br>
-                <div class="panel panel-default">
-                    <div class="panel-heading" align="center">
-                        Всякие графички
-                    </div>
-                    <div class="panel-body">
-                        
+                <h3>Общая информация по системе мониторинга</h3>
+                <hr>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-check-square-o fa-2x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Состояние системы</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <span>
+                                Физический мониторинг:
+                                <span class="monitoring_state_ok">
+                                    <i class="fa fa-check-circle"></i>
+                                </span>
+                            </span>
+                            <span>
+                                Мониторинг серверов:
+                                <span class="monitoring_state_warning">
+                                    <i class="fa fa-warning"></i>
+                                </span>
+                            </span>
+                            <span>
+                                Мониторинг пользователей:
+                                <span class="monitoring_state_critical">
+                                    <i class="fa fa-close"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
                     </div>
                 </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-folder fa-2x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Плагины</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div>cpu_load</div>
+                            <div>ram_usage</div>
+                            <div>hgg_usage</div>
+                            <div>something else</div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-laptop fa-2x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div>Узлы</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div><a href="#">node 1</a></div>
+                            <div><a href="#">node 2</a></div>
+                            <div><a href="#">node 3</a></div>
+                            <div><a href="#">node 4</a></div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">View Details</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="graphics">
+                <h3>Графики</h3>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-area-chart fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div>Basic Line Chart</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div id="basic_line_chart" style="height: 300px; width: 100%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-area-chart fa-2x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div>Имя графика</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                            <span>
+                                график график <br>
+                                график график <br>
+                                график график <br>
+                                график график <br>
+                                график график <br>
+                                график график <br>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</body></html>
+</body>
+</html>
