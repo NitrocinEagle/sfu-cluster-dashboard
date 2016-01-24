@@ -11,6 +11,35 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import mongoengine
+
+# MongoDB
+"""DATABASES = {
+    'default': {
+        'ENGINE': '',
+    },
+}
+
+SESSION_ENGINE = 'mongoengine.django.sessions'  # optional
+_MONGODB_USER = 'mongodb'
+_MONGODB_PASSWD = '123456'
+_MONGODB_HOST = 'localhost'
+_MONGODB_NAME = 'monitoring_test'
+_MONGODB_DATABASE_HOST = 'mongodb://%s:%s@%s/%s' % (
+_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
+
+mongoengine.connect(_MONGODB_NAME)
+#mongoengine.connect(_MONGODB_NAME, host='localhost:27017')
+"""
+"""DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.dummy'
+    }
+}
+#connect('monitoring_test', username='mongodb', password='123456')
+a = connect('monitoring_test', host='127.0.0.1', port=27017)"""
+
+
 
 PROJECT_ROOT = '/home/mist/Development/sfu-cluster-dashboard/dashboard'
 
