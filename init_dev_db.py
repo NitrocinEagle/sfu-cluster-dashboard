@@ -1,38 +1,58 @@
 # -*- coding: utf-8 -*-
 from time import time
+import random
 
 GRAPHS = ("line_chart", "stacked_area", "pie_chart",)
 
-metric_example = [
-    {
-        "x": int(time()) + 10,
-        "y": 16
-    },
-    {
-        "x": int(time()) + 20,
-        "y": 10
-    },
-    {
-        "x": int(time()) + 30,
-        "y": 23
-    },
-    {
-        "x": int(time()) + 40,
-        "y": 65
-    },
-    {
-        "x": int(time()) + 50,
-        "y": 12
-    },
-    {
-        "x": int(time()) + 60,
-        "y": 34
-    },
-    {
-        "x": int(time()) + 70,
-        "y": 26
-    },
-]
+metric_cpu_load = []
+metric_rum_usage = []
+metric_hdd_usage = []
+time_now = int(time())
+
+for i in range(10):
+    metric_cpu_load.append(
+        {
+            "timestamp": time_now + i * 10,
+            "value": random.random() * 100
+        }
+    )
+    metric_rum_usage.append(
+        {
+            "timestamp": time_now + i * 10,
+            "value": random.randint(512, 2048)
+        }
+    )
+    metric_hdd_usage.append(
+        {
+            "timestamp": time_now + i * 3600,
+            "data": [
+                {
+                    "sector_name": "Avaible",
+                    "value": 50 * 1024,
+                },
+                {
+                    "sector_name": "Used",
+                    "value": 150 * 1024,
+                },
+            ]
+        }
+    )
+
+"""
+Описание формата собранных данных для конкретного узла. Собранные даные разбиты на фрагменты по плагинам.
+В каждом фрагменте содержится:
+1. Название плагина;
+2. Параметры.
+
+В параметрах в зависимости от способа отображения могут хранится:
+1. Название параметра;
+2. Метка для оси X;
+3. Метка для оси Y;
+4. Способ отображения данного параметра;
+5. Набор данных, который нужно отображать.
+
+В наборе данных содержатся данные в формате, требуемом от способа отображения.
+"""
 nodes_data_example = [
     {
         "plugin_name": "cpu_load",
@@ -46,7 +66,7 @@ nodes_data_example = [
                     "dataset": [
                         {
                             "metric_name": "CPU's % load",
-                            "data": metric_example
+                            "data": metric_cpu_load
                         },
                     ]
                 }
@@ -64,7 +84,7 @@ nodes_data_example = [
                     "dataset": [
                         {
                             "metric_name": "RAM's % usage",
-                            "data": metric_example
+                            "data": metric_rum_usage
                         },
                     ]
                 }
@@ -79,21 +99,19 @@ nodes_data_example = [
                     "axis_y_title": "Mega bytes usage",
                     "axis_x_title": "Time line",
                     "graph_type": "pie_chart",
-                    "dataset": [
-                        {
-                            "metric_name": "Avaible",
-                            "data": metric_example
-                        },
-                        {
-                            "metric_name": "Used",
-                            "data": metric_example
-                        },
-                    ]
+                    "dataset": metric_hdd_usage
                 }
             ],
     }
 ]
 
+
+"""
+Здесь хранятся данные мониторинга для каждого узла. В каждом наборе данных определены:
+1. Имя узла;
+2. Ip-адрес узла;
+3. Собранные данные. (формат собранных данных описан выше)
+"""
 NODES_DATA = [
     {
         "node_name": "ULK416-cluster1-0",
