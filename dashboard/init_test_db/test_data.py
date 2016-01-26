@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-__author__ = 'mist'
-from mongoengine import connect
-from dashboard.app.dashboard.models import NodeInfo, ParametresInfo, PluginInfo
+from time import time
+import random
 
-connect('test')
-
+GRAPHS = ("line_chart", "stacked_area", "pie_chart",)
 nodes = [
     {
         "node_type": "server",  # In future there can be Rital sensor
@@ -65,40 +63,108 @@ plugins = [
     },
 ]
 
-for plugin in plugins:
-    new_plugin = PluginInfo()
-    new_plugin.plugin_name = plugin['plugin_name']
-    new_plugin.description = plugin['description']
-    params_info_list = []
-    for info in plugin['params_info']:
-        param_info = ParametresInfo(param_name=info['param_name'],
-                                    description=info['description'],
-                                    timeout=info['timeout']
-                                    )
-        params_info_list.append(param_info)
-    new_plugin.params_info = params_info_list
+params_decription = [
+    {
+        "param_name": "cpu_load",
+        "axis_y_title": "CPU's % load",
+        "axis_x_title": "Time line",
+        "graph_type": "line_chart"
+    },
+    {
+        "param_name": "ram_usage",
+        "axis_y_title": "RAM's % usage",
+        "axis_x_title": "Time line",
+        "graph_type": "line_chart"
+    },
+    {
+        "param_name": "hdd_usage",
+        "axis_y_title": "Mega bytes usage",
+        "axis_x_title": "Time line",
+        "graph_type": "pie_chart"
+    }
+]
 
-    if not PluginInfo.objects(plugin_name=plugin['plugin_name']).first():
-        new_plugin.save()
+dataset_cpu_load = []
+dataset_ram_usage = []
+dataset_hdd_usage = []
+time_now = int(time())
 
-for node in nodes:
-    new_node = NodeInfo(
-        node_type=node['node_type'],
-        node_ip=node['node_ip'],
-        node_name=node['node_name'],
-        node_os=node['node_os'],
-        enabled_plugins=node['enabled_plugins']
+for i in range(10):
+    dataset_cpu_load.append(
+        {
+            "timestamp": time_now + i * 10,
+            "value": round(random.random() * 100, 2)
+        }
     )
-    if not NodeInfo.objects(node_name=node['node_name']).first():
-        new_node.save()
+    dataset_ram_usage.append(
+        {
+            "timestamp": time_now + i * 10,
+            "value": random.randint(512, 2048)
+        }
+    )
+    dataset_hdd_usage.append(
+        {
+            "timestamp": time_now + i * 3600,
+            "data": [
+                {
+                    "sector_name": "Avaible",
+                    "value": 50 * 1024,
+                },
+                {
+                    "sector_name": "Used",
+                    "value": 150 * 1024,
+                },
+            ]
+        }
+    )
 
-nodes = NodeInfo.objects()
-for node in nodes:
-    print 'Node ', node.node_name
-    print '\tnode_type is ', node.node_type
-    print '\tnode_ip is ', node.node_ip
-    print '\tnode_os is ', node.node_os
-    print '\tenabled_plugins: ', node.enabled_plugins
+params_data = [
+    {
+        "param_description": params_decription[0],
+        "dataset": dataset_cpu_load
+    },
+    {
+        "param_description": params_decription[1],
+        "dataset": dataset_ram_usage
+    },
+    {
+        "param_description": params_decription[2],
+        "dataset": dataset_hdd_usage
+    }
+]
 
-plugins = PluginInfo.objects()
-print plugins[0].params_info[0].description
+plugin_data_list = [
+    {
+        "plugin_name": "cpu_load",
+        "params_data": params_data[0]
+    },
+    {
+        "plugin_name": "ram_usage",
+        "params_data": params_data[1]
+    },
+    {
+        "plugin_name": "hdd_usage",
+        "params_data": params_data[2]
+    }
+]
+
+nodes_data = [
+    {
+        "node_name": "ULK416-cluster1-0",
+        "node_ip": "127.0.0.1",
+        "node_data": plugin_data_list[0]
+    },
+    {
+        "node_name": "ULK416-cluster1-1",
+        "node_ip": "192.168.0.1",
+        "node_data": plugin_data_list[1]
+    },
+    {
+        "node_name": "ULK416-cluster1-2",
+        "node_ip": "192.168.0.2",
+        "node_data": plugin_data_list[2]
+    },
+]
+print dataset_hdd_usage
+print dataset_ram_usage
+print dataset_cpu_load
