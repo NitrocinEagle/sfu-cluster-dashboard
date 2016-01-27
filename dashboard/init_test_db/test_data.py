@@ -133,7 +133,7 @@ params_data = [
     }
 ]
 
-plugin_data_list = [
+plugin_data_list_for_all_nodes = [
     {
         "plugin_name": "cpu_load",
         "params_data": params_data[0]
@@ -152,17 +152,17 @@ nodes_data = [
     {
         "node_name": "ULK416-cluster1-0",
         "node_ip": "127.0.0.1",
-        "node_data": plugin_data_list[0]
+        "node_data": plugin_data_list_for_all_nodes
     },
     {
         "node_name": "ULK416-cluster1-1",
         "node_ip": "192.168.0.1",
-        "node_data": plugin_data_list[1]
+        "node_data": plugin_data_list_for_all_nodes
     },
     {
         "node_name": "ULK416-cluster1-2",
         "node_ip": "192.168.0.2",
-        "node_data": plugin_data_list[2]
+        "node_data": plugin_data_list_for_all_nodes
     },
 ]
 print dataset_hdd_usage

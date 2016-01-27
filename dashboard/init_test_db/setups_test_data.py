@@ -27,7 +27,7 @@ def setting_test_plugin_info(plugins):
     print plugins[0].params_info[0].description
 
 
-def setting_test_node_info(nodes):
+def setting_test_node_general_info(nodes):
     for node in nodes:
         new_node = NodeInfo(
             node_type=node['node_type'],
@@ -47,9 +47,27 @@ def setting_test_node_info(nodes):
         print '\tnode_os is ', node.node_os
         print '\tenabled_plugins: ', node.enabled_plugins
 
+def setting_test_nodes_data(nodes_data):
+    for node_data in nodes_data:
+        print 'node_name: ', node_data['node_name']
+        print 'node_ip: ', node_data['node_ip']
+        print 'node_data: '
+        plugins_data = node_data['node_data']
+        print '\tnode plugins: '
+        for plugin_data in plugins_data:
+            print '\t\tplugin_name: ', plugin_data['plugin_name']
+            print '\t\tparams_data: '
+            params_data = plugin_data['params_data']
+            print '\t\t\tparam_description:'
+            param_desc = params_data['param_description']
+            print '\t\t\t\tparam_name: ', param_desc['param_name']
+            print '\t\t\t\tgraph_type: ', param_desc['graph_type']
+            print '\t\t\t\taxis_x_title: ', param_desc['axis_x_title']
+            print '\t\t\t\taxis_y_title: ', param_desc['axis_y_title']
+            print '\t\t\tparam_dataset:', params_data['dataset']
+            print ''
 
-
-class ParamDescription(EmbeddedDocument):
+"""class ParamDescription(EmbeddedDocument):
     param_name = StringField(max_length=30)
     axis_y_title = StringField(max_length=20)
     axis_x_title = StringField(max_length=20, default="Time line")
@@ -69,4 +87,4 @@ class PluginData(EmbeddedDocument):
 class NodeData(Document):
     node_name = StringField(max_length=50)
     node_ip = StringField(max_length=15)
-    node_data_list = EmbeddedDocumentListField(PluginData)
+    node_data_list = EmbeddedDocumentListField(PluginData)"""

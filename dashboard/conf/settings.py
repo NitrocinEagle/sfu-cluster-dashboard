@@ -40,8 +40,10 @@ mongoengine.connect(_MONGODB_NAME)
 a = connect('monitoring_test', host='127.0.0.1', port=27017)"""
 
 
+BASE_DIR = os.path.dirname(__file__)
 
-PROJECT_ROOT = '/home/mist/Development/sfu-cluster-dashboard/dashboard'
+PROJECT_ROOT = os.path.dirname(BASE_DIR)
+print PROJECT_ROOT
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, "tpl"),
