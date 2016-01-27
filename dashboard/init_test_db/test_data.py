@@ -136,15 +136,15 @@ params_data = [
 plugin_data_list_for_all_nodes = [
     {
         "plugin_name": "cpu_load",
-        "params_data": params_data[0]
+        "params_data": [params_data[0], ]
     },
     {
         "plugin_name": "ram_usage",
-        "params_data": params_data[1]
+        "params_data": [params_data[1], ]
     },
     {
         "plugin_name": "hdd_usage",
-        "params_data": params_data[2]
+        "params_data": [params_data[2], ]
     }
 ]
 
@@ -165,6 +165,3 @@ nodes_data = [
         "node_data": plugin_data_list_for_all_nodes
     },
 ]
-print dataset_hdd_usage
-print dataset_ram_usage
-print dataset_cpu_load

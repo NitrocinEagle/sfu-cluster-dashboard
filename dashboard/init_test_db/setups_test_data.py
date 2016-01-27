@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'mist'
 from dashboard.app.dashboard.models import *
-from mongoengine import connect
+from mongoengine import *
 
 connect("test")
 
@@ -47,7 +47,8 @@ def setting_test_node_general_info(nodes):
         print '\tnode_os is ', node.node_os
         print '\tenabled_plugins: ', node.enabled_plugins
 
-def setting_test_nodes_data(nodes_data):
+
+def print_test_nodes_data(nodes_data):
     for node_data in nodes_data:
         print 'node_name: ', node_data['node_name']
         print 'node_ip: ', node_data['node_ip']
@@ -67,24 +68,59 @@ def setting_test_nodes_data(nodes_data):
             print '\t\t\tparam_dataset:', params_data['dataset']
             print ''
 
-"""class ParamDescription(EmbeddedDocument):
-    param_name = StringField(max_length=30)
-    axis_y_title = StringField(max_length=20)
-    axis_x_title = StringField(max_length=20, default="Time line")
-    graph_type = StringField(max_length=30)
 
+def setting_test_nodes_data(nodes_data):
+    """params_data = nodes_data[0]['node_data'][0]['params_data']
 
-class ParamData(EmbeddedDocument):
-    param_description = EmbeddedDocumentField(ParamDescription)
-    dataset = DynamicField(default=LineChartMetric)
+    if params_data['param_description']['graph_type'] is 'line_chart':
+        new_line_chart_metric_list = []
+        for data in params_data['dataset']:
+            new_line_chart_metric = LineChartMetric(
+                timestamp=data['timestamp'],
+                value=data['value']
+            )
+            new_line_chart_metric_list.append(new_line_chart_metric)
+    elif params_data['param_description']['graph_type'] is 'pie_chart':
+        new_pie_chart_metric = PieChartMetric()
+        new_pie_chart_metric.timestamp = params_data['dataset']['timestamp']
+        new_sector_metric_list = []
+        for data in params_data['dataset']['data']:
+            new_sector_metric = PieChartMetric.SectorData()
+            new_sector_metric.sector_name = data['sector_name']
+            new_sector_metric.value = data['value']
+            new_sector_metric_list.append(new_sector_metric)
 
+        new_pie_chart_metric.data = new_sector_metric_list
+"""
 
-class PluginData(EmbeddedDocument):
-    plugin_name = StringField(max_length=30)
-    param_data_list = EmbeddedDocumentListField(ParamData)
+    node_data_list = []
+    for node_data in nodes_data:
+        # NodeData()
+        new_node_data = NodeData()
+        new_node_data.node_name = node_data['node_name']
+        new_node_data.node_ip = node_data['node_ip']
+        new_node_data.plugin_data_list = []
+        # PluginData
+        plugins_data = node_data['node_data']
+        for plugin_data in plugins_data:
+            new_plugin_data = PluginData()
+            new_plugin_data.plugin_name = plugin_data['plugin_name']
+            new_plugin_data.param_data_list = []
+            # ParamData
+            params_data = plugin_data['params_data']
+            for param_data in params_data:
+                param_data_desription = param_data['param_description']
+                new_param_data = ParamData()
+                # ParamDescription
+                new_param_description = ParamDescription(
+                    param_name=param_data_desription['param_name'],
+                    axis_y_title=param_data_desription['axis_y_title'],
+                    axis_x_title=param_data_desription['axis_x_title'],
+                    graph_type=param_data_desription['graph_type']
+                )
+                new_param_data.param_description = new_param_description
 
-
-class NodeData(Document):
-    node_name = StringField(max_length=50)
-    node_ip = StringField(max_length=15)
-    node_data_list = EmbeddedDocumentListField(PluginData)"""
+                new_param_data.dataset = 2
+                new_plugin_data.param_data_list.append(new_param_data)
+            new_node_data.plugin_data_list.append(new_plugin_data)
+        node_data_list.append(new_node_data)
