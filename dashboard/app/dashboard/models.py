@@ -3,6 +3,7 @@ __author__ = 'mist'
 from time import time
 from mongoengine import *
 
+
 class NodeInfo(Document):
     node_type = StringField(max_length=20)
     node_ip = StringField(max_length=15)
@@ -43,29 +44,7 @@ class ParamDescription(EmbeddedDocument):
     axis_x_title = StringField(max_length=20, default="Time line")
     graph_type = StringField(max_length=30)
 
-
-class ParamData(EmbeddedDocument):
-    param_description = EmbeddedDocumentField(ParamDescription)
-    dataset = DynamicField(default=LineChartMetric)
-
-
-class PluginData(EmbeddedDocument):
-    plugin_name = StringField(max_length=30)
-    param_data_list = EmbeddedDocumentListField(ParamData)
-
-
-class NodeData(Document):
-    node_name = StringField(max_length=50)
-    node_ip = StringField(max_length=15)
-    plugin_data_list = EmbeddedDocumentListField(PluginData)
-
-
 """
-Описание формата собранных данных для конкретного узла. Собранные даные разбиты на фрагменты по плагинам.
-В каждом фрагменте содержится:
-1. Название плагина;
-2. Параметры.
-
 В параметрах в зависимости от способа отображения могут хранится:
 1. Название параметра;
 2. Метка для оси X;
@@ -75,6 +54,20 @@ class NodeData(Document):
 
 В наборе данных содержатся данные в формате, требуемом от способа отображения.
 """
+class ParamData(EmbeddedDocument):
+    param_description = EmbeddedDocumentField(ParamDescription)
+    dataset = DynamicField(default=LineChartMetric)
+
+
+"""
+Описание формата собранных данных для конкретного узла. Собранные даные разбиты на фрагменты по плагинам.
+В каждом фрагменте содержится:
+1. Название плагина;
+2. Параметры.
+"""
+class PluginData(EmbeddedDocument):
+    plugin_name = StringField(max_length=30)
+    param_data_list = EmbeddedDocumentListField(ParamData)
 
 """
 Здесь хранятся данные мониторинга для каждого узла. В каждом наборе данных определены:
@@ -82,3 +75,7 @@ class NodeData(Document):
 2. Ip-адрес узла;
 3. Собранные данные. (формат собранных данных описан выше)
 """
+class NodeData(Document):
+    node_name = StringField(max_length=50)
+    node_ip = StringField(max_length=15)
+    plugin_data_list = EmbeddedDocumentListField(PluginData)
