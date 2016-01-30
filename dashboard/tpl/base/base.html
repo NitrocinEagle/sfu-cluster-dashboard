@@ -1,0 +1,17 @@
+<!DOCTYPE html lang="en">
+{% block head %}
+    <head>
+    {% block title %}{% endblock %}
+    {% block load_static %}{% endblock %}
+    </head>
+{% endblock %}
+
+{% block body %}
+<body>
+    {% block header %}{% endblock %}
+    {% block sidebar %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% block footer %}{% endblock %}
+</body>
+{% endblock %}
+</html>
