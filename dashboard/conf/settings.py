@@ -10,11 +10,7 @@ DATABASES = {
 BASE_DIR = os.path.dirname(__file__)
 
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
-print PROJECT_ROOT
 
-TEMPLATE_DIRS = (
-    os.path.join(PROJECT_ROOT, "tpl"),
-)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -60,7 +56,9 @@ ROOT_URLCONF = 'app.dashboard.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': TEMPLATE_DIRS,
+        'DIRS': [
+            os.path.join(PROJECT_ROOT, "tpl"),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

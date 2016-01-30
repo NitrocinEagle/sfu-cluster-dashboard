@@ -1,8 +1,6 @@
 .header {
-    background-color: #555;
-    height: 50px;
-    border-bottom: 2px solid #777;
 }
+
 .header-logo {
     font-size: 28px;
     color: darkorange;
@@ -36,4 +34,46 @@ a {
 }
 .monitoring_state_critical {
     color: red;
+}
+
+.sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #333;
+    border-right: 5px groove darkorange;
+
+}
+
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li {
+border-bottom: 1px solid #444;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > li > a:hover {
+border-left: 3px solid red;
+background-color: #444;
+color: #fff;
+}
+.nav-sidebar > .active > a {
+font: bold;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+color: darkorange;
 }
