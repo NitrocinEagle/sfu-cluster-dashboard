@@ -1,5 +1,5 @@
 __author__ = 'mist'
-from dashboard.app.dashboard.models import LineChartMetric, PieChartMetric
+from dashboard.app.models import LineChartMetric, PieChartMetric
 
 PRINT = False
 

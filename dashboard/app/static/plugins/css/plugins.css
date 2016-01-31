@@ -1,0 +1,61 @@
+.plugin_info {
+    width: 60%;
+}
+
+.plugin_name {
+    padding-top: 10px;
+    width: 85%;
+    height: 40px;
+    padding-left: 20px;
+    float: left;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    /*background-color: #93ED9D;*/
+    background-color: #333;
+    color: darkorange;
+}
+
+.plugin_info > .plugin_details {
+    display: none;
+}
+
+.plugin_name:hover ~ .plugin_details {
+    display: block;
+}
+.plugin_details:hover {
+    display: block;
+}
+
+.plugin_graphs {
+    width: 15%;
+    position: relative;
+    padding-top: 5px;
+    height: 40px;
+    margin-left: 85%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border-radius: 0 50px 50px 0;
+    /*border-left: 3px groove black;*/
+    border-left: 3px solid darkorange;
+    text-align: center;
+    /*background-color: #93ED9D;*/
+    background-color: #333;
+    color: darkorange;
+}
+
+.plugin_graphs:hover {
+    background-color: #BFCED6;
+    color: black;
+}
+
+.plugin_details {
+width: 85%;
+background-color: #BFCED6;
+box-shadow: 0 0 5px rgba(0,0,0,0.5);
+border: 1px solid #333;
+border-radius: 0 0 15px 5px;
+}
+.plugin_description {
+color: black;
+}
+.plugin_params {
+color: black;
+}

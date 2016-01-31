@@ -1,0 +1,70 @@
+{% extends "base/base.html" %}
+{% block head %}
+{% block title %}
+<title>Plugins</title>
+{% endblock %}
+
+{% block load_static %}
+{% include "base/statics.html" %}
+{% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="header">
+    {% block header %}
+    {% include "base/header.html" %}
+    {% endblock %}
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 sidebar">
+            {% block sidebar %}
+            {% include "base/sidebar.html" %}
+            {% endblock %}
+        </div>
+        <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2"
+             style="top: 51px;">
+            {% block content %}
+            <h3>Плагины</h3>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12">
+                    {% for plugin in plugins %}
+                    <div class="plugin_info">
+                        <div class="plugin_name">
+                            {{ plugin.name }}
+                        </div>
+                        <div class="plugin_graphs">
+                            <i class="fa fa-area-chart fa-2x"></i>
+                        </div>
+                        <div class="plugin_details">
+                            <div class="plugin_description">
+                                <b>Описание плагина:</b><br>
+                                 {{ plugin.description }}
+                            </div>
+                            <br>
+                            <div class="plugin_params">
+                                <b>Описание параметров:</b>
+                                <ul>
+                                    {% for param in plugin.params_info %}
+                                    <li>{{ param.description }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr width="60%" align="left">
+                    <br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </div>
+</div>
+</div>
+
+
+{% block footer %}
+{% endblock %}
+{% endblock %}

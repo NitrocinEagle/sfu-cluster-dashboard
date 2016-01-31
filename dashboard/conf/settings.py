@@ -51,7 +51,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'app.dashboard.urls'
+ROOT_URLCONF = 'app.urls'
 
 TEMPLATES = [
     {
@@ -117,6 +117,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "app/static")
 
 STATICFILES_DIRS = (
     os.path.join(STATIC_ROOT, "dashboard"),
+    os.path.join(STATIC_ROOT, "plugins"),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
