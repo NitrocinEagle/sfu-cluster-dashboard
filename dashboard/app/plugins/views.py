@@ -28,5 +28,4 @@ class PluginsView(View):
                 'description': plugin.description,
                 'params_info': new_params
             })
-        print plugins_render
         return render(request, self.template_name, {'plugins': plugins_render})

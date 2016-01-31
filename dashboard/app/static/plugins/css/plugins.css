@@ -9,7 +9,6 @@
     padding-left: 20px;
     float: left;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
-    /*background-color: #93ED9D;*/
     background-color: #333;
     color: darkorange;
 }
@@ -33,10 +32,8 @@
     margin-left: 85%;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     border-radius: 0 50px 50px 0;
-    /*border-left: 3px groove black;*/
     border-left: 3px solid darkorange;
     text-align: center;
-    /*background-color: #93ED9D;*/
     background-color: #333;
     color: darkorange;
 }
@@ -47,15 +44,17 @@
 }
 
 .plugin_details {
-width: 85%;
-background-color: #BFCED6;
-box-shadow: 0 0 5px rgba(0,0,0,0.5);
-border: 1px solid #333;
-border-radius: 0 0 15px 5px;
+    width: 85%;
+    background-color: #BFCED6;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    border-radius: 0 0 15px 5px;
 }
+
 .plugin_description {
-color: black;
+    color: black;
 }
+
 .plugin_params {
-color: black;
+    color: black;
 }
