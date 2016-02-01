@@ -47,5 +47,7 @@ class ParamDescription(EmbeddedDocument):
 
 class NodeData(Document):
     node_name = StringField(max_length=50)
+    node_ip = StringField(max_length=15)
     plugin_name = StringField(max_length=30)
+    param_name = StringField(max_length=30)
     data = DynamicField(default=LineChartMetric)

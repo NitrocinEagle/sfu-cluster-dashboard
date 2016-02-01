@@ -1,5 +1,5 @@
 import jsonrpclib
-from mongoengine import connect
+import mongoengine.connect
 from tornado import ioloop
 from models import *
 import time
@@ -12,6 +12,9 @@ def get_data_from_node(server, node_ip, node_name, plugin_name):
         result = endpoint()
         node_data = NodeData()
         node_data.node_name = node_name
+        node_data.node_ip = node_ip
+        # TODO: parameter can be not equal to the name of plugin
+        node_data.param_name = plugin_name
         node_data.plugin_name = plugin_name
         data = LineChartMetric()
         data.value = result['data']
@@ -23,7 +26,7 @@ def get_data_from_node(server, node_ip, node_name, plugin_name):
 
 if __name__ == "__main__":
     callbacks = []
-    connect('test')
+    mongoengine.connect('test')
     servers = {}
     loop = ioloop.IOLoop.instance()
 
