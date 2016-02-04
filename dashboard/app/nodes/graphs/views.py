@@ -1,8 +1,9 @@
-__author__ = 'mist'
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from django.shortcuts import render
 from django.views.generic import View
-from ...models import NodeInfo
 from mongoengine import connect
+from ...models import NodeInfo
 
 connect("test")
 

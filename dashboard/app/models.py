@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = 'mist'
 from time import time
 from mongoengine import *
 
