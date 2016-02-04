@@ -1,7 +1,7 @@
 __author__ = 'mist'
 from django.shortcuts import render
 from django.views.generic import View
-from dashboard.app.models import NodeInfo
+from ...models import NodeInfo
 from mongoengine import connect
 
 connect("test")

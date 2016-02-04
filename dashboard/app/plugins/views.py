@@ -1,7 +1,7 @@
-__author__ = 'mist'
+from __future__ import absolute_import
 from django.shortcuts import render
 from django.views.generic import View
-from dashboard.app.models import PluginInfo
+from ..models import PluginInfo
 from mongoengine import connect
 
 connect("test")
