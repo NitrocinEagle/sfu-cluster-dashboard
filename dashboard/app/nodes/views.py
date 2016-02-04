@@ -13,8 +13,8 @@ class NodesView(View):
     def get(self, request, *args, **kwargs):
         nodes_render = []
         nodes = NodeInfo.objects()
-        for node in nodes:
-            """new_params = []
+        """for node in nodes:
+           new_params = []
             params = plugin.params_info
             for param in params:
                 new_params.append({

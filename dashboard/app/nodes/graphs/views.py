@@ -8,13 +8,13 @@ connect("test")
 
 
 class GraphsView(View):
-    template_name = 'nodes/nodes.html'
-    """template_name = 'nodes/nodes.html'
+    template_name = 'graphs/graphs.html'
+
 
     def get(self, request, *args, **kwargs):
         nodes_render = []
         nodes = NodeInfo.objects()
-        for node in nodes:
+        """for node in nodes:
             new_params = []
             params = plugin.params_info
             for param in params:
@@ -28,6 +28,5 @@ class GraphsView(View):
                 'description': plugin.description,
                 'params_info': new_params
             })
-        print plugins_render
+        print plugins_render"""
         return render(request, self.template_name, {'nodes': nodes_render})
-"""
