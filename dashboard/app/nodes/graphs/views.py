@@ -48,7 +48,7 @@ class GraphsNodesView(View):
                 "param_name": "ram_usage"
             },
             {
-                "id": "graph_id_2",
+                "id": "graph_id_3",
                 "plugin_name": "hdd_usage",
                 "node_name": "node_1",
                 "param_name": "hdd_usage"

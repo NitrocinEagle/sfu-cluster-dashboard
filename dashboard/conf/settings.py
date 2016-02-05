@@ -118,6 +118,8 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "app/static")
 STATICFILES_DIRS = (
     os.path.join(STATIC_ROOT, "dashboard"),
     os.path.join(STATIC_ROOT, "plugins"),
+    os.path.join(STATIC_ROOT, "assets"),
+    os.path.join(STATIC_ROOT, "graphs"),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

@@ -1,11 +1,12 @@
 {% extends "base/base.html" %}
+{% load static %}
 {% block head %}
 {% block title %}
 <title>Plugins</title>
 {% endblock %}
-
 {% block load_static %}
 {% include "base/statics.html" %}
+<script src="{% static 'js/graphs.js' %}"></script>
 {% endblock %}
 {% endblock %}
 

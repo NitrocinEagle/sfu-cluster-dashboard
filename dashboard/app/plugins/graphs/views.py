@@ -48,7 +48,7 @@ class GraphsPluginsView(View):
                 "param_name": "cpu_load"
             },
             {
-                "id": "graph_id_2",
+                "id": "graph_id_3",
                 "plugin_name": "cpu_load",
                 "node_name": "node_2",
                 "param_name": "cpu_load"
