@@ -4,7 +4,6 @@ function getCanvases() {
 function getChartsInfo() {
     var chartsInfo = [];
     $.each(getCanvases(), function (key, value) {
-        //id = value.getAttribute('id');
         var node_name = value.getAttribute('node-name');
         var plugin_name = value.getAttribute('plugin-name');
         var param_name = value.getAttribute('param-name');
@@ -21,7 +20,7 @@ function getChartsInfo() {
 
 function getGraphsInfo(chartsInfo) {
     var graphsInfo = [];
-    var graphAPI_URL = ''
+    var graphAPI_URL = '/api/graphs/'
     $.each(chartsInfo, function (k, v) {
         var graphsInfoResponse = JSON.parse($.get(graphAPI_URL + v.node_name + '/' + v.plugin_name +  '/' + v.param_name + '/'));
         graphsInfo.push(
