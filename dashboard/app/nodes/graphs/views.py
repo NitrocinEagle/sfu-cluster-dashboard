@@ -3,50 +3,58 @@ from __future__ import absolute_import
 from django.shortcuts import render
 from django.views.generic import View
 from mongoengine import connect
-from ...models import NodeInfo
+from ...models import NodeInfo, PluginInfo
 
 connect("test")
 
 
-class GraphsPluginsView(View):
+class GraphsNodesView(View):
     template_name = 'graphs/graphs.html'
 
+    def get(self, request, *args, **kwargs):
+        # uncomment it if there is workable DB
+        """
+        graphs_info = []
+        node_name = kwargs.get('node_name')  # TODO: add 'try ... except'
+        node = NodeInfo.objects(node_name=node_name)
+        node_plugins = node.enabled_plugins
+        id = 1
+        for plugin in node_plugins:
+            plugin_params = [param.param_name for param in
+                             PluginInfo.objects(plugin_name=plugin).params_info]
+            for param in plugin_params:
+                graphs_info.append(
+                        {
+                            "id": "graph_id_" + str(id),
+                            "plugin_name": plugin,
+                            "node_name": node_name,
+                            "param_name": param
+                        }
+                )
+                id += 1
+        """
+        # uncomment it if there is workable DB
+        test_graphs_info = [
+            {
+                "id": "graph_id_1",
+                "plugin_name": "cpu_load",
+                "node_name": "node_1",
+                "param_name": "cpu_load"
+            },
+            {
+                "id": "graph_id_2",
+                "plugin_name": "ram_usage",
+                "node_name": "node_1",
+                "param_name": "ram_usage"
+            },
+            {
+                "id": "graph_id_2",
+                "plugin_name": "hdd_usage",
+                "node_name": "node_1",
+                "param_name": "hdd_usage"
+            }
+        ]
 
-# Нужно выбрать из базы все узлы, у которых подключен конкретный плагин. И параметры тоже.
-# Имя этого плагина должно лежать в кваргах
-# Нужно получить что-то типа списка
-lissst = {
-    "plugin_name": "plugin",
-    "nodes_params": [
-        {
-            "node_name": "1",
-            "param_name": "1"
-        },
-        {
-            "node_name": "2",
-            "param_name": "2"
-        },
-    ]
-}
-# И в div уже пихать <div plugin_name="plugin" node_name="..." param_name="" class="graphs"></div>
-
-
-def get(self, request, *args, **kwargs):
-    nodes_render = []
-    nodes = NodeInfo.objects()
-    """for node in nodes:
-        new_params = []
-        params = plugin.params_info
-        for param in params:
-            new_params.append({
-                'name': param.param_name,
-                'description': param.description,
-                'timeout': param.timeout
-            })
-        plugins_render.append({
-            'name': plugin.plugin_name,
-            'description': plugin.description,
-            'params_info': new_params
-        })
-    print plugins_render"""
-    return render(request, self.template_name, {'nodes': nodes_render})
+        return render(request, self.template_name, {'graphs_info': test_graphs_info})
+        # uncomment it if there is workable DB
+        # return render(request, self.template_name, {'graphs_info': graphs_info})

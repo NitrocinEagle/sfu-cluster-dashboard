@@ -24,7 +24,17 @@
         </div>
         <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px;">
             {% block content %}
-
+            {% for graph in graphs_info %}
+            <div class="row" style="top:51px">
+                <canvas id="{{ graph.id }}" class="graphs" plugin-name="{{ graph.plugin_name }}"
+                node-name="{{ graph.node_name }}" param-name="{{ graph.param_name }}">
+                </canvas>
+                <p>{{graph.id}}</p>
+                <p>{{graph.plugin_name}}</p>
+                <p>{{graph.node_name}}</p>
+                <p>{{graph.param_name}}</p>
+            </div>
+            {% endfor %}
             {% endblock %}
         </div>
     </div>
