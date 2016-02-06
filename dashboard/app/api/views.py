@@ -5,9 +5,7 @@ from django.views.generic import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from mongoengine import connect
-from time import time
-import random
-from ..models import NodeData, PluginInfo
+from dashboard.init_test_db.test_data import nodes_data, params_decription
 
 connect("test")
 
@@ -26,109 +24,7 @@ class GraphsAPIView(APIView):
         node_name = kwargs.get("node_name")
         plugin_name = kwargs.get("plugin_name")
         param_name = kwargs.get("param_name")
-        print 'node_name: ', node_name
-        print 'plugin_name: ', plugin_name
-        print 'param_name: ', param_name
-        dataset_cpu_load = []
-        dataset_ram_usage = []
-        dataset_hdd_usage = []
-        time_now = int(time())
 
-        for i in range(10):
-            dataset_cpu_load.append(
-                {
-                    "timestamp": time_now + i * 10,
-                    "value": round(random.random() * 100, 2)
-                }
-            )
-            dataset_ram_usage.append(
-                {
-                    "timestamp": time_now + i * 10,
-                    "value": random.randint(512, 2048)
-                }
-            )
-            dataset_hdd_usage.append(
-                {
-                    "timestamp": time_now + i * 3600,
-                    "data": [
-                        {
-                            "sector_name": "Avaible",
-                            "value": 50 * 1024,
-                        },
-                        {
-                            "sector_name": "Used",
-                            "value": 150 * 1024,
-                        },
-                    ]
-                }
-            )
-
-        nodes_data = [
-            {
-                "node_name": "localhost",
-                "node_ip": "127.0.0.1",
-                "plugin_name": "cpu_load",
-                "param_name": "cpu_load",
-                "data": dataset_cpu_load
-            },
-            {
-                "node_name": "localhost",
-                "node_ip": "127.0.0.1",
-                "plugin_name": "ram_usage",
-                "param_name": "ram_usage",
-                "data": dataset_ram_usage
-            },
-            {
-                "node_name": "localhost",
-                "node_ip": "127.0.0.1",
-                "plugin_name": "hdd_usage",
-                "param_name": "hdd_usage",
-                "data": dataset_hdd_usage
-            },
-            {
-                "node_name": "first",
-                "node_ip": "192.168.0.1",
-                "plugin_name": "cpu_load",
-                "param_name": "cpu_load",
-                "data": dataset_cpu_load
-            },
-            {
-                "node_name": "first",
-                "node_ip": "192.168.0.1",
-                "plugin_name": "ram_usage",
-                "param_name": "ram_usage",
-                "data": dataset_ram_usage
-            },
-            {
-                "node_name": "first",
-                "node_ip": "192.168.0.1",
-                "plugin_name": "hdd_usage",
-                "param_name": "hdd_usage",
-                "data": dataset_hdd_usage
-            },
-            {
-                "node_name": "second",
-                "plugin_name": "cpu_load",
-                "param_name": "cpu_load",
-                "data": dataset_cpu_load
-            },
-            {
-                "node_name": "second",
-                "node_ip": "192.168.0.2",
-                "plugin_name": "ram_usage",
-                "param_name": "ram_usage",
-                "data": dataset_ram_usage
-            },
-            {
-                "node_name": "second",
-                "node_ip": "192.168.0.2",
-                "plugin_name": "hdd_usage",
-                "param_name": "hdd_usage",
-                "data": dataset_hdd_usage
-            },
-        ]
-
-        # print NodeData.objects(node_name=node_name)[0]
         nodes_data_by_nodename = []
         nodes_data_by_pluginname = []
         filtered_node_data = None
@@ -146,16 +42,25 @@ class GraphsAPIView(APIView):
                 filtered_node_data = node_data
                 break
 
+        graph_type = ''
+        axis_y = ''
+        axis_x = ''
+        for param in params_decription:
+            if filtered_node_data['param_name'] == param['param_name']:
+                graph_type = param['graph_type']
+                axis_y = param['axis_y_title']
+                axis_x = param['axis_x_title']
+                break
+
         if filtered_node_data is not None:
             return Response({
-                'graph_type': '',
+                'graph_type': graph_type,
                 'graph_name': filtered_node_data['param_name'],
-                'axis_y': '',
-                'axis_x': '',
+                'axis_y': axis_y,
+                'axis_x': axis_x,
                 'data': filtered_node_data['data']
             })
-        else:
-            return Response({
-                'result': 'error',
-                'code': 1
-            })
+        return Response({
+            'result': 'error',
+            'code': 1
+        })

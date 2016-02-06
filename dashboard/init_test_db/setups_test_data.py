@@ -133,13 +133,10 @@ def setting_test_nodes_data(nodes_data):
         new_node_data = NodeData()
         new_node_data.node_name = node_data['node_name']
         new_node_data.node_ip = node_data['node_ip']
-        new_node_data.plugin_name = node_data['plugin_name']
-        new_node_data.param_name = node_data['param_name']
-        # data
-        data = node_data['data']
-        if "timestamp" in data:
-
-        """for plugin_data in plugins_data:
+        new_node_data.plugin_data_list = []
+        # PluginData
+        plugins_data = node_data['node_data']
+        for plugin_data in plugins_data:
             new_plugin_data = PluginData()
             new_plugin_data.plugin_name = plugin_data['plugin_name']
             new_plugin_data.param_data_list = []

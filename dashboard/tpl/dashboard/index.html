@@ -1,4 +1,5 @@
 {% extends "base/base.html" %}
+{% load static %}
 {% block head %}
     <meta charset="utf-8">
     {% block title %}
@@ -6,6 +7,7 @@
     {% endblock %}
     {% block load_static %}
         {% include "base/statics.html" %}
+        <script src="{% static 'js/dashboard.js' %}"></script>
     {% endblock %}
 {% endblock %}
 
@@ -169,8 +171,7 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <div id="basic_line_chart"
-                                     style="height: 300px; width: 100%;"></div>
+                                <div id="basic_line_chart" style="height: 300px; width: 100%;"></div>
                             </div>
                         </div>
                     </div>
