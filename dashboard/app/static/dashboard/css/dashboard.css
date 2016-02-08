@@ -63,3 +63,19 @@ font: bold;
 .navbar-inverse .navbar-nav > li > a {
 color: darkorange;
 }
+
+.panel-dashboard {
+    border: 1px solid black;
+}
+.panel-dashboard .panel-heading {
+    background-color: darkorange;
+    border-bottom: 1px solid black;
+}
+
+.panel-dashboard .panel-footer {
+    border-top: 1px solid black;
+    background-color: #0f0f0f;
+}
+.panel-dashboard .panel-body > div > a {
+    color: #0f0f0f;
+}
