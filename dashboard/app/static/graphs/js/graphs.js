@@ -22,7 +22,7 @@ function getChartsInfo() {
 
 function buildGraphs(chartsInfo) {
     var graphAPI_URL = '/api/graphs/';
-    console.log('chartsInfo --> ',chartsInfo);
+    console.log('chartsInfo --> ', chartsInfo);
     $.each(chartsInfo, function (k, v) {
         $.ajax({
             url: graphAPI_URL + v.node_name + '/' + v.plugin_name + '/' + v.param_name + '/?format=json',
@@ -36,9 +36,18 @@ function buildGraphs(chartsInfo) {
 
 
 function renderGraph(canvasElementID, graphInfo) {
-    var dataPoints = []
-    $.each(graphInfo.data, function (k, v)  {
+    if (graphInfo.graph_type == 'line_chart') {
+        renderLineChart(canvasElementID, graphInfo);
+    }
+    else
+        renderPieChart(canvasElementID, graphInfo);
+}
+
+function renderLineChart(canvasElementID, graphInfo) {
+    var dataPoints = [];
+    $.each(graphInfo.data, function (k, v) {
         dataPoints.push({
+            // TODO. Tranform x to time string with time in HH:MM
             'x': v.timestamp,
             'y': v.value
         })
@@ -62,7 +71,29 @@ function renderGraph(canvasElementID, graphInfo) {
             }
         ]
     });
-    console.log(chart);
+    chart.render();
+}
+
+function renderPieChart(canvasElementID, graphInfo) {
+    console.log (graphInfo);
+    var dataPoints = [];
+    $.each(graphInfo.data[0].data, function (k, v) {
+        //TODO graphInfo.data[0] is a fast decision. Need to query only the last one object
+        dataPoints.push({
+            'y': v.value,
+            'indexLabel': v.sector_name
+        })
+    });
+    var chart = new CanvasJS.Chart(canvasElementID, {
+        title: {
+            text: graphInfo.graph_name
+        },
+        data: [{
+            type: "doughnut",
+            dataPoints: dataPoints
+        }]
+    });
+
     chart.render();
 }
 
