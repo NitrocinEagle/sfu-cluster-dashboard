@@ -47,10 +47,9 @@ function renderLineChart(canvasElementID, graphInfo) {
     var dataPoints = [];
     $.each(graphInfo.data, function (k, v) {
         dataPoints.push({
-            // TODO. Tranform x to time string with time in HH:MM
-            'x': v.timestamp,
+            'x': (new Date(v.timestamp)).toLocaleTimeString().slice(0,5),
             'y': v.value
-        })
+        });
     });
     var chart = new CanvasJS.Chart(canvasElementID, {
         zoomEnabled: true,
