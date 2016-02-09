@@ -15,19 +15,10 @@ class NodesView(View):
         nodes_render = []
         nodes = NodeInfo.objects()
         for node in nodes:
-            new_params = []
-            params = plugin.params_info
-            for param in params:
-                new_params.append({
-                    'name': param.param_name,
-                    'description': param.description,
-                    'timeout': param.timeout
-                })
             nodes_render.append({
-                'name': plugin.plugin_name,
-                'description': plugin.description,
-                'params_info': new_params
+                'name': node.node_name,
+                'ip': node.node_ip,
+                'os': node.node_os,
+                'plugins': node.enabled_plugins
             })
-
-        print nodes_render
         return render(request, self.template_name, {'nodes': nodes_render})

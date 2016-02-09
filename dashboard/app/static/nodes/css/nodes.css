@@ -1,0 +1,60 @@
+.node_info {
+    width: 60%;
+}
+
+.node_name {
+    padding-top: 10px;
+    width: 85%;
+    height: 40px;
+    padding-left: 20px;
+    float: left;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    background-color: #333;
+    color: darkorange;
+}
+
+.node_info > .node_details {
+    display: none;
+}
+
+.node_name:hover ~ .node_details {
+    display: block;
+}
+.node_details:hover {
+    display: block;
+}
+
+.node_graphs {
+    width: 15%;
+    position: relative;
+    padding-top: 5px;
+    height: 40px;
+    margin-left: 85%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border-radius: 0 50px 50px 0;
+    border-left: 3px solid darkorange;
+    text-align: center;
+    background-color: #333;
+    color: darkorange;
+}
+
+.node_graphs:hover {
+    background-color: #BFCED6;
+    color: black;
+}
+
+.node_details {
+    width: 85%;
+    background-color: #BFCED6;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    border-radius: 0 0 15px 5px;
+}
+
+.node_description {
+    color: black;
+}
+
+.node_params {
+    color: black;
+}

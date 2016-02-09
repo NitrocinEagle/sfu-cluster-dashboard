@@ -15,7 +15,6 @@ class PluginsView(View):
         plugins_render = []
 
         plugins = PluginInfo.objects()
-        print 'plugins: ', plugins[0].items()
         for plugin in plugins:
             new_params = []
             params = plugin.params_info

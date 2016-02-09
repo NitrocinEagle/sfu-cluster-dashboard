@@ -92,7 +92,7 @@ time_now = int(time())
 for i in range(10):
     dataset_cpu_load.append(
         {
-            "timestamp": time_now + i * 10,
+            "timestamp": time_now + i * 1000,
             "value": round(random.random() * 100, 2)
         }
     )

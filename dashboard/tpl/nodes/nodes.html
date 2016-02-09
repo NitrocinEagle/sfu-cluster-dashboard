@@ -22,18 +22,42 @@
             {% include "base/sidebar.html" %}
             {% endblock %}
         </div>
-        <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px;">
+        <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2"
+             style="top: 51px;">
             {% block content %}
-            <h3>Плагины</h3>
+            <h3>Узлы</h3>
             <hr>
             <div class="row">
                 <div class="col-lg-12">
                     {% for node in nodes %}
-
-
-
-
-
+                    <div class="node_info">
+                        <div class="node_name">
+                            {{ node.name }}
+                        </div>
+                        <a href="{{ node.name }}/graphs/">
+                            <div class="node_graphs">
+                                <i class="fa fa-area-chart fa-2x"></i>
+                            </div>
+                        </a>
+                        <div class="node_details">
+                            <div class="node_description">
+                                <b>Описание узла:</b><br>
+                                    IP-адрес: {{ node.ip }}<br>
+                                    Операционная система: {{ node.os }}
+                            </div>
+                            <br>
+                            <div class="node_plugins">
+                                <b>Подключенные плагины:</b><br>
+                                <ul>
+                                    {% for plugin in node.plugins %}
+                                    <li>{{ plugin }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr width="60%" align="left">
+                    <br>
                     {% endfor %}
                 </div>
             </div>

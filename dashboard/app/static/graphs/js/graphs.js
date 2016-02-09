@@ -22,7 +22,6 @@ function getChartsInfo() {
 
 function buildGraphs(chartsInfo) {
     var graphAPI_URL = '/api/graphs/';
-    console.log('chartsInfo --> ', chartsInfo);
     $.each(chartsInfo, function (k, v) {
         $.ajax({
             url: graphAPI_URL + v.node_name + '/' + v.plugin_name + '/' + v.param_name + '/?format=json',
@@ -47,7 +46,7 @@ function renderLineChart(canvasElementID, graphInfo) {
     var dataPoints = [];
     $.each(graphInfo.data, function (k, v) {
         dataPoints.push({
-            'x': (new Date(v.timestamp)).toLocaleTimeString().slice(0,5),
+            'label': (new Date(v.timestamp)).toLocaleTimeString(),
             'y': v.value
         });
     });
