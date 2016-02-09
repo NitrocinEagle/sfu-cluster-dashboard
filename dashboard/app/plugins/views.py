@@ -5,7 +5,7 @@ from django.views.generic import View
 from ..models import PluginInfo
 from mongoengine import connect
 
-connect("test")
+connect('test', host='192.168.1.106', port=27017)
 
 
 class PluginsView(View):
@@ -15,6 +15,7 @@ class PluginsView(View):
         plugins_render = []
 
         plugins = PluginInfo.objects()
+        print 'plugins: ', plugins[0].items()
         for plugin in plugins:
             new_params = []
             params = plugin.params_info
