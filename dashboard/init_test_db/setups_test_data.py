@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 __author__ = 'mist'
-from dashboard.app.models import *
+from dashboard.app.mongo_models import *
 from mongoengine import connect
 from helpers import get_dataset
 

@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from django.shortcuts import render
 from django.views.generic import View
-from ...models import NodeInfo, PluginInfo
+from ...mongo_models import NodeInfo, PluginInfo
 from mongoengine import connect
 
 connect("test")

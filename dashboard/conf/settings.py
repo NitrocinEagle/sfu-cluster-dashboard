@@ -1,16 +1,18 @@
 import os
 from mongoengine import connect
 
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'test_users'
     }
 }
 
 BASE_DIR = os.path.dirname(__file__)
 
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
-
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -73,9 +75,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'app.dashboard.wsgi.application'
-
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 
 # Password validation

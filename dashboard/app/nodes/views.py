@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from django.shortcuts import render
 from django.views.generic import View
-from ..models import NodeInfo
+from ..mongo_models import NodeInfo
 from mongoengine import connect
 
 connect('test', host='192.168.1.106', port=27017)
