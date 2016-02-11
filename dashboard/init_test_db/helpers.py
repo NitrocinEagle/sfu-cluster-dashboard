@@ -1,5 +1,5 @@
 __author__ = 'mist'
-from dashboard.app.models import LineChartMetric, PieChartMetric
+from dashboard.app.mongo_models import LineChartMetric, PieChartMetric
 
 PRINT = False
 
