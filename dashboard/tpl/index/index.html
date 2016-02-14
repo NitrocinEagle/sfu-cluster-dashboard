@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+{% extends "base/base.html" %}
+{% block head %}
     <meta charset="UTF-8">
-    <title>index page</title>
-</head>
-<body>
+    {% load static %}
+    {% block title %}
+        <title>Login</title>
+    {% endblock %}
+    {% block load_static %}
+        <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    {% endblock %}
+{% endblock %}
 
-</body>
-</html>
+{% block body %}
+    <div class="container">
+        <form class="login-form" action="" method="post">
+            <h2>Для того чтобы войти в систему, вам
+                необходимо пройти атентификацию.</h2>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">
+                Войти
+            </button>
+        </form>
+    </div>
+{% endblock %}
+

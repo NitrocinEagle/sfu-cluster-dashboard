@@ -1,18 +1,18 @@
 # -*- coding: utf8 -*-
 from __future__ import absolute_import
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import FormView
 from django.views.generic.base import View
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class LoginFormView(FormView):
     # login 'test' password 'test1234'
     form_class = AuthenticationForm
 
-    template_name = "index/login.html"
+    template_name = "index/index.html"
     success_url = "/dashboard"
 
     def form_valid(self, form):
