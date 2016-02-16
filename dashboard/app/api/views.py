@@ -5,7 +5,8 @@ from django.views.generic import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from mongoengine import connect
-from dashboard.init_test_db.test_data import nodes_data, params_decription
+from app.init_test_db.test_data import nodes_data, params_decription
+
 
 connect("test")
 

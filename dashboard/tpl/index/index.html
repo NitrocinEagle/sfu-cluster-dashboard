@@ -11,16 +11,40 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <form class="login-form" action="" method="post">
-            <h2>Для того чтобы войти в систему, вам
-                необходимо пройти атентификацию.</h2>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">
-                Войти
-            </button>
-        </form>
+    <div class="wrapper">
+        <div class="form-container">
+            <div class="form-header">
+                Авторизация
+            </div>
+            <div class="form-body">
+                <form class="form-signin" action="" method="post">
+                    {% csrf_token %}
+                    <!--{{ form.as_p }}-->
+                    {{ form.next }}
+                    <div class="username">
+                        <div class="username-input">
+                            <input autofocus="autofocus" type="text" class="form-control" placeholder="Имя пользователя" name="username">
+                        </div>
+                        <div class="username-errors">
+                            {{ form.username.errors }}
+                        </div>
+                    </div>
+                    <div class="password">
+                        <div class="password-input">
+                            <input type="password" class="form-control" placeholder="Пароль" name="password">
+                        </div>
+                        <div class="password-errors">
+                            {{ form.password.errors }}
+                        </div>
+                    </div>
+                    <div class="button-submit">
+                        <button type="submit">
+                            <span>Войти</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}
 
