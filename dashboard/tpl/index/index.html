@@ -26,7 +26,9 @@
                             <input autofocus="autofocus" type="text" class="form-control" placeholder="Имя пользователя" name="username">
                         </div>
                         <div class="username-errors">
-                            {{ form.username.errors }}
+                            {% if form.username.errors %}
+                            Это поле обязательно
+                            {% endif %}
                         </div>
                     </div>
                     <div class="password">
@@ -34,7 +36,9 @@
                             <input type="password" class="form-control" placeholder="Пароль" name="password">
                         </div>
                         <div class="password-errors">
-                            {{ form.password.errors }}
+                            {% if form.password.errors %}
+                            Это поле обязательно
+                            {% endif %}
                         </div>
                     </div>
                     <div class="button-submit">

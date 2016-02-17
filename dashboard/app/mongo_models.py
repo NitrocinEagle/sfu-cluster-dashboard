@@ -2,25 +2,38 @@
 from time import time
 from mongoengine import *
 
+lengths = {
+    'plugin': 30,
+    'param': 30,
+    'os': 30,
+    'node_type': 20,
+    'node_name': 50,
+    'ip': 15,
+    'description': 300
+}
+
 
 class NodeInfo(Document):
-    node_type = StringField(max_length=20)
-    node_ip = StringField(max_length=15)
-    node_name = StringField(max_length=50)
-    node_os = StringField(max_length=30)
-    enabled_plugins = ListField(StringField(max_length=50))
+    #    node_type = StringField(max_length=lengths['node_type'])
+    node_ip = StringField(max_length=lengths['ip'])
+    node_name = StringField(max_length=lengths['node_name'])
+    node_os = StringField(max_length=lengths['os'])
+    enabled_plugins = ListField(StringField(max_length=lengths['plugin']))
 
 
-class ParamGeneralInfo(EmbeddedDocument):
-    param_name = StringField(max_length=30)
-    description = StringField(max_length=300)
+class ParamInfo(Document):
+    plugin_name = StringField(max_length=lengths['plugin'])
+    param_name = StringField(max_length=lengths['param'])
+    description = StringField(max_length=lengths['description'])
+    axis_y_title = StringField(max_length=20, default=param_name)
+    axis_x_title = StringField(max_length=20, default="Time line")
+    graph_type = StringField(max_length=30)
     timeout = IntField(default=10)
 
 
 class PluginInfo(Document):
-    plugin_name = StringField(max_length=30)
-    description = StringField(max_length=300)
-    params_info = EmbeddedDocumentListField(ParamGeneralInfo)
+    plugin_name = StringField(max_length=lengths['plugin'])
+    description = StringField(max_length=lengths['description'])
 
 
 class LineChartMetric(DynamicEmbeddedDocument):
@@ -37,26 +50,17 @@ class PieChartMetric(DynamicEmbeddedDocument):
     data = EmbeddedDocumentListField(SectorData)
 
 
-class ParamDescription(EmbeddedDocument):
-    param_name = StringField(max_length=30)
-    axis_y_title = StringField(max_length=20)
-    axis_x_title = StringField(max_length=20, default="Time line")
-    graph_type = StringField(max_length=30)
-
-
-class ParamData(EmbeddedDocument):
-    param_description = EmbeddedDocumentField(ParamDescription)
-    dataset = DynamicField(default=LineChartMetric)
-
-
-class PluginData(EmbeddedDocument):
-    plugin_name = StringField(max_length=30)
-    param_data_list = EmbeddedDocumentListField(ParamData)
-
-
 class NodeData(Document):
-    node_name = StringField(max_length=50)
-    node_ip = StringField(max_length=15)
-    plugin_name = StringField(max_length=30)
-    param_name = StringField(max_length=30)
+    node_name = StringField(max_length=lengths['node_name'])
+    node_ip = StringField(max_length=lengths['ip'])
+    plugin_name = StringField(max_length=lengths['plugin'])
+    param_name = StringField(max_length=lengths['param'])
     data = DynamicField(default=LineChartMetric)
+
+
+class PreviewCostructor(Document):
+    username = StringField(max_length=255)
+    node_name = StringField(max_length=lengths['node_name'])
+    node_ip = StringField(max_length=lengths['ip'])
+    plugin_name = StringField(max_length=lengths['plugin'])
+    param_name = StringField(max_length=lengths['param'])
