@@ -242,7 +242,7 @@ nodes_data = [
         "plugin_name": PLUGINS[2],
         "param_name": "hdd_usage",
         "data": dataset_hdd_usage
-    },
+    }
 ]
 
 previews_constructor = [

@@ -52,7 +52,9 @@ def save_params_info(params_info):
                 graph_type=param['graph_type'],
                 timeout=param['timeout'],
         )
-        if not ParamInfo.objects(param_name=param['param_name']).first():
+        if not ParamInfo.objects(
+                param_name=param['param_name'],
+                plugin_name=param['plugin_name']).first():
             new_param.save()
 
 
@@ -89,8 +91,8 @@ def save_nodes_data(nodes_data):
         elif node_data['param_name'] == 'cpu_load':
             new_node_data.data = get_dataset('line_chart', node_data['data'])
 
-            if not NodeData.objects(
-                    node_name=node_data['node_name'],
-                    plugin_name=node_data['plugin_name'],
-                    param_name=node_data['param_name']).first():
-                new_node_data.save()
+        if not NodeData.objects(
+                node_name=node_data['node_name'],
+                plugin_name=node_data['plugin_name'],
+                param_name=node_data['param_name']).first():
+            new_node_data.save()
