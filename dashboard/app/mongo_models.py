@@ -14,7 +14,6 @@ lengths = {
 
 
 class NodeInfo(Document):
-    #    node_type = StringField(max_length=lengths['node_type'])
     node_ip = StringField(max_length=lengths['ip'])
     node_name = StringField(max_length=lengths['node_name'])
     node_os = StringField(max_length=lengths['os'])
