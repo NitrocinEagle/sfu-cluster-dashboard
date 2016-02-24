@@ -3,6 +3,7 @@ from mongoengine import connect
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+MONGO_DB_NAME = "test_monitoring"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

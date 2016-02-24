@@ -5,10 +5,9 @@ from django.views.generic import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from mongoengine import connect
-from app.init_test_db.test_data import nodes_data, params_decription
+from ..init_test_db.test_data import nodes_data, params_info
 
-
-connect("test")
+connect("test_monitoring")
 
 
 class IndexAPIView(View):
@@ -46,7 +45,7 @@ class GraphsAPIView(APIView):
         graph_type = ''
         axis_y = ''
         axis_x = ''
-        for param in params_decription:
+        for param in params_info:
             if filtered_node_data['param_name'] == param['param_name']:
                 graph_type = param['graph_type']
                 axis_y = param['axis_y_title']

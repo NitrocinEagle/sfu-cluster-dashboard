@@ -5,8 +5,7 @@ from django.views.generic import View
 from ...mongo_models import NodeInfo, PluginInfo
 from mongoengine import connect
 
-connect("test")
-
+connect("test_monitoring")
 
 class GraphsPluginsView(View):
     template_name = 'graphs/graphs.html'

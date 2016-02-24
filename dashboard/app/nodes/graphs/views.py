@@ -5,7 +5,7 @@ from django.views.generic import View
 from mongoengine import connect
 from ...mongo_models import NodeInfo, PluginInfo
 
-connect("test")
+connect("test_monitoring")
 
 
 class GraphsNodesView(View):
