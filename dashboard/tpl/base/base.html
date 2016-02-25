@@ -3,14 +3,20 @@
     <head>
         <meta charset="utf-8">
         {% block title %}{% endblock %}
-        {% block load_static %}{% endblock %}
+        {% block load_static %}
+            {% include 'base/statics.html' %}
+        {% endblock %}
     </head>
 {% endblock %}
 
 {% block body %}
 <body>
-    {% block header %}{% endblock %}
-    {% block sidebar %}{% endblock %}
+    {% block header %}
+        {% include 'base/header.html' %}
+    {% endblock %}
+    {% block sidebar %}
+        {% include 'base/sidebar.html' %}
+    {% endblock %}
     {% block content %}{% endblock %}
     {% block footer %}{% endblock %}
 </body>

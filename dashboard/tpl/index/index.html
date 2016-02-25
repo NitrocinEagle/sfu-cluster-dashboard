@@ -3,9 +3,10 @@
     <meta charset="UTF-8">
     {% load static %}
     {% block title %}
-        <title>Login</title>
+        <title>Авторизация</title>
     {% endblock %}
     {% block load_static %}
+        {{ block.super }}
         <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" media="all"/>
     {% endblock %}
 {% endblock %}
@@ -19,15 +20,15 @@
             <div class="form-body">
                 <form class="form-signin" action="" method="post">
                     {% csrf_token %}
-                    <!--{{ form.as_p }}-->
                     {{ form.next }}
                     <div class="username">
                         <div class="username-input">
-                            <input autofocus="autofocus" type="text" class="form-control" placeholder="Имя пользователя" name="username">
+                            <input autofocus="autofocus" type="text" class="form-control" placeholder="Имя пользователя"
+                                   name="username">
                         </div>
                         <div class="username-errors">
                             {% if form.username.errors %}
-                            Это поле обязательно
+                                Это поле обязательно
                             {% endif %}
                         </div>
                     </div>
@@ -37,7 +38,7 @@
                         </div>
                         <div class="password-errors">
                             {% if form.password.errors %}
-                            Это поле обязательно
+                                Это поле обязательно
                             {% endif %}
                         </div>
                     </div>

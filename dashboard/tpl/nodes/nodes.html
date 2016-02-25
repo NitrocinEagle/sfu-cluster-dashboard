@@ -6,21 +6,21 @@
 
     {% block load_static %}
         {% load static %}
-        {% include "base/statics.html" %}
+        {{ block.super }}
     {% endblock %}
 {% endblock %}
 
 {% block body %}
     <div class="header">
         {% block header %}
-            {% include "base/header.html" %}
+            {{ block.super }}
         {% endblock %}
     </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-2 col-md-2 sidebar">
                 {% block sidebar %}
-                    {% include "base/sidebar.html" %}
+                    {{ block.super }}
                 {% endblock %}
             </div>
             <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px;">
@@ -62,5 +62,6 @@
         </div>
     </div>
     {% block footer %}
+        {{ block.super }}
     {% endblock %}
 {% endblock %}
