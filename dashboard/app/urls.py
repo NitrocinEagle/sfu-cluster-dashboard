@@ -5,5 +5,6 @@ urlpatterns = [
     url(r'^plugins/', include('app.plugins.urls')),
     url(r'^nodes/', include('app.nodes.urls')),
     url(r'^api/', include('app.api.urls')),
+    url(r'^user/', include('app.user.urls')),
     url(r'^', include('app.index.urls')),
 ]
