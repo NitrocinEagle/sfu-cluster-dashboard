@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from mongoengine import connect
 from ..init_test_db.test_data import nodes_data, params_info
+from ..mongo_models import NodeData, ParamInfo
 
 connect("test_monitoring")
 
@@ -25,41 +26,18 @@ class GraphsAPIView(APIView):
         plugin_name = kwargs.get("plugin_name")
         param_name = kwargs.get("param_name")
 
-        nodes_data_by_nodename = []
-        nodes_data_by_pluginname = []
-        filtered_node_data = None
+        node_data = NodeData.objects(node_name=node_name, plugin_name=plugin_name, param_name=param_name)[0].data
+        param_info = ParamInfo.objects(plugin_name=plugin_name, param_name=param_name)[0]
 
-        for node_data in nodes_data:
-            if node_name == node_data['node_name']:
-                nodes_data_by_nodename.append(node_data)
-
-        for node_data in nodes_data_by_nodename:
-            if plugin_name == node_data['plugin_name']:
-                nodes_data_by_pluginname.append(node_data)
-
-        for node_data in nodes_data_by_pluginname:
-            if param_name == node_data['param_name']:
-                filtered_node_data = node_data
-                break
-
-        graph_type = ''
-        axis_y = ''
-        axis_x = ''
-        for param in params_info:
-            if filtered_node_data['param_name'] == param['param_name']:
-                graph_type = param['graph_type']
-                axis_y = param['axis_y_title']
-                axis_x = param['axis_x_title']
-                break
-
-        if filtered_node_data is not None:
+        if node_data and param_info:
             return Response({
-                'graph_type': graph_type,
-                'graph_name': filtered_node_data['param_name'],
-                'axis_y': axis_y,
-                'axis_x': axis_x,
-                'data': filtered_node_data['data']
+                'graph_type': param_info.graph_type,
+                'graph_name': param_info.param_name,
+                'axis_y': param_info.axis_y_title,
+                'axis_x': param_info.axis_x_title,
+                'data': node_data
             })
+
         return Response({
             'result': 'error',
             'code': 1

@@ -66,71 +66,17 @@ params_info = [
         "axis_x_title": "Time line",
         "graph_type": "line_chart"
     },
-    {
-        "plugin_name": PLUGINS[0],
-        "param_name": "ram_usage",
-        "description": u"Описание параметра ram_usage",
-        "timeout": 10,
-        "axis_y_title": "RAM's % usage",
-        "axis_x_title": "Time line",
-        "graph_type": "line_chart"
-    },
-    {
-        "plugin_name": PLUGINS[0],
-        "param_name": "hdd_usage",
-        "description": u"Описание параметра hdd_usage",
-        "timeout": 3600,
-        "axis_y_title": "Mega bytes usage",
-        "axis_x_title": "Time line",
-        "graph_type": "pie_chart"
-    },
     # RAM usage plugin's params
     {
         "plugin_name": PLUGINS[1],
-        "param_name": "cpu_load",
-        "description": u"Описание параметра cpu_load",
-        "timeout": 10,
-        "axis_y_title": "CPU's % load",
-        "axis_x_title": "Time line",
-        "graph_type": "line_chart"
-    },
-    {
-        "plugin_name": PLUGINS[1],
         "param_name": "ram_usage",
         "description": u"Описание параметра ram_usage",
         "timeout": 10,
         "axis_y_title": "RAM's % usage",
         "axis_x_title": "Time line",
         "graph_type": "line_chart"
-    },
-    {
-        "plugin_name": PLUGINS[1],
-        "param_name": "hdd_usage",
-        "description": u"Описание параметра hdd_usage",
-        "timeout": 3600,
-        "axis_y_title": "Mega bytes usage",
-        "axis_x_title": "Time line",
-        "graph_type": "pie_chart"
     },
     # HDD usage plugin's params
-    {
-        "plugin_name": PLUGINS[2],
-        "param_name": "cpu_load",
-        "description": u"Описание параметра cpu_load",
-        "timeout": 10,
-        "axis_y_title": "CPU's % load",
-        "axis_x_title": "Time line",
-        "graph_type": "line_chart"
-    },
-    {
-        "plugin_name": PLUGINS[2],
-        "param_name": "ram_usage",
-        "description": u"Описание параметра ram_usage",
-        "timeout": 10,
-        "axis_y_title": "RAM's % usage",
-        "axis_x_title": "Time line",
-        "graph_type": "line_chart"
-    },
     {
         "plugin_name": PLUGINS[2],
         "param_name": "hdd_usage",
