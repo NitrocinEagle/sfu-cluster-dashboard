@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from django.shortcuts import render
 from django.views.generic import View
-from ..mongo_models import PluginInfo
+from ..mongo_models import PluginInfo, ParamInfo
 from mongoengine import connect
 
 connect("test_monitoring")
@@ -20,7 +20,7 @@ class PluginsView(View):
         plugins = PluginInfo.objects()
         for plugin in plugins:
             new_params = []
-            params = plugin.params_info
+            params = ParamInfo.objects(plugin_name=plugin.plugin_name)
             for param in params:
                 new_params.append({
                     'name': param.param_name,
