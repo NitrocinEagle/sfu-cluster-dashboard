@@ -2,10 +2,11 @@
 from __future__ import absolute_import
 from django.shortcuts import render
 from django.views.generic import View
-from ...mongo_models import NodeInfo, PluginInfo
+from ...mongo_models import NodeInfo, PluginInfo, ParamInfo
 from mongoengine import connect
 
 connect("test_monitoring")
+
 
 class GraphsPluginsView(View):
     template_name = 'graphs/graphs.html'
@@ -14,40 +15,20 @@ class GraphsPluginsView(View):
         graphs_info = []
         plugin_name = kwargs.get('plugin_name')
         # TODO: add 'try ... except'
-        plugin_params = [param.param_name for param in PluginInfo.objects(plugin_name=plugin_name)[0].params_info]
+        plugin_params = ParamInfo.objects(plugin_name=plugin_name)
         nodes = NodeInfo.objects()
         id = 1
         for node in nodes:
             if plugin_name in node.enabled_plugins:
                 for param in plugin_params:
                     graphs_info.append(
-                        {
-                            "id": "graph_id_" + str(id),
-                            "plugin_name": plugin_name,
-                            "node_name": node.node_name,
-                            "param_name": param
-                        }
+                            {
+                                "id": "graph_id_" + str(id),
+                                "plugin_name": plugin_name,
+                                "node_name": node.node_name,
+                                "param_name": param.param_name
+                            }
                     )
                     id += 1
-        test_graphs_info = [
-            {
-                "id": "graph_id_1",
-                "plugin_name": "cpu_load",
-                "node_name": "node_1",
-                "param_name": "cpu_load"
-            },
-            {
-                "id": "graph_id_2",
-                "plugin_name": "cpu_load",
-                "node_name": "node_2",
-                "param_name": "cpu_load"
-            },
-            {
-                "id": "graph_id_3",
-                "plugin_name": "cpu_load",
-                "node_name": "node_2",
-                "param_name": "cpu_load"
-            }
-        ]
-        # return render(request, self.template_name,{'graphs_info': test_graphs_info})
+
         return render(request, self.template_name, {'graphs_info': graphs_info})
