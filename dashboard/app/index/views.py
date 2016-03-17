@@ -29,3 +29,22 @@ class LogoutView(View):
 
 class DashboardView(TemplateView):
     template_name = 'index/dashboard.html'
+
+from ..mongo_models import PluginInfo
+from django import forms
+
+class SimpleForm(forms.Form):
+    plugin_name = forms.CharField(max_length=255)
+    description = forms.CharField(max_length=255)
+
+class SimpleFormView(FormView):
+    form_class = SimpleForm
+    template_name = 'index/simpleform.html'
+
+    def form_valid(self, form):
+        print form.data
+        return HttpResponseRedirect('/')
+
+    def form_invalid(self, form):
+        print form.data
+        return HttpResponseRedirect('/')
