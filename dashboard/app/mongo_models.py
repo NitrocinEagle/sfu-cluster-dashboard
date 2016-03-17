@@ -12,6 +12,14 @@ lengths = {
     'description': 300
 }
 
+class ServerInfo(Document):
+    ip = StringField(max_length=lengths['ip'], default="172.20.30.11")
+    cpu_model = StringField(default="Intel(R) Xeon(R) CPU")
+    cores_numb = IntField(default=8)
+    os = StringField(max_length=lengths['os'], default="CentOS Linux")
+    hdd_memory = FloatField(default=68.4, name="HDD total memory in Gb")
+    ram_memory = FloatField(default=3791, name="RAM total memory in Mb")
+
 
 class NodeInfo(Document):
     node_ip = StringField(max_length=lengths['ip'])

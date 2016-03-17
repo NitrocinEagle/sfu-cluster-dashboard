@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView, TemplateView
 from django.views.generic.base import View
+from ..mongo_models import ServerInfo
+from .forms import SimpleForm
 
 
 class LoginFormView(FormView):
@@ -30,12 +32,9 @@ class LogoutView(View):
 class DashboardView(TemplateView):
     template_name = 'index/dashboard.html'
 
-from ..mongo_models import PluginInfo
-from django import forms
-
-class SimpleForm(forms.Form):
-    plugin_name = forms.CharField(max_length=255)
-    description = forms.CharField(max_length=255)
+    def get_context_data(self, **kwargs):
+        kwargs['server_info'] = ServerInfo.objects.first()
+        return super(DashboardView, self).get_context_data(**kwargs)
 
 class SimpleFormView(FormView):
     form_class = SimpleForm

@@ -24,7 +24,8 @@
                     {{ block.super }}
                 {% endblock %}
             </div>
-            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px; padding-left: 25px">
+            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2"
+                 style="top: 51px; padding-left: 25px">
                 {% block content %}
                     <h3>Общая информация по серверу</h3>
                     <hr>
@@ -34,23 +35,70 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                            <i class="fa fa-server fa-2x"></i> <span class="panel-name-text"> Сервер мониторинга</span>
+                                            <i class="fa fa-server fa-2x"></i>
+                                            <span class="panel-name-text"> Сервер мониторинга</span>
                                         </div>
                                         <div class="col-sm-3 col-md-3 col-lg-3">
                                             <div class="panel-buttons">
-                                                <a href="#"><i title="Детали" class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть" class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть" class="fa fa-close"></i></a>
+                                                <a href="#"><i title="Детали"
+                                                               class="fa fa-arrow-circle-right"></i></a>
+                                                <a href="#"><i title="Скрыть"
+                                                               class="fa fa-arrow-down"></i></a>
+                                                <a href="#"><i title="Закрыть"
+                                                               class="fa fa-close"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="panel-body">
-                                    OS: Lunix <br>
-                                    CPU: Intelь iCore7 <br>
-                                    CPU_cores: 42 <br>
-                                    RAM: 2048 Mb <br>
-                                    DB: PostgreSQL-9.3 <br>
+                                    <div class="server-info">
+                                        <div class="server-param">
+                                            <i title="IP-адресс" class="fa fa-globe"></i> IP
+                                        </div>
+                                        <div class="server-value">
+                                            {{ server_info.ip }}
+                                        </div>
+                                    </div>
+                                    <div class="server-info">
+                                        <div class="server-param">
+                                            <i title="Операционная система" class="fa fa-laptop"></i> <b>OS</b>
+                                        </div>
+                                        <div class="server-value">
+                                            {{ server_info.os }}
+                                        </div>
+                                    </div>
+                                    <div class="server-info">
+                                        <div class="server-param">
+                                            <i title="Процессор" class="fa fa-cubes"></i> <b>CPU</b>
+                                        </div>
+                                        <div class="server-value">
+                                             {{ server_info.cpu_model }}
+                                        </div>
+                                    </div>
+                                    <div class="server-info">
+                                        <div class="server-param">
+                                            <i title="Количество ядер" class="fa fa-info"></i> <b>Cores</b>
+                                        </div>
+                                        <div class="server-value">
+                                            {{ server_info.cores_numb }}
+                                        </div>
+                                    </div>
+                                    <div class="server-info">
+                                        <div class="server-param">
+                                            <i title="Жесткий диск" class="fa fa-hdd-o"></i> <b>HDD</b>
+                                        </div>
+                                        <div class="server-value">
+                                            {{ server_info.hdd_memory }}
+                                        </div>
+                                    </div>
+                                    <div class="server-info">
+                                        <div class="server-param">
+                                          <i title="Оперативная память" class="fa fa-bars"></i> <b>RAM</b>
+                                        </div>
+                                        <div class="server-value">
+                                            {{ server_info.ram_memory }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -64,9 +112,12 @@
                                         </div>
                                         <div class="col-sm-3 col-md-3 col-lg-3">
                                             <div class="panel-buttons">
-                                                <a href="#"><i title="Детали" class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть" class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть" class="fa fa-close"></i></a>
+                                                <a href="#"><i title="Детали"
+                                                               class="fa fa-arrow-circle-right"></i></a>
+                                                <a href="#"><i title="Скрыть"
+                                                               class="fa fa-arrow-down"></i></a>
+                                                <a href="#"><i title="Закрыть"
+                                                               class="fa fa-close"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -105,9 +156,12 @@
                                         </div>
                                         <div class="col-sm-3 col-md-3 col-lg-3">
                                             <div class="panel-buttons">
-                                                <a href="#"><i title="Детали" class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть" class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть" class="fa fa-close"></i></a>
+                                                <a href="#"><i title="Детали"
+                                                               class="fa fa-arrow-circle-right"></i></a>
+                                                <a href="#"><i title="Скрыть"
+                                                               class="fa fa-arrow-down"></i></a>
+                                                <a href="#"><i title="Закрыть"
+                                                               class="fa fa-close"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -144,9 +198,12 @@
                                         </div>
                                         <div class="col-sm-3 col-md-3 col-lg-3 text-right">
                                             <div class="panel-buttons">
-                                                <a href="#"><i title="Детали" class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть" class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть" class="fa fa-close"></i></a>
+                                                <a href="#"><i title="Детали"
+                                                               class="fa fa-arrow-circle-right"></i></a>
+                                                <a href="#"><i title="Скрыть"
+                                                               class="fa fa-arrow-down"></i></a>
+                                                <a href="#"><i title="Закрыть"
+                                                               class="fa fa-close"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -169,9 +226,12 @@
                                         </div>
                                         <div class="col-sm-3 col-md-3 col-lg-3 text-right">
                                             <div class="panel-buttons">
-                                                <a href="#"><i title="Детали" class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть" class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть" class="fa fa-close"></i></a>
+                                                <a href="#"><i title="Детали"
+                                                               class="fa fa-arrow-circle-right"></i></a>
+                                                <a href="#"><i title="Скрыть"
+                                                               class="fa fa-arrow-down"></i></a>
+                                                <a href="#"><i title="Закрыть"
+                                                               class="fa fa-close"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -199,15 +259,22 @@
                                             </div>
                                             <div class="col-sm-3 col-md-3 col-lg-3 text-right">
                                                 <div class="panel-buttons">
-                                                    <a href="#"><i title="Детали" class="fa fa-arrow-circle-right"></i></a>
-                                                    <a href="#"><i title="Скрыть" class="fa fa-arrow-down"></i></a>
-                                                    <a href="#"><i title="Закрыть" class="fa fa-close"></i></a>
+                                                    <a href="#"><i
+                                                            title="Детали"
+                                                            class="fa fa-arrow-circle-right"></i></a>
+                                                    <a href="#"><i
+                                                            title="Скрыть"
+                                                            class="fa fa-arrow-down"></i></a>
+                                                    <a href="#"><i
+                                                            title="Закрыть"
+                                                            class="fa fa-close"></i></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="panel-body">
-                                        <div id="basic_line_chart" style="height: 300px; width: 100%;"></div>
+                                        <div id="basic_line_chart"
+                                             style="height: 300px; width: 100%;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -221,9 +288,15 @@
                                             </div>
                                             <div class="col-sm-3 col-md-3 col-lg-3 text-right">
                                                 <div class="panel-buttons">
-                                                    <a href="#"><i title="Детали" class="fa fa-arrow-circle-right"></i></a>
-                                                    <a href="#"><i title="Скрыть" class="fa fa-arrow-down"></i></a>
-                                                    <a href="#"><i title="Закрыть" class="fa fa-close"></i></a>
+                                                    <a href="#"><i
+                                                            title="Детали"
+                                                            class="fa fa-arrow-circle-right"></i></a>
+                                                    <a href="#"><i
+                                                            title="Скрыть"
+                                                            class="fa fa-arrow-down"></i></a>
+                                                    <a href="#"><i
+                                                            title="Закрыть"
+                                                            class="fa fa-close"></i></a>
                                                 </div>
                                             </div>
                                         </div>
