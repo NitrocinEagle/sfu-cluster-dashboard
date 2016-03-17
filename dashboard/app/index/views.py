@@ -1,11 +1,11 @@
 # -*- coding: utf8 -*-
 from __future__ import absolute_import
+
 from django.contrib.auth import login, logout
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.views.generic import FormView
-from django.views.generic.base import View
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponseRedirect
+from django.views.generic import FormView, TemplateView
+from django.views.generic.base import View
 
 
 class LoginFormView(FormView):
@@ -27,8 +27,5 @@ class LogoutView(View):
         return HttpResponseRedirect("/")
 
 
-class IndexView(View):
-    template_name = 'index/index.html'
-
-    def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+class DashboardView(TemplateView):
+    template_name = 'index/dashboard.html'

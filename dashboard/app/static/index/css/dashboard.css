@@ -1,0 +1,169 @@
+body {
+    background-color: #ebebeb;
+}
+
+.header > div {
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.header-logo {
+    font-size: 24px;
+    color: #f7f7f7;
+    text-align: center;
+    line-height: 50px;
+    font-style: normal;
+    font-weight: 900;
+}
+
+.navmenu {
+    width: 100%;
+}
+
+.monitoring_state_ok {
+    color: green;
+}
+
+.monitoring_state_warning {
+    color: orange;
+}
+
+.monitoring_state_critical {
+    color: red;
+}
+
+.sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: #333;
+    border-right: 3px outset #2e4c69;
+}
+
+.nav-sidebar {
+    margin-right: -21px;
+    margin-bottom: 20px;
+    margin-left: -20px;
+}
+
+.nav-sidebar > li[class="active"] {
+    background-color: #444;
+    border-left: 3px solid #ebebeb;
+    font-weight: 900;
+}
+
+.nav-sidebar > li {
+    border-bottom: 1px solid #444;
+}
+
+.nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+    color: #d2d2d2;
+}
+
+.nav-sidebar > li > a:hover {
+    border-left: 3px solid #ebebeb;
+    background-color: #444;
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li {
+    text-align: center;
+}
+
+.navbar-inverse .navbar-nav > li {
+    padding: 0;
+    text-align: center;
+    width: 60px;
+    height: 50px;
+}
+
+.navbar-inverse .navbar-nav > li > .nav-li-a {
+    color: #b5b5b5;
+    padding: 0;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    line-height: 26px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    padding: 0;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    line-height: 36px;
+}
+
+.avatar-icon {
+    padding: 0;
+    width: 36px;
+    height: 36px;
+}
+
+.avatar-icon:hover {
+    border: 1px solid #080808;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: white;
+    background-color: #080808;
+}
+
+.panel {
+    border-radius: 0;
+}
+
+.panel-dashboard {
+    min-height: 170px;
+    border: 1px solid #cccccc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.graph-block {
+    min-height: 400px;
+}
+
+.panel-dashboard .panel-heading {
+    background: linear-gradient(to top, #cccccc, rgba(225, 225, 232, 0.9));
+    border-bottom: 1px solid rgba(150, 150, 150, 0.9);
+    height: 40px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.panel-name {
+    position: relative;
+    top: -5px;
+    left: -5px;
+    text-align: left;
+}
+
+.panel-name .panel-name-text {
+    font-weight: 600;
+}
+
+.panel-buttons {
+    margin-top: -5px;
+    margin-right: -5px;
+    text-align: right;
+}
+
+.panel-buttons > a {
+    color: black;
+}
+
+.panel-buttons > a:hover {
+    color: white;
+}
+
+.panel-dashboard .panel-body > div > a {
+    color: #0f0f0f;
+}
