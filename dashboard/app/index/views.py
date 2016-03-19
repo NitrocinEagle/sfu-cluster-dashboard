@@ -10,12 +10,12 @@ from ..mongo_models import ServerInfo
 from .forms import SimpleForm
 
 
+# login 'test' password 'test1234'
 class LoginFormView(FormView):
-    # login 'test' password 'test1234'
     form_class = AuthenticationForm
 
-    template_name = "index/index.html"
-    success_url = "/dashboard"
+    template_name = "index/login.html"
+    success_url = "/"
 
     def form_valid(self, form):
         self.user = form.get_user()
@@ -26,15 +26,16 @@ class LoginFormView(FormView):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect("/")
+        return HttpResponseRedirect("/login")
 
 
 class DashboardView(TemplateView):
     template_name = 'index/dashboard.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['server_info'] = ServerInfo.objects.first()
+        kwargs['server_info'] = ServerInfo.objects.first().info
         return super(DashboardView, self).get_context_data(**kwargs)
+
 
 class SimpleFormView(FormView):
     form_class = SimpleForm

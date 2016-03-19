@@ -4,6 +4,7 @@ from mongoengine import connect
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 MONGO_DB_NAME = "test_monitoring"
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -43,6 +44,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app.user.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -66,7 +68,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'app.wsgi.application'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -99,7 +100,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "app/static")
 
 STATICFILES_DIRS = (
@@ -114,3 +114,14 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 STATIC_URL = '/static/'
+
+LOGIN_URL = "/login"
+
+"""
+Middleware that requires a user to be authenticated to view any page other
+than LOGIN_URL. Exemptions to this requirement can optionally be specified
+in settings via a list of regular expressions in LOGIN_EXEMPT_URLS (which
+you can copy from your urls.py).
+# LOGIN_EXEMPT_URLS = []
+"""
+

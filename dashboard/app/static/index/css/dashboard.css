@@ -199,3 +199,7 @@ body {
     padding-left: 15px;
     width: 80%;
 }
+
+hr {
+    color: black;
+}

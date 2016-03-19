@@ -24,8 +24,7 @@
                     {{ block.super }}
                 {% endblock %}
             </div>
-            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2"
-                 style="top: 51px; padding-left: 25px">
+            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px; padding-left: 25px">
                 {% block content %}
                     <h3>Общая информация по серверу</h3>
                     <hr>
@@ -51,54 +50,17 @@
                                     </div>
                                 </div>
                                 <div class="panel-body">
+                                    {% for item in server_info %}
                                     <div class="server-info">
                                         <div class="server-param">
-                                            <i title="IP-адресс" class="fa fa-globe"></i> IP
+                                            <i title="{{ item.label }}" class="fa {{ item.fa_icon }}"></i> {{ item.name }}
                                         </div>
                                         <div class="server-value">
-                                            {{ server_info.ip }}
+                                            {{ item.value }}
                                         </div>
                                     </div>
-                                    <div class="server-info">
-                                        <div class="server-param">
-                                            <i title="Операционная система" class="fa fa-laptop"></i> <b>OS</b>
-                                        </div>
-                                        <div class="server-value">
-                                            {{ server_info.os }}
-                                        </div>
-                                    </div>
-                                    <div class="server-info">
-                                        <div class="server-param">
-                                            <i title="Процессор" class="fa fa-cubes"></i> <b>CPU</b>
-                                        </div>
-                                        <div class="server-value">
-                                             {{ server_info.cpu_model }}
-                                        </div>
-                                    </div>
-                                    <div class="server-info">
-                                        <div class="server-param">
-                                            <i title="Количество ядер" class="fa fa-info"></i> <b>Cores</b>
-                                        </div>
-                                        <div class="server-value">
-                                            {{ server_info.cores_numb }}
-                                        </div>
-                                    </div>
-                                    <div class="server-info">
-                                        <div class="server-param">
-                                            <i title="Жесткий диск" class="fa fa-hdd-o"></i> <b>HDD</b>
-                                        </div>
-                                        <div class="server-value">
-                                            {{ server_info.hdd_memory }}
-                                        </div>
-                                    </div>
-                                    <div class="server-info">
-                                        <div class="server-param">
-                                          <i title="Оперативная память" class="fa fa-bars"></i> <b>RAM</b>
-                                        </div>
-                                        <div class="server-value">
-                                            {{ server_info.ram_memory }}
-                                        </div>
-                                    </div>
+                                    {% endfor %}
+
                                 </div>
                             </div>
                         </div>
