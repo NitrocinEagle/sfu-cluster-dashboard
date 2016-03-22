@@ -1,0 +1,9 @@
+{% extends 'base/base.html' %}
+
+{% block breadcrump_inactive %}
+    <li class="active">Пользователи</li>
+    <li><a href="/user">{{ user }}</a></li>
+{% endblock %}
+{% block breadcrump_active %}
+    <li class="active">Настройки</li>
+{% endblock %}

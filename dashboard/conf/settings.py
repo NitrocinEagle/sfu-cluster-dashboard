@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'app.user',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -115,6 +116,10 @@ STATICFILES_FINDERS = (
 )
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+
+MEDIA_URL = '/media/'
+
 LOGIN_URL = "/login"
 
 """
@@ -124,4 +129,3 @@ in settings via a list of regular expressions in LOGIN_EXEMPT_URLS (which
 you can copy from your urls.py).
 # LOGIN_EXEMPT_URLS = []
 """
-

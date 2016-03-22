@@ -1,51 +1,33 @@
 {% extends "base/base.html" %}
-{% block head %}
-    {% block title %}
-        <title>Графики</title>
-    {% endblock %}
-    {% block load_static %}
-        {{ block.super }}
-        {% load static %}
-        <script src="{% static 'js/graphs.js' %}"></script>
-    {% endblock %}
+{% block title %}
+    <title>Графики</title>
+{% endblock %}
+{% block load_static %}
+    {{ block.super }}
+    {% load static %}
+    <script src="{% static 'js/graphs.js' %}"></script>
 {% endblock %}
 
-{% block body %}
-    <div class="header">
-        {% block header %}
-            {{ block.super }}
-        {% endblock %}
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-2 col-md-2 sidebar">
-                {% block sidebar %}
-                    {{ block.super }}
-                {% endblock %}
+{% block breadcrump_active %}
+    <li class="active">Графики</li>
+{% endblock %}
+
+{% block content_inner %}
+    {% for graph in graphs_info %}
+        <div class="row" style="top:51px;">
+            <div class="graph_info" style="margin-left: 10%">
+                Узел: {{ graph.node_name }}<br>
+                Плагин: {{ graph.plugin_name }}<br>
+                Параметр: {{ graph.param_name }}<br>
             </div>
-            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px;">
-                {% block content %}
-                    {% for graph in graphs_info %}
-                        <div class="row" style="top:51px;">
-                            <div class="graph_info" style="margin-left: 10%">
-                                Узел: {{ graph.node_name }}<br>
-                                Плагин: {{ graph.plugin_name }}<br>
-                                Параметр: {{ graph.param_name }}<br>
-                            </div>
-                            <div id="{{ graph.id }}" style="height: 300px; width: 80%; margin-left: 10%" class="graphs"
-                                 plugin-name="{{ graph.plugin_name }}"
-                                 node-name="{{ graph.node_name }}" param-name="{{ graph.param_name }}">
-                            </div>
-                        </div>
-                        <hr>
-                    {% endfor %}
-                {% endblock %}
+            <div id="{{ graph.id }}"
+                 style="height: 300px; width: 80%; margin-left: 10%"
+                 class="graphs"
+                 plugin-name="{{ graph.plugin_name }}"
+                 node-name="{{ graph.node_name }}"
+                 param-name="{{ graph.param_name }}">
             </div>
         </div>
-    </div>
-
-
-    {% block footer %}
-        {{ block.super }}
-    {% endblock %}
+        <hr>
+    {% endfor %}
 {% endblock %}

@@ -1,73 +1,51 @@
 {% extends "base/base.html" %}
-{% block head %}
-    {% block title %}
-        <title>Плагины</title>
-    {% endblock %}
-
-    {% block load_static %}
-        {{ block.super }}
-    {% endblock %}
+{% block title %}
+    <title>Плагины</title>
 {% endblock %}
 
-{% block body %}
-    <div class="header">
-        {% block header %}
-            {{ block.super }}
-        {% endblock %}
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-2 col-md-2 sidebar">
-                {% block sidebar %}
-                    {{ block.super }}
-                {% endblock %}
-            </div>
-            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px;">
-                {% block content %}
-                    <h3>Плагины</h3>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel-group" id="accordion">
-                                {% for plugin in plugins %}
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse" data-parent="#accordion"
-                                                   href="#collapse_{{ forloop.counter }}">
-                                                    {{ plugin.name }}
-                                                </a>
-                                            </h4>
-                                        </div>
-                                        <div id="collapse_{{ forloop.counter }}" class="panel-collapse collapse">
-                                            <div class="panel-body">
-                                                <b>Описание плагина:</b><br>
-                                                {{ plugin.description }}
-                                                <div class="plugin_params">
-                                                    <b>Описание параметров:</b>
-                                                    <ul>
-                                                        {% for param in plugin.params_info %}
-                                                            <li><b>{{ param.name }}:</b>
-                                                                {{ param.description }}</li>
-                                                        {% endfor %}
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <a class="btn btn-warning" href="{{ plugin.name }}/graphs/">
-                                                <i class="fa fa-area-chart"> Графики</i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                {% endfor %}
+{% block breadcrump_active %}
+    <li class="active">Плагины</li>
+{% endblock %}
+{% block content_inner %}
+    <h3>Плагины</h3>
+    <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel-group" id="accordion">
+                {% for plugin in plugins %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse"
+                                   data-parent="#accordion"
+                                   href="#collapse_{{ forloop.counter }}">
+                                    {{ plugin.name }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse_{{ forloop.counter }}"
+                             class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <b>Описание плагина:</b><br>
+                                {{ plugin.description }}
+                                <div class="plugin_params">
+                                    <b>Описание параметров:</b>
+                                    <ul>
+                                        {% for param in plugin.params_info %}
+                                            <li><b>{{ param.name }}:</b>
+                                                {{ param.description }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </div>
+                            <a class="btn btn-warning"
+                               href="{{ plugin.name }}/graphs/">
+                                <i class="fa fa-area-chart"> Графики</i>
+                            </a>
                         </div>
                     </div>
-                {% endblock %}
+                {% endfor %}
             </div>
         </div>
     </div>
-
-
-    {% block footer %}
-    {% endblock %}
 {% endblock %}

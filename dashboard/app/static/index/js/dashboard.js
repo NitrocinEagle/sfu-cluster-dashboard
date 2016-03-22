@@ -33,3 +33,17 @@ window.onload = function () {
 
     chart.render();
 }
+
+function hidePanel(panel) {
+    //var parentNode = panel.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("panel-body");
+    var parentNode = panel.parentNode.parentNode.parentNode.parentNode.parentNode;
+    $(parentNode).fadeOut('slow');
+    console.log(parentNode);
+}
+
+function closePanel(panel) {
+    //var parentNode = panel.parentNode.parentNode.parentNode.parentNode.parentNode.getElementsByClassName("panel-body");
+    var parentNode = panel.parentNode.parentNode.parentNode.parentNode.parentNode;
+    $(parentNode).fadeOut('slow');
+    console.log(parentNode);
+}

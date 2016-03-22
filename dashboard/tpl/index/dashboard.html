@@ -1,269 +1,200 @@
 {% extends "base/base.html" %}
-{% block head %}
-    <meta charset="utf-8">
-    {% block title %}
-        <title>Dashboard</title>
-    {% endblock %}
-    {% block load_static %}
-        {{ block.super }}
-        {% load static %}
-        <script src="{% static 'js/dashboard.js' %}"></script>
-    {% endblock %}
+{% block title %}
+    <title>Dashboard</title>
 {% endblock %}
 
-{% block body %}
-    <div class="header">
-        {% block header %}
-            {{ block.super }}
-        {% endblock %}
-    </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-2 col-md-2 sidebar">
-                {% block sidebar %}
-                    {{ block.super }}
-                {% endblock %}
+{% block breadcrump_active %}
+    <li class="active">Dashboard</li>
+{% endblock %}
+{% block content_inner %}
+    <h3>Общая информация по серверу</h3>
+    <hr>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-dashboard">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
+                            <i class="fa fa-server fa-2x"></i>
+                            <span class="panel-name-text"> Сервер мониторинга</span>
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="panel-buttons">
+                                <a class="btn-sm" title="Детали" href="#"><i
+                                        class="fa fa-info"></i></a>
+                                <a class="btn-sm" title="Скрыть" href="#"><i
+                                        class="fa fa-arrow-down"></i></a>
+                                <a class="btn-sm" title="Закрыть" href="#"><i
+                                        class="fa fa-close"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {% for item in server_info %}
+                        <div class="server-info">
+                            <div class="server-param">
+                                <i title="{{ item.label }}"
+                                   class="fa {{ item.fa_icon }}"></i> {{ item.name }}
+                            </div>
+                            <div class="server-value">
+                                {{ item.value }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px; padding-left: 25px">
-                {% block content %}
-                    <h3>Общая информация по серверу</h3>
-                    <hr>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-dashboard">
+                <div class="panel-heading">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="panel panel-dashboard">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                            <i class="fa fa-server fa-2x"></i>
-                                            <span class="panel-name-text"> Сервер мониторинга</span>
-                                        </div>
-                                        <div class="col-sm-3 col-md-3 col-lg-3">
-                                            <div class="panel-buttons">
-                                                <a href="#"><i title="Детали"
-                                                               class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть"
-                                                               class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть"
-                                                               class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    {% for item in server_info %}
-                                    <div class="server-info">
-                                        <div class="server-param">
-                                            <i title="{{ item.label }}" class="fa {{ item.fa_icon }}"></i> {{ item.name }}
-                                        </div>
-                                        <div class="server-value">
-                                            {{ item.value }}
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-
-                                </div>
-                            </div>
+                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
+                            <i class="fa fa-check-square-o fa-2x"></i> <span
+                                class="panel-name-text"> Состояние системы</span>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="panel panel-dashboard">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                            <i class="fa fa-check-square-o fa-2x"></i> <span
-                                                class="panel-name-text"> Состояние системы</span>
-                                        </div>
-                                        <div class="col-sm-3 col-md-3 col-lg-3">
-                                            <div class="panel-buttons">
-                                                <a href="#"><i title="Детали"
-                                                               class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть"
-                                                               class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть"
-                                                               class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div>
-                                        Физический мониторинг:
-                                <span class="monitoring_state_ok">
-                                 <i class="fa fa-check-circle"></i>
-                                </span>
-                                    </div>
-                                    <div>
-                                        Мониторинг серверов:
-                                <span class="monitoring_state_warning">
-                                    <i class="fa fa-warning"></i>
-                                </span>
-                                    </div>
-                                    <div>
-                                        Мониторинг пользователей:
-                                <span class="monitoring_state_critical">
-                                    <i class="fa fa-close"></i>
-                                </span>
-                                    </div>
-                                </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3">
+                            <div class="panel-buttons">
+                                <a class="btn-sm" title="Детали" href="#"><i
+                                        class="fa fa-info"></i></a>
+                                <a class="btn-sm" title="Скрыть"
+                                   onclick="hidePanel(this)"><i
+                                        class="fa fa-arrow-down"></i></a>
+                                <a class="btn-sm" title="Закрыть"
+                                   onclick="closePanel(this)"><i
+                                        class="fa fa-close"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="panel panel-dashboard">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                            <i class="fa fa-check-square-o fa-2x"></i> <span
-                                                class="panel-name-text"> Состояние системы</span>
-                                        </div>
-                                        <div class="col-sm-3 col-md-3 col-lg-3">
-                                            <div class="panel-buttons">
-                                                <a href="#"><i title="Детали"
-                                                               class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть"
-                                                               class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть"
-                                                               class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div>
-                                        Физический мониторинг:
-                                <span class="monitoring_state_ok">
-                                 <i class="fa fa-check-circle"></i>
-                                </span>
-                                    </div>
-                                    <div>
-                                        Мониторинг серверов:
+                </div>
+                <div class="panel-body">
+                    <div>
+                        Физический мониторинг:
+                                <span class="monitoring_state_ok"><i class="fa fa-check-circle"></i></span>
+                    </div>
+                    <div>
+                        Мониторинг серверов:
                                 <span class="monitoring_state_warning">
                                     <i class="fa fa-warning"></i>
                                 </span>
-                                    </div>
-                                    <div>
-                                        Мониторинг пользователей:
+                    </div>
+                    <div>
+                        Мониторинг пользователей:
                                 <span class="monitoring_state_critical">
                                     <i class="fa fa-close"></i>
                                 </span>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-dashboard">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
+                            <i class="fa fa-folder fa-2x"></i> <span
+                                class="panel-name-text"> Список существующих плагинов</span>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="panel panel-dashboard">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                            <i class="fa fa-folder fa-2x"></i> <span
-                                                class="panel-name-text"> Плагины</span>
-                                        </div>
-                                        <div class="col-sm-3 col-md-3 col-lg-3 text-right">
-                                            <div class="panel-buttons">
-                                                <a href="#"><i title="Детали"
-                                                               class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть"
-                                                               class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть"
-                                                               class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div>cpu_load</div>
-                                    <div>ram_usage</div>
-                                    <div>hgg_usage</div>
-                                    <div>something else</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="panel panel-dashboard">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                            <i class="fa fa-laptop fa-2x"></i> <span
-                                                class="panel-name-text"> Узлы</span>
-                                        </div>
-                                        <div class="col-sm-3 col-md-3 col-lg-3 text-right">
-                                            <div class="panel-buttons">
-                                                <a href="#"><i title="Детали"
-                                                               class="fa fa-arrow-circle-right"></i></a>
-                                                <a href="#"><i title="Скрыть"
-                                                               class="fa fa-arrow-down"></i></a>
-                                                <a href="#"><i title="Закрыть"
-                                                               class="fa fa-close"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body">
-                                    <div><a href="#">node 1</a></div>
-                                    <div><a href="#">node 2</a></div>
-                                    <div><a href="#">node 3</a></div>
-                                    <div><a href="#">node 4</a></div>
-                                </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3 text-right">
+                            <div class="panel-buttons">
+                                <a class="btn-sm" title="Детали" href="#"><i
+                                        class="fa fa-info"></i></a>
+                                <a class="btn-sm" title="Скрыть" href="#"><i
+                                        class="fa fa-arrow-down"></i></a>
+                                <a class="btn-sm" title="Закрыть" href="#"><i
+                                        class="fa fa-close"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div id="graphics">
-                        <h3>Графики</h3>
-                        <hr>
+                </div>
+                <div class="panel-body">
+                    {% for plugin in plugins %}
+                        <div title="{{ plugin.description }}">{{ plugin.plugin_name }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-dashboard">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
+                            <i class="fa fa-laptop fa-2x"></i> <span
+                                class="panel-name-text"> Подключенные узлы</span>
+                        </div>
+                        <div class="col-sm-3 col-md-3 col-lg-3 text-right">
+                            <div class="panel-buttons">
+                                <a class="btn-sm" title="Детали" href="#"><i
+                                        class="fa fa-info"></i></a>
+                                <a class="btn-sm" title="Скрыть" href="#"><i
+                                        class="fa fa-arrow-down"></i></a>
+                                <a class="btn-sm" title="Закрыть" href="#"><i
+                                        class="fa fa-close"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {% for node in nodes %}
+                        <div>{{ node.node_name }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="graphics">
+        <h3>Графики</h3>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-dashboard graph-block">
+                    <div class="panel-heading">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <div class="panel panel-dashboard graph-block">
-                                    <div class="panel-heading">
-                                        <div class="row">
-                                            <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                                <i class="fa fa-area-chart fa-2x"></i>
-                                                <span class="panel-name-text"> Basic Line Chart</span>
-                                            </div>
-                                            <div class="col-sm-3 col-md-3 col-lg-3 text-right">
-                                                <div class="panel-buttons">
-                                                    <a href="#"><i
-                                                            title="Детали"
-                                                            class="fa fa-arrow-circle-right"></i></a>
-                                                    <a href="#"><i
-                                                            title="Скрыть"
-                                                            class="fa fa-arrow-down"></i></a>
-                                                    <a href="#"><i
-                                                            title="Закрыть"
-                                                            class="fa fa-close"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div id="basic_line_chart"
-                                             style="height: 300px; width: 100%;"></div>
-                                    </div>
+                            <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
+                                <i class="fa fa-area-chart fa-2x"></i>
+                                <span class="panel-name-text"> Basic Line Chart</span>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 text-right">
+                                <div class="panel-buttons">
+                                    <a class="btn-sm" title="Детали" href="#"><i
+                                            class="fa fa-info"></i></a>
+                                    <a class="btn-sm" title="Скрыть" href="#"><i
+                                            class="fa fa-arrow-down"></i></a>
+                                    <a class="btn-sm" title="Закрыть"
+                                       href="#"><i class="fa fa-close"></i></a>
                                 </div>
                             </div>
-                            <div class="col-lg-12 graph-block">
-                                <div class="panel panel-dashboard">
-                                    <div class="panel-heading">
-                                        <div class="row">
-                                            <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
-                                                <i class="fa fa-area-chart fa-2x"></i>
-                                                <span class="panel-name-text"> Имя графика</span>
-                                            </div>
-                                            <div class="col-sm-3 col-md-3 col-lg-3 text-right">
-                                                <div class="panel-buttons">
-                                                    <a href="#"><i
-                                                            title="Детали"
-                                                            class="fa fa-arrow-circle-right"></i></a>
-                                                    <a href="#"><i
-                                                            title="Скрыть"
-                                                            class="fa fa-arrow-down"></i></a>
-                                                    <a href="#"><i
-                                                            title="Закрыть"
-                                                            class="fa fa-close"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel-body">
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div id="basic_line_chart"
+                             style="height: 300px; width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 graph-block">
+                <div class="panel panel-dashboard">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
+                                <i class="fa fa-area-chart fa-2x"></i>
+                                <span class="panel-name-text"> Имя графика</span>
+                            </div>
+                            <div class="col-sm-3 col-md-3 col-lg-3 text-right">
+                                <div class="panel-buttons">
+                                    <a class="btn-sm" title="Детали" href="#"><i
+                                            class="fa fa-info"></i></a>
+                                    <a class="btn-sm" title="Скрыть" href="#"><i
+                                            class="fa fa-arrow-down"></i></a>
+                                    <a class="btn-sm" title="Закрыть"
+                                       href="#"><i class="fa fa-close"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
                             <span>
                                 график график <br>
                                 график график <br>
@@ -272,16 +203,9 @@
                                 график график <br>
                                 график график <br>
                             </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                {% endblock %}
+                </div>
             </div>
         </div>
     </div>
-    {% block footer %}
-        {{ block.super }}
-    {% endblock %}
 {% endblock %}

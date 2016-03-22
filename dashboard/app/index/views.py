@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView, TemplateView
 from django.views.generic.base import View
-from ..mongo_models import ServerInfo
+from ..mongo_models import ServerInfo, PluginInfo, NodeInfo
 from .forms import SimpleForm
 
 
@@ -34,6 +34,8 @@ class DashboardView(TemplateView):
 
     def get_context_data(self, **kwargs):
         kwargs['server_info'] = ServerInfo.objects.first().info
+        kwargs['plugins'] = PluginInfo.objects()
+        kwargs['nodes'] = NodeInfo.objects()
         return super(DashboardView, self).get_context_data(**kwargs)
 
 

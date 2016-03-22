@@ -1,13 +1,9 @@
 # -*- coding: utf8 -*-
-from __future__ import absolute_import
-
-from django.conf.urls import url
-from .views import UserHomePageView
+from django.conf.urls import url, include
+from views import UserProfileView
 
 urlpatterns = [
-    url(r'^$', UserHomePageView.as_view()),
-    url(r'^profile/$', UserHomePageView.as_view()),
-    url(r'^change_password/$', UserHomePageView.as_view()),
-    url(r'^previews/$', UserHomePageView.as_view()),
-    url(r'^settings/$', UserHomePageView.as_view()),
+    url(r'^$', UserProfileView.as_view()),
+    url(r'^profile/$', UserProfileView.as_view()),
+    url(r'^settings/', include('app.user.configs.urls', namespace='user')),
 ]

@@ -1,4 +1,5 @@
-<!DOCTYPE html lang="en">
+<!DOCTYPE html lang="ru">
+<html>
 {% block head %}
     <head>
         <meta charset="utf-8">
@@ -10,15 +11,44 @@
 {% endblock %}
 
 {% block body %}
-<body>
-    {% block header %}
-        {% include 'base/header.html' %}
-    {% endblock %}
-    {% block sidebar %}
-        {% include 'base/sidebar.html' %}
-    {% endblock %}
-    {% block content %}{% endblock %}
-    {% block footer %}{% endblock %}
-</body>
+    <body>
+    <div class="header">
+        {% block header %}
+            {% include 'base/header.html' %}
+        {% endblock %}
+    </div>
+    <div class="container-fluid" style="margin-top: 51px;">
+        <div class="row margin-row">
+            <div class="col-lg-2 col-md-2 sidebar">
+                {% block sidebar %}
+                    {% include 'base/sidebar.html' %}
+                {% endblock %}
+            </div>
+            <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2"
+                 style="padding-left: 25px">
+                {% block breadcrump %}
+                    <br>
+                    <ol class="breadcrumb">
+                        {% block breadcrump_main %}
+                            <li><a href="/">Система мониторинга</a></li>
+                        {% endblock %}
+                        {% block breadcrump_inactive %}{% endblock %}
+                        {% block breadcrump_active %}{% endblock %}
+                    </ol>
+                {% endblock %}
+                {% block content %}
+                    {% block content_inner %}
+                    {% endblock %}
+                    {% block footer %}
+                        <div class="row row-margin">
+                            {% include 'base/footer.html' %}
+                        </div>
+                    {% endblock %}
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
+    </body>
 {% endblock %}
 </html>

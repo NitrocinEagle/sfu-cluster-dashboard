@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+{% block title %}
+    <title>Страница пользователя</title>
+{% endblock %}
+
+{% block breadcrump_active %}
+    <li class="active">Пользователи</li>
+    <li class="active">{{ user_profile.name }}</li>
+{% endblock %}
+
+{% block content_inner %}
+    <strong>Пользователь:</strong> {{ user_profile.user }}<br>
+    <strong>Имя:</strong> {{ user_profile.name }}<br>
+    <strong>Аватар:</strong> <img src="{{ user_profile.avatar.url }}"><br>
+    <strong>E-mail:</strong> {{ user_profile.email }}<br>
+    <strong>Дата регистрации:</strong> {{ user_profile.date_joined|date }}<br>
+    <strong>О себе</strong> {{ user_profile.about }}<br>
+{% endblock %}
