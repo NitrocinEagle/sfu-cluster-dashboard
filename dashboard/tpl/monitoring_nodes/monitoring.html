@@ -1,0 +1,31 @@
+{% extends "base/base.html" %}
+
+{% block static_local %}
+    {% load static %}
+    <script src="{% static 'webix/codebase/webix.js' %}"
+            charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static 'webix/codebase/webix.css' %}"
+          type="text/css" charset="utf-8">
+    <script src="{% static 'js/monitoring_info.js' %}" charset="utf-8"></script>
+{% endblock %}
+{% block title %}
+    <title>Информация по мониторингу</title>
+{% endblock %}
+
+
+{% block breadcrump_inactive %}
+    <li><a href="/monitoring">Мониторинг</a></li>
+{% endblock %}
+
+{% block breadcrump_active %}
+    <li class="active">Информация по мониторингу</li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div id="treetable" style="width:690px;"></div>
+        </div>
+    </div>
+
+{% endblock %}

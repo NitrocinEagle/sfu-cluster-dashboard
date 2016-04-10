@@ -1,7 +1,9 @@
 <ul class="nav nav-sidebar">
-    <li class="active"><a href="/"><i class="fa fa-dashboard"> </i> Dashboard</a></li>
-    <li><a href="/plugins">Плагины</a></li>
-    <li><a href="/nodes">Узлы</a></li>
-    <li><a href="/groups/#">Группы узлов<br><i class="small text-danger">(в разработке)</i></a></li>
-    <li><a href="/api">API</a></li>
+    <li class="active"><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+    <li><a href="{% url 'monitoring_nodes:plugins:index' %}"><i class="fa fa-folder"></i> Плагины</a></li>
+    <li><a href="{% url 'monitoring_nodes:nodes:index' %}"><i class="fa fa-cube"></i> Узлы</a></li>
+    <li><a href="{% url 'monitoring_nodes:groups:index' %}"><i class="fa fa-cubes"></i> Группы узлов<br></a></li>
+    <li><a href="{% url 'monitoring_nodes:graphs:index' %}"><i class="fa fa-area-chart"></i> Графики</a></li>
+    <li><a href="{% url 'monitoring_nodes:index' %}"><i class="fa fa-eye"> </i> Мониторинг узлов<br></a></li>
+    <li><a href="/api"><i class="fa fa-exchange"></i> API</a></li>
 </ul>

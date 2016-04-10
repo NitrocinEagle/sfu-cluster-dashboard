@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+{% block static_local %}
+    {% load static %}
+{% endblock %}
+{% block title %}
+    <title>Мониторинг</title>
+{% endblock %}
+
+{% block breadcrump_active %}
+    <li class="active">Мониторинг</li>
+{% endblock %}
+
+{% block content_inner %}
+    <div class="row margin-row">
+        <div class="col-lg-6">
+            <a class="btn btn-primary btn-block" href="{% url 'monitoring_nodes:info' %}">Общая информация</a>
+            <a class="btn btn-primary btn-block" href="{% url 'monitoring_nodes:groups:index' %}">Информация о группах</a>
+            <a class="btn btn-primary btn-block" href="{% url 'monitoring_nodes:nodes:index' %}">Информация об узлах</a>
+            <a class="btn btn-primary btn-block" href="{% url 'monitoring_nodes:plugins:index' %}">Информация о плагинах</a>
+        </div>
+        <div class="col-lg-6"></div>
+    </div>
+{% endblock %}

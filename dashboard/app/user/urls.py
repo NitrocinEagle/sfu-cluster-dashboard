@@ -5,5 +5,5 @@ from views import UserProfileView
 urlpatterns = [
     url(r'^$', UserProfileView.as_view()),
     url(r'^profile/$', UserProfileView.as_view()),
-    url(r'^settings/', include('app.user.configs.urls', namespace='user')),
+    url(r'^settings/', include('app.user.configs.urls', namespace='settings')),
 ]

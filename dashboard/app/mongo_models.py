@@ -3,6 +3,7 @@ from time import time
 from mongoengine import *
 
 lengths = {
+    'group_name': 30,
     'plugin': 30,
     'param': 30,
     'os': 30,
@@ -13,6 +14,17 @@ lengths = {
 }
 
 
+class MonitoringInfo(Document):
+    node = StringField(max_length=lengths['node_name'])
+    ip = StringField(max_length=lengths['ip'])
+    plugin = StringField(max_length=lengths['plugin'])
+    param = StringField(max_length=lengths['param'])
+    timeout = IntField(min_value=0, default=0)
+
+
+class NodeGroups(Document):
+    name = StringField(max_length=lengths['group_name'])
+    enabled_nodes = ListField(StringField(max_length=lengths['node_name']))
 
 
 class ServerInfoDict(EmbeddedDocument):

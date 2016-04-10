@@ -1,9 +1,41 @@
-{% extends 'base/base.html' %}
+{% extends 'user/profile.html' %}
+{% load static %}
+{% block static_charts %}{% endblock %}
+{% block static_knockout %}{% endblock %}
+{% block static_local %}
+    {{ block.super }}
+    <link href="{% static 'css/settings.css' %}" rel="stylesheet"
+          type="text/css"/>
+    <script src="{% static 'js/monitoring_settings.js' %}"></script>
+    <script src="{% static 'js/api.js' %}"></script>
+
+{% endblock %}
 
 {% block breadcrump_inactive %}
     <li class="active">Пользователи</li>
-    <li><a href="/user">{{ user }}</a></li>
+    <li><a href="/user">{{ user_profile.name }}</a></li>
 {% endblock %}
+
 {% block breadcrump_active %}
     <li class="active">Настройки</li>
+{% endblock %}
+
+{% block monitoring_settings %}
+    <form class="form-horizontal post-form" role="form" method="POST">
+        {% csrf_token %}
+        {% for input in form %}
+            <div class="form-group">
+                <label for="{{ i.id }}"
+                       class="col-sm-4 control-label">{{ input.label }}</label>
+                <div class="col-sm-8">
+                    {{ input }}
+                </div>
+            </div>
+        {% endfor %}
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" class="btn btn-primary">Выполнить</button>
+            </div>
+        </div>
+    </form>
 {% endblock %}

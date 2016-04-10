@@ -1,6 +1,12 @@
 {% extends "base/base.html" %}
+{% load static %}
 {% block title %}
     <title>Dashboard</title>
+{% endblock %}
+
+{% block static_charts %}
+    <script src="{% static 'chart/Chart.min.js' %}"></script>
+    <script src="{% static 'chart/canvasjs.min.js' %}"></script>
 {% endblock %}
 
 {% block breadcrump_active %}

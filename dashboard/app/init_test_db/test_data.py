@@ -3,6 +3,83 @@ from time import time
 import random
 
 PLUGINS = ("CPU_LOAD_PLUGIN", "RAM_USAGE_PLUGIN", "HDD_USAGE_PLUGIN")
+
+MONITORING_INFO = [
+    {
+        "node": 'ULK416-cluster1-0',
+        "ip": "127.0.0.1",
+        "plugin": "CPU_LOAD_PLUGIN",
+        "param": "cpu_load",
+        "timeout": 1,
+    },
+    {
+        "node": 'ULK416-cluster1-0',
+        "ip": "127.0.0.1",
+        "plugin": "RAM_USAGE_PLUGIN",
+        "param": "ram_usage",
+        "timeout": 2,
+    },
+    {
+        "node": 'ULK416-cluster1-0',
+        "ip": "127.0.0.1",
+        "plugin": "HDD_USAGE_PLUGIN",
+        "param": "hdd_usage",
+        "timeout": 3600,
+    },
+    {
+        "node": 'ULK416-cluster1-1',
+        "ip": "192.168.0.1",
+        "plugin": "CPU_LOAD_PLUGIN",
+        "param": "cpu_load",
+        "timeout": 2,
+    },
+    {
+        "node": 'ULK416-cluster1-1',
+        "ip": "192.168.0.1",
+        "plugin": "RAM_USAGE_PLUGIN",
+        "param": "ram_usage",
+        "timeout": 3,
+    },
+    {
+        "node": 'ULK416-cluster1-1',
+        "ip": "192.168.0.1",
+        "plugin": "HDD_USAGE_PLUGIN",
+        "param": "hdd_usage",
+        "timeout": 10000,
+    },
+    {
+        "node": 'ULK416-cluster1-2',
+        "ip": "192.168.0.2",
+        "plugin": "CPU_LOAD_PLUGIN",
+        "param": "cpu_load",
+        "timeout": 1,
+    },
+    {
+        "node": 'ULK416-cluster1-2',
+        "ip": "192.168.0.2",
+        "plugin": "RAM_USAGE_PLUGIN",
+        "param": "ram_usage",
+        "timeout": 5,
+    },
+    {
+        "node": 'ULK416-cluster1-2',
+        "ip": "192.168.0.2",
+        "plugin": "HDD_USAGE_PLUGIN",
+        "param": "hdd_usage",
+        "timeout": 7200,
+    },
+]
+
+NODE_GROUPS = [
+    {
+        'name': 'group_1',
+        'enabled_nodes': ['ULK416-cluster1-0', 'ULK416-cluster1-1']
+    },
+    {
+        'name': 'group_2',
+        'enabled_nodes': ['ULK416-cluster1-1', 'ULK416-cluster1-2']
+    }
+]
 NODES = [
     {
         "name": "ULK416-cluster1-0",
@@ -95,31 +172,31 @@ time_now = int(time())
 
 for i in range(20):
     dataset_cpu_load.append(
-            {
-                "timestamp": time_now + i * 1000,
-                "value": round(random.random() * 100, 2)
-            }
+        {
+            "timestamp": time_now + i * 1000,
+            "value": round(random.random() * 100, 2)
+        }
     )
     dataset_ram_usage.append(
-            {
-                "timestamp": time_now + i * 10,
-                "value": random.randint(512, 2048)
-            }
+        {
+            "timestamp": time_now + i * 10,
+            "value": random.randint(512, 2048)
+        }
     )
     dataset_hdd_usage.append(
-            {
-                "timestamp": time_now + i * 3600,
-                "data": [
-                    {
-                        "sector_name": "Avaible",
-                        "value": 50 * 1024,
-                    },
-                    {
-                        "sector_name": "Used",
-                        "value": 150 * 1024,
-                    },
-                ]
-            }
+        {
+            "timestamp": time_now + i * 3600,
+            "data": [
+                {
+                    "sector_name": "Avaible",
+                    "value": 50 * 1024,
+                },
+                {
+                    "sector_name": "Used",
+                    "value": 150 * 1024,
+                },
+            ]
+        }
     )
 
 nodes_data = [

@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect
 from django.views.generic import FormView, TemplateView
 from django.views.generic.base import View
 from ..mongo_models import ServerInfo, PluginInfo, NodeInfo
-from .forms import SimpleForm
 
 
 # login 'test' password 'test1234'
@@ -37,16 +36,3 @@ class DashboardView(TemplateView):
         kwargs['plugins'] = PluginInfo.objects()
         kwargs['nodes'] = NodeInfo.objects()
         return super(DashboardView, self).get_context_data(**kwargs)
-
-
-class SimpleFormView(FormView):
-    form_class = SimpleForm
-    template_name = 'index/simpleform.html'
-
-    def form_valid(self, form):
-        print form.data
-        return HttpResponseRedirect('/')
-
-    def form_invalid(self, form):
-        print form.data
-        return HttpResponseRedirect('/')

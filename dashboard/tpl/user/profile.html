@@ -1,4 +1,10 @@
 {% extends "base/base.html" %}
+
+{% block static_local %}
+    {% load static %}
+    <link href="{% static 'css/profile.css' %}" rel="stylesheet"
+          type="text/css"/>
+{% endblock %}
 {% block title %}
     <title>Страница пользователя</title>
 {% endblock %}
@@ -9,10 +15,56 @@
 {% endblock %}
 
 {% block content_inner %}
-    <strong>Пользователь:</strong> {{ user_profile.user }}<br>
-    <strong>Имя:</strong> {{ user_profile.name }}<br>
-    <strong>Аватар:</strong> <img src="{{ user_profile.avatar.url }}"><br>
-    <strong>E-mail:</strong> {{ user_profile.email }}<br>
-    <strong>Дата регистрации:</strong> {{ user_profile.date_joined|date }}<br>
-    <strong>О себе</strong> {{ user_profile.about }}<br>
+    <div class="row">
+        <div class="col-md-3">
+            {% block user_block %}
+                <div class="profile-userpic">
+                    <img src="{{ user_profile.avatar.url }}"
+                         class="img-responsive" alt="">
+                </div>
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        {{ user }}
+                    </div>
+                    <div class="profile-usertitle-job">
+                        Администратор
+                    </div>
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav">
+                        {% block user_profile %}
+                            <li><a href="/user/profile"><i
+                                    class="glyphicon glyphicon-user"></i>Профиль</a>
+                            </li>
+                        {% endblock %}
+                        {% block user_settings %}
+                            <li><a href="/user/settings/user/"><i
+                                    class="glyphicon glyphicon-wrench"></i>Настройки
+                                пользователя
+                            </a></li>
+                        {% endblock %}
+                        {% block user_system_managment %}
+                            <li><a href="/user/settings/monitoring/"><i
+                                    class="glyphicon glyphicon-ok"></i>Настройки
+                                мониторинга
+                            </a></li>
+                        {% endblock %}
+                        {% block user_previews %}
+                            <li><a href="/user/settings/dashboard/"><i
+                                    class="glyphicon glyphicon-star-empty"></i>Настройки
+                                Dashboard
+                            </a></li>
+                        {% endblock %}
+                        <li><a href="/logout"><i
+                                class="glyphicon glyphicon-off"></i>Выйти
+                        </a></li>
+                    </ul>
+                </div>
+            {% endblock %}
+        </div>
+        <div class="col-md-9">
+            {% block monitoring_settings %}
+            {% endblock %}
+        </div>
+    </div>
 {% endblock %}

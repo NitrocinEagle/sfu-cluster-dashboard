@@ -1,10 +1,10 @@
 # -*- coding: utf8 -*-
 from __future__ import absolute_import
 from django.conf.urls import url
-from .views import UserSettingView
+from .views import MonitoringSettingsFormView
 
 urlpatterns = [
-    url(r'^$', UserSettingView.as_view()),
-    url(r'^preview/$', UserSettingView.as_view()),
-    url(r'^change_password/', UserSettingView.as_view()),
+    url(r'^user/', MonitoringSettingsFormView.as_view(), name='user'),
+    url(r'^monitoring/', MonitoringSettingsFormView.as_view(), name='monitoring'),
+    url(r'^dashboard/', MonitoringSettingsFormView.as_view(), name='dashboard'),
 ]

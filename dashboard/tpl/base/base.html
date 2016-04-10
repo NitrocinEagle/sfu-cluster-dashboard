@@ -5,7 +5,30 @@
         <meta charset="utf-8">
         {% block title %}{% endblock %}
         {% block load_static %}
-            {% include 'base/statics.html' %}
+            {% load static %}
+            <!-- Scripts -->
+            {% block static_base %}
+                <script src="{% static 'jquery/jquery-2.1.4.min.js' %}"></script>
+                <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+                <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="all"/>
+                <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" media="all"/>
+                <link href="{% static 'bootstrap/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" media="all"/>
+                <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" type="text/css" media="all"/>
+            {% endblock %}
+            {% block static_charts %}
+                <script src="{% static 'chart/Chart.min.js' %}"></script>
+                <script src="{% static 'chart/canvasjs.min.js' %}"></script>
+            {% endblock %}
+
+            {% block static_knockout %}
+                <script src="{% static 'knockout/knockout-3.4.0.js' %}"></script>
+            {% endblock %}
+
+            {% block static_local %}
+                <link href="{% static 'css/plugins.css' %}" rel="stylesheet" type="text/css" media="all"/>
+                <link href="{% static 'css/nodes.css' %}" rel="stylesheet" type="text/css" media="all"/>
+                <script src="{% static 'js/dashboard.js' %}"></script>
+            {% endblock %}
         {% endblock %}
     </head>
 {% endblock %}
@@ -47,7 +70,6 @@
                 {% endblock %}
             </div>
         </div>
-
     </div>
     </body>
 {% endblock %}

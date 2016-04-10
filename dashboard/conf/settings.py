@@ -109,6 +109,8 @@ STATICFILES_DIRS = (
     os.path.join(STATIC_ROOT, "graphs"),
     os.path.join(STATIC_ROOT, "nodes"),
     os.path.join(STATIC_ROOT, "index"),
+    os.path.join(STATIC_ROOT, "monitoring"),
+    os.path.join(STATIC_ROOT, "user"),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
