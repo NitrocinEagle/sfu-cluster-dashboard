@@ -9,11 +9,11 @@ function createGetter(url) {
     };
 };
 
-// MONITORING_SETTINS_API.getNodesList(path_args, function(data) { alert(2); });
 MONITORING_SETTINS_API = {
     getServerGroupsList: createGetter('get_server_groups/'),
     getNodesList: createGetter('get_nodes/'),
     getPluginList: createGetter('get_plugins/'),
     getPluginsByNode: createGetter('get_node_plugins/'),
     getParamsByNodePlugin: createGetter('get_params_by_node_plugin/'),
+    getNodesByGroup: createGetter('get_nodes_by_group/'),
 };

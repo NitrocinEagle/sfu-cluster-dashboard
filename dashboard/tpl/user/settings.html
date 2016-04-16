@@ -21,14 +21,16 @@
 {% endblock %}
 
 {% block monitoring_settings %}
-    <form class="form-horizontal post-form" role="form" method="POST">
+    <form class="form-horizontal post-form" method="post">
         {% csrf_token %}
         {% for input in form %}
             <div class="form-group">
-                <label for="{{ i.id }}"
-                       class="col-sm-4 control-label">{{ input.label }}</label>
+                <div class="col-sm-4">
+                    {{ input.label_tag }}
+                </div>
                 <div class="col-sm-8">
                     {{ input }}
+                    {{ input.errors }}
                 </div>
             </div>
         {% endfor %}

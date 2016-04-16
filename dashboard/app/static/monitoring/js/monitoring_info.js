@@ -40,7 +40,7 @@ $(document).ready(function () {
                             if (plugin.header == info.plugin) {
                                 plugin.data.push({
                                     header: info.param,
-                                    graph: '<a href="/graphs/show/' + info.node + '/' + info.plugin + '/' + info.param + '"><i class="fa fa-2x fa-bar-chart"></i></a>',
+                                    graph: '<a href="/monitoring_nodes/graphs/show/' + info.node + '/' + info.plugin + '/' + info.param + '"><i class="fa fa-2x fa-bar-chart"></i></a>',
                                     timeout: info.timeout + ' сек.'
                                 });
                             }

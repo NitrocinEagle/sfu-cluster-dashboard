@@ -9,5 +9,5 @@ urlpatterns = [
                                        namespace='monitoring_nodes')),
     url(r'^api/', include('app.api.urls', namespace='api')),
     url(r'^user/', include('app.user.urls', namespace='user')),
-    url(r'^', include('app.index.urls', namespace='index')),
+    url(r'^', include('app.home.urls', namespace='home')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

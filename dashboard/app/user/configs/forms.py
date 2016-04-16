@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from django import forms
 from django.utils.safestring import mark_safe
-from django.core.validators import validate_ipv4_address
-from ...mongo_models import PluginInfo, NodeInfo
+from ...mongo_models import PluginInfo, NodeInfo, NodeGroups
 
 MONITORING_SETTINGS_OPERATIONS = (
     ('add_node', u'Создать узел'),
     ('add_server_group', u'Добавить группу серверов'),
+    ('del_server_group', u'Удалить группу серверов'),
     ('add_node_to_group', u'Добавить узел в группу серверов'),
     ('del_node_from_group', u'Удалить узел из группы серверов'),
     ('stop_to_monitor_node', u'Перестать мониторить узел'),
@@ -21,7 +21,7 @@ ATTRS = {'class': 'form-control'}
 PLUGINS_LIST = [(item.plugin_name, item.plugin_name) for item in
                 PluginInfo.objects()]
 
-GROUPS_LIST = (('grp1', 'grp1'), ('grp2', 'grp2'), ('grp3', 'grp3'))
+GROUPS_LIST = [(item.name, item.name) for item in NodeGroups.objects()]
 
 
 class CheckboxSelectMultiple(forms.CheckboxSelectMultiple):
@@ -34,8 +34,8 @@ class CheckboxSelectMultiple(forms.CheckboxSelectMultiple):
 
 class MonitoringSettingsForm(forms.Form):
     operation = forms.ChoiceField(choices=MONITORING_SETTINGS_OPERATIONS,
-                                   widget=forms.Select(attrs=ATTRS),
-                                   label=u'Операции по настройке мониторинга')
+                                  widget=forms.Select(attrs=ATTRS),
+                                  label=u'Операции по настройке мониторинга')
     node_name = forms.CharField(widget=forms.TextInput(attrs=ATTRS),
                                 required=False,
                                 label=u'Имя узла')
@@ -45,15 +45,14 @@ class MonitoringSettingsForm(forms.Form):
     node_ip = forms.GenericIPAddressField(widget=forms.TextInput(attrs=ATTRS),
                                           required=False,
                                           label=u'IP-адресс')
-    plugins_list = forms.MultipleChoiceField(
-        widget=CheckboxSelectMultiple, choices=PLUGINS_LIST,
-        label=u'Выберите плагины', required=False)
-
+    plugins_list = forms.MultipleChoiceField(choices=PLUGINS_LIST,
+                                             widget=CheckboxSelectMultiple,
+                                             label=u'Выберите плагины',
+                                             required=False)
     group_name = forms.CharField(widget=forms.TextInput(attrs=ATTRS),
                                  required=False,
                                  label=u'Имя группы')
-    select_group = forms.ChoiceField(choices=GROUPS_LIST,
-                                     widget=forms.Select(attrs=ATTRS),
+    select_group = forms.ChoiceField(widget=forms.Select(attrs=ATTRS),
                                      required=False,
                                      label=u'Выберите группу серверов')
     select_node = forms.ChoiceField(choices=NODES_LIST,

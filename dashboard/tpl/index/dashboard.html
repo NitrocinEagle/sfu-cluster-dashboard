@@ -13,7 +13,7 @@
     <li class="active">Dashboard</li>
 {% endblock %}
 {% block content_inner %}
-    <h3>Общая информация по серверу</h3>
+    <h2>Общая информация по серверу мониторинга</h2>
     <hr>
     <div class="row">
         <div class="col-lg-6">
@@ -57,7 +57,7 @@
                     <div class="row">
                         <div class="col-sm-9 col-md-9 col-lg-9 panel-name">
                             <i class="fa fa-check-square-o fa-2x"></i> <span
-                                class="panel-name-text"> Состояние системы</span>
+                                class="panel-name-text"> Модули монитоинга</span>
                         </div>
                         <div class="col-sm-3 col-md-3 col-lg-3">
                             <div class="panel-buttons">
@@ -75,26 +75,31 @@
                 </div>
                 <div class="panel-body">
                     <div>
-                        Физический мониторинг:
-                                <span class="monitoring_state_ok"><i class="fa fa-check-circle"></i></span>
+                        <a href="{% url 'monitoring_nodes:index' %}">Мониторинг
+                            узлов</a>
+                        <span class="monitoring_state_ok"><i
+                                class="fa fa-check-circle"></i></span>
                     </div>
                     <div>
-                        Мониторинг серверов:
+                        <a href="#">Мониторинг пользователй</a>
                                 <span class="monitoring_state_warning">
                                     <i class="fa fa-warning"></i>
                                 </span>
                     </div>
                     <div>
-                        Мониторинг пользователей:
-                                <span class="monitoring_state_critical">
-                                    <i class="fa fa-close"></i>
-                                </span>
+                        <a href="#">Мониторинг пользователей</a>
+                        <span class="monitoring_state_critical"><i
+                                class="fa fa-close"></i>
+                        </span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
+        <h2>Модули системы мониторинга</h2>
+        <h3>Модуль мониторинга загруженности узлов</h3>
+        <hr>
         <div class="col-lg-6">
             <div class="panel panel-dashboard">
                 <div class="panel-heading">
