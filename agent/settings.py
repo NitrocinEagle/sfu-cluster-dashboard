@@ -1,11 +1,14 @@
-from plugins.cpu.plugin import cpu_percent
-from plugins.ram.plugin import ram_usage
-from plugins.hdd.plugin import hdd_usage
+from plugins.cpu.plugin import methods_cpu_load
+from plugins.ram.plugin import methods_ram_usage
+from plugins.hdd.plugin import methods_hdd_usage
 
-PORT = 3001
+PORT = 3002
+methods = {}
+for k, v in methods_hdd_usage.iteritems():
+    methods[k] = v
 
-methods = {
-    "cpu_load": cpu_percent,
-    "ram_usage": ram_usage,
-    "hdd_usage": hdd_usage
-}
+for k, v in methods_cpu_load.iteritems():
+    methods[k] = v
+
+for k, v in methods_ram_usage.iteritems():
+    methods[k] = v

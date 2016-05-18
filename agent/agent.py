@@ -5,7 +5,6 @@ import settings
 class RequestHandler(pyjsonrpc.HttpRequestHandler):
     methods = settings.methods
 
-# Threading HTTP-Server
 http_server = pyjsonrpc.ThreadingHttpServer(
     server_address=('localhost', settings.PORT),
     RequestHandlerClass=RequestHandler

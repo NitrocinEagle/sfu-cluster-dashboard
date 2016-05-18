@@ -6,7 +6,8 @@ from .forms import MonitoringSettingsForm
 from ..mixins import UserProfileMixin
 from .form_handlers import (AddNodeHandler, AddServerGroupHandler,
                             AddNodeToGroupHandler, DelServerGroupHandler,
-                            DelNodeFromGroupHandler)
+                            DelNodeFromGroupHandler, AddNodeToMonitorHandler,
+                            ChangeParamTimeoutHandler)
 
 connect("test_monitoring")
 
@@ -29,12 +30,14 @@ class MonitoringSettingsFormView(UserProfileMixin, FormView):
             AddNodeToGroupHandler(data).handle()
         if op == 'del_node_from_group':
             DelNodeFromGroupHandler(data).handle()
+        if op == 'add_node_to_monitor':
+            AddNodeToMonitorHandler(data).handle()
         if op == 'stop_to_monitor_node':
             pass
         if op == 'stop_to_monitor_param':
             pass
         if op == 'change_param_timeout':
-            pass
+            ChangeParamTimeoutHandler(data).handle()
 
         return super(MonitoringSettingsFormView, self).form_valid(form)
 

@@ -163,6 +163,7 @@ body {
 }
 
 .panel-buttons {
+    /*display: none;*/
     margin-top: -5px;
     margin-right: -5px;
     text-align: right;
@@ -173,13 +174,13 @@ body {
     border: 1px solid gray;
 }
 .panel-buttons > a[title="Детали"] {
-    background-color: cornflowerblue;
+    background-color: slategray;
 }
 .panel-buttons > a[title="Скрыть"] {
-    background-color: #4cae4c;
+    background-color: slategray;
 }
 .panel-buttons > a[title="Закрыть"] {
-    background-color: #CC3434;
+    background-color: slategray;
 }
 
 .panel-buttons > a:hover {

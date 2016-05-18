@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'static_precompiler',
     'app.user',
 ]
 
@@ -104,13 +105,15 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(PROJECT_ROOT, "app/static")
 
 STATICFILES_DIRS = (
-    os.path.join(STATIC_ROOT, "plugins"),
+    # os.path.join(STATIC_ROOT, "plugins"),
     os.path.join(STATIC_ROOT, "assets"),
-    os.path.join(STATIC_ROOT, "graphs"),
-    os.path.join(STATIC_ROOT, "nodes"),
-    os.path.join(STATIC_ROOT, "index"),
-    os.path.join(STATIC_ROOT, "monitoring"),
-    os.path.join(STATIC_ROOT, "user"),
+    os.path.join(STATIC_ROOT, "css"),
+    os.path.join(STATIC_ROOT, "js"),
+    # os.path.join(STATIC_ROOT, "graphs"),
+    # os.path.join(STATIC_ROOT, "nodes"),
+    # os.path.join(STATIC_ROOT, "index"),
+    # os.path.join(STATIC_ROOT, "monitoring"),
+    # os.path.join(STATIC_ROOT, "user"),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',

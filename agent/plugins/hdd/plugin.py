@@ -1,5 +1,7 @@
 import psutil
 
+PLUGIN_NAME = "HDD_USAGE_PLUGIN"
 
-def hdd_usage():
-    return {'data': psutil.disk_usage('/').used/(1024*1024)}
+methods_hdd_usage = {
+    PLUGIN_NAME + '~hdd_usage': lambda: {'data': psutil.disk_usage('/').used/(1024*1024)},
+}

@@ -5,7 +5,7 @@ function getChartsInfo() {
     var chartsInfo = [];
     $.each(getCanvases(), function (key, value) {
         var canvasID = value.getAttribute('id');
-        var node_name = value.getAttribute('node-name');
+        var node_name = Cvalue.getAttribute('node-name');
         var plugin_name = value.getAttribute('plugin-name');
         var param_name = value.getAttribute('param-name');
         chartsInfo.push(
@@ -99,5 +99,3 @@ window.onload = function () {
     var chartsInfo = getChartsInfo();
     buildGraphs(chartsInfo);
 };
-
-

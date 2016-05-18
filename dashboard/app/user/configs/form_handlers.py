@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from app.mongo_models import NodeInfo, NodeGroups
+from app.mongo_models import (NodeInfo, NodeGroups, MonitoringInfo, ParamInfo)
 from django import forms
 
 
@@ -35,13 +35,13 @@ class AddNodeHandler(FormHandler):
 
     def handle(self):
         data = {
-            'node_ip': self.form_data['node_ip'][0],
-            'node_name': self.form_data['node_name'][0],
-            'node_os': self.form_data['node_os'][0],
+            'node_ip': self.form_data['node_ip'],
+            'node_name': self.form_data['node_name'],
+            'node_os': self.form_data['node_os'],
             'enabled_plugins': self.form_data['plugins_list'],
         }
         new_node_info = NodeInfo(**data)
-        # new_node_info.save()
+        new_node_info.save()
         return new_node_info
 
 
@@ -54,11 +54,10 @@ class AddServerGroupHandler(FormHandler):
             'enabled_nodes': None
         }
         all_groups = NodeGroups.objects()
-        for g in all_groups:
-            if g.name == data['name']:
-                raise forms.ValidationError(self.valid_msg['group_exist'])
+        if data['name'] in [g.name for g in all_groups]:
+            raise forms.ValidationError(self.valid_msg['group_exist'])
         new_group = NodeGroups(**data)
-        # new_group.save()
+        new_group.save()
         return new_group
 
 
@@ -92,9 +91,39 @@ class DelNodeFromGroupHandler(FormHandler):
         selected_group = self.form_data['select_group']
         group = NodeGroups.objects(name=selected_group).first()
         enabled_nodes = group.enabled_nodes
-        print 'enabled_nodes before: ', enabled_nodes
         if selected_node in enabled_nodes:
             del enabled_nodes[enabled_nodes.index(selected_node)]
-        print 'enabled_nodes after: ', enabled_nodes
         group.update(enabled_nodes=enabled_nodes)
+        return True
+
+
+class AddNodeToMonitorHandler(FormHandler):
+    def handle(self):
+        selected_node = self.form_data['select_node']
+        node = NodeInfo.objects(node_name=selected_node).first()
+        for plugin in node.enabled_plugins:
+            for param in ParamInfo.objects(plugin_name=plugin):
+                data = {
+                    'node': node.node_name,
+                    'ip': node.node_ip,
+                    'plugin': plugin,
+                    'param': param.param_name,
+                    'timeout': 0
+                }
+                monitoring_info = MonitoringInfo(**data)
+                monitoring_info.save()
+        return True
+
+
+class ChangeParamTimeoutHandler(FormHandler):
+    require_fields = ['timeout']
+
+    def handle(self):
+        data = {
+            'node': self.form_data['select_node'],
+            'plugin': self.form_data['select_plugin'],
+            'param': self.form_data['select_param'],
+        }
+        info = MonitoringInfo.objects(**data).first()
+        info.update(timeout=self.form_data['timeout'])
         return True

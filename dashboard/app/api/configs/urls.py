@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from django.conf.urls import url
 from .views import (GetServerGroupsAPIView, GetNodesAPIView, GetPluginsAPIView,
                     GetNodePluginsAPIView, GetParamsByNodePluginAPIView,
-                    GetNodesByGroupAPIView)
+                    GetNodesByGroupAPIView, GetParamTimeoutAPIView)
 
 urlpatterns = [
     url(r'^get_server_groups/$', GetServerGroupsAPIView.as_view(),
@@ -18,4 +18,6 @@ urlpatterns = [
         name='get-params-by-node-plugin'),
     url(r'^get_nodes_by_group/(?P<group_name>[^/]+)$',
         GetNodesByGroupAPIView.as_view(), name='get-nodes-by-group'),
+    url(r'^get_param_timeout/(?P<node_name>[^/]+)/(?P<plugin_name>[^/]+)/(?P<param_name>[^/]+)$',
+        GetParamTimeoutAPIView.as_view(), name='get-param-timeout'),
 ]

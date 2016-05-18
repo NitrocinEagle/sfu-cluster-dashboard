@@ -16,4 +16,5 @@ MONITORING_SETTINS_API = {
     getPluginsByNode: createGetter('get_node_plugins/'),
     getParamsByNodePlugin: createGetter('get_params_by_node_plugin/'),
     getNodesByGroup: createGetter('get_nodes_by_group/'),
+    getParamTimeout: createGetter('get_param_timeout/'),
 };

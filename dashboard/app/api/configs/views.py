@@ -3,7 +3,8 @@ from __future__ import absolute_import
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from mongoengine import connect
-from ...mongo_models import NodeInfo, ParamInfo, NodeGroups, PluginInfo
+from ...mongo_models import (NodeInfo, ParamInfo, NodeGroups, PluginInfo,
+                             MonitoringInfo)
 
 connect("test_monitoring")
 
@@ -67,3 +68,14 @@ class GetParamsByNodePluginAPIView(BaseApiView):
                           ParamInfo.objects(plugin_name=plugin_name)]
             return params
         return []
+
+
+class GetParamTimeoutAPIView(BaseApiView):
+    def get_data(self):
+        data = {
+            'node': self.kwargs.get('node_name'),
+            'plugin': self.kwargs.get('plugin_name'),
+            'param': self.kwargs.get('param_name')
+        }
+        print MonitoringInfo.objects(**data).first().timeout
+        return MonitoringInfo.objects(**data).first().timeout

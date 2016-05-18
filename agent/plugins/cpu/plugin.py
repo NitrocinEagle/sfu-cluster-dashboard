@@ -1,9 +1,8 @@
 import psutil
 
+PLUGIN_NAME = "CPU_LOAD_PLUGIN"
 
-def cpu_percent():
-    return {'data': psutil.cpu_percent()}
-
-
-def cpu_count():
-    return psutil.cpu_count()
+methods_cpu_load = {
+    PLUGIN_NAME + '~cpu_load': lambda: {'data': psutil.cpu_percent()},
+    PLUGIN_NAME + '~cpu_count': lambda: psutil.cpu_count(),
+}
