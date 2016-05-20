@@ -9,7 +9,7 @@ body {
 body,
 html {
     height: 100%;
-    background-color: #583e7e;
+    background-color: dimgray;
 }
 
 .nav .open > a {
@@ -110,57 +110,58 @@ html {
 }
 
 .sidebar-nav li:nth-child(2):before {
-    background-color: #331c4d;
+    background-color: #e28503;
 }
 
 .sidebar-nav li:nth-child(3):before {
-    background-color: #402d5c;
+    background-color: #e28503;
 }
 
 .sidebar-nav li:nth-child(4):before {
-    background-color: #4c366d;
+    background-color: #e48a08;
 }
 
 .sidebar-nav li:nth-child(5):before {
-    background-color: #583e7e;
+    background-color: #e68f0d;
 }
 
 .sidebar-nav li:nth-child(6):before {
-    background-color: #64468f;
+    background-color: #e68f0d;
 }
 
 
 .sidebar-nav li:nth-child(7):before {
-    background-color: #704fa0;
+    background-color: #e99512;
 }
 
 .sidebar-nav .divider{
     background-color: #1a1a1a;
+    color: darkorange;
     padding-left: 30px;
 }
 
 .sidebar-nav li:nth-child(8):before {
-    background-color: #7c5aae;
+    background-color: #eb9a18;
 }
 
 .sidebar-nav li:nth-child(9):before {
-    background-color: #8a6cb6;
+    background-color: #eb9a18;
 }
 
 .sidebar-nav li:nth-child(10):before {
-    background-color: #987dbf;
+    background-color: #eea01d;
 }
 
 .sidebar-nav li:nth-child(11):before {
-    background-color: #a68ec8;
+    background-color: #f2aa28;
 }
 
 .sidebar-nav li:nth-child(12):before {
-    background-color: #b49fc8;
+    background-color: #f2aa28;
 }
 
 .sidebar-nav li:nth-child(13):before {
-    background-color: #c4b0c8;
+    background-color: #f5b02d;
 }
 
 .sidebar-nav li:hover:before {
@@ -209,6 +210,7 @@ html {
     height: 65px;
     line-height: 44px;
 }
+
 
 /*-------------------------------*/
 /*       Hamburger-Cross         */
@@ -339,10 +341,7 @@ html {
 }
 
 /* SOME DEMO STYLES - NOT REQUIRED */
-body,
-html {
-    background-color: #583e7e;
-}
+
 
 body h1,
 body h2,
@@ -357,10 +356,10 @@ body blockquote {
 }
 
 body a {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(0, 0, 0, 0.8);
     text-decoration: underline;
 }
 
 body a:hover {
-    color: #fff;
+    color: orangered;
 }
