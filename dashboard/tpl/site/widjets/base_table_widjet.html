@@ -1,0 +1,42 @@
+{% load static %}
+{% block widjet_static %}
+
+    {% block widjet_base_static %}
+        <link rel="stylesheet" href="{% static 'widjets/widjets.css' %}">
+        <script src="{% static 'slimscroll/jquery.slimscroll.min.js' %}"></script>
+        <script src="{% static 'widjets/widjet_scroll.js' %}"></script>
+    {% endblock %}
+    {% block widjet_local_static %}
+    {% endblock %}
+{% endblock %}
+{% block widjet_column_size %}
+    <div class="col-lg-4">{% endblock %}
+{% block widjet %}
+    <div class="widjet-table" id="{% block widjet_name %}general-info{% endblock %}">
+        <div class="widjet-header">
+            <div class="widjet-header-inner">
+                {% block widjet_header_inner %}{% endblock %}
+            </div>
+        </div>
+        <div class="widjet-body scrollbar-dynamic">
+            <table class="table table-bordered widjet_tbody_inner">
+                {% block widjet_thead %}
+                    <thead>
+                    {% block widjet_thead_inner %}{% endblock %}
+                    </thead>
+                {% endblock %}
+                {% block widjet_tbody %}
+                    <tbody>
+                    {% block widjet_tbody_inner %}{% endblock %}
+                    </tbody>
+                {% endblock %}
+            </table>
+        </div>
+        <div class="widjet-footer">
+            <div class="widjet-footer-inner">
+                {% block widjet_footer_inner %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+</div>

@@ -20,16 +20,12 @@
                 <link rel="stylesheet" href="{% static 'index/dashboard.css' %}"/>
                 <script src="{% static 'index/dashboard.js' %}"></script>
             {% endblock %}
-            {% block static_charts %}
-                <script src="{% static 'chart/Chart.min.js' %}"></script>
-                <script src="{% static 'chart/canvasjs.min.js' %}"></script>
-            {% endblock %}
+            {% block static_charts %}{% endblock %}
 
             {% block static_knockout %}
                 <script src="{% static 'knockout/knockout-3.4.0.js' %}"></script>
             {% endblock %}
-            {% block static_local %}
-            {% endblock %}
+            {% block static_local %}{% endblock %}
         {% endblock %}
     </head>
 {% endblock %}

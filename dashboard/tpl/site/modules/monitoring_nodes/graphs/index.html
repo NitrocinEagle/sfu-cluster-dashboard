@@ -1,11 +1,6 @@
-{% extends "site/modules/monitoring_nodes/monitoring_nodes_base.html" %}
+{% extends "site/modules/monitoring_nodes/graphs/base_graphs.html" %}
 {% load static %}
-{% block title %}Посмотреть графики{% endblock %}
-
-{% block static_charts %}
-    <script src="{% static 'chart/Chart.min.js' %}"></script>
-    <script src="{% static 'chart/canvasjs.min.js' %}"></script>
-{% endblock %}
+{% block title %}Выбор графиков для просмотра{% endblock %}
 
 {% block static_local %}
     <script src="{% static 'modules/monitoring_nodes/graphs/graphs.js' %}"></script>
@@ -14,25 +9,70 @@
 {% endblock %}
 
 {% block breadcrump_active %}
-    <li class="active">Графики</li>
+    <li class="active">Выбор графиков для просмотра</li>
 {% endblock %}
 
 {% block inner_content %}
-    <div class="row">
+    <div class="row well">
+        <h5>Показать графики по параметру</h5>
         <form class="form-inline" role="form" method="POST">
             {% csrf_token %}
             {% for input in form %}
                 <div class="form-group">
-                    <label for="{{ i.id }}"
-                           class="control-label">{{ input.label }}</label>
-                    <div>
-                        {{ input }}
-                    </div>
+                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
+                    <div>{{ input }}</div>
                 </div>
             {% endfor %}
             <div class="form-group">
-                <button type="submit" class="btn btn-default">Показать график
-                </button>
+                <button type="submit" class="btn btn-success">Показать графики</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row well">
+        <h5>Показать графики по плагину</h5>
+        <form class="form-inline" role="form" method="POST">
+            {% csrf_token %}
+            {% for input in form %}
+                <div class="form-group">
+                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
+                    <div>{{ input }}</div>
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Показать графики</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row well">
+        <h5>Показать графики по узлу</h5>
+        <form class="form-inline" role="form" method="POST">
+            {% csrf_token %}
+            {% for input in form %}
+                <div class="form-group">
+                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
+                    <div>{{ input }}</div>
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Показать графики</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row well">
+        <h5>Выбрать график</h5>
+        <form class="form-inline" role="form" method="POST">
+            {% csrf_token %}
+            {% for input in form %}
+                <div class="form-group">
+                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
+                    <div>{{ input }}</div>
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <button type="submit" class="btn btn-success">Показать графики</button>
             </div>
         </form>
     </div>

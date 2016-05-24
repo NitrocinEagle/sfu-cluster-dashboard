@@ -1,14 +1,12 @@
-{% extends "base/base.html" %}
-{% block title %}
-    <title>Авторизация</title>
-{% endblock %}
+{% extends "site/base/base_blank.html" %}
+{% block title %}Авторизация{% endblock %}
 {% block load_static %}
     {% load static %}
     {{ block.super }}
-    <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{% static 'index/login.css' %}" rel="stylesheet" type="text/css" media="all"/>
 {% endblock %}
 
-{% block body %}
+{% block inner_content %}
     <div class="wrapper">
         <div class="form-container">
             <div class="form-header">

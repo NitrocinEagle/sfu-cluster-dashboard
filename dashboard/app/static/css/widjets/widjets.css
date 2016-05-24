@@ -1,4 +1,4 @@
-.widjet {
+.widjet, .widjet-table {
     border-radius: 10%;
     margin-bottom: 10px;
     background-color: whitesmoke;
@@ -23,7 +23,7 @@
     border-right: 1px solid #9aa0a5;
     border-bottom: 1px solid #9aa0a5;
 }
-.widjet-body-inner{
+.widjet-body-inner, .widjet_tbody_inner{
     padding: 5px;
 }
 .widjet-footer{
@@ -38,4 +38,20 @@
     font-weight: 700;
     font-family: "Courier New", Courier, monospace;
     color: #0d0d0d;
+}
+
+.widjet_tbody_inner {
+
+}
+
+.table-title {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: "Courier New", Courier, monospace ;
+    color: black;
+}
+
+.widjet-table tbody {
+    font-size: 12px;
 }

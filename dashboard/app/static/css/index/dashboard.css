@@ -367,8 +367,10 @@ html {
 body h1,
 body h2,
 body h3,
-body h4 {
-    color: rgba(255, 255, 255, 0.9);
+body h4,
+body h5,
+body h6 {
+    color: rgba(0, 0, 0, 0.9);
 }
 
 body p,
