@@ -1,0 +1,22 @@
+{% extends "site/modules/monitoring_nodes/monitoring_nodes_base.html" %}
+
+{% block static_local %}
+    {% load static %}
+    <script src="{% static 'webix/codebase/webix.js' %}" charset="utf-8"></script>
+    <link rel="stylesheet" href="{% static 'webix/codebase/webix.css' %}" type="text/css" charset="utf-8">
+    <script src="{% static 'modules/monitoring_nodes/monitoring_info.js' %}" charset="utf-8"></script>
+{% endblock %}
+{% block title %}Информация по мониторингу{% endblock %}
+
+{% block breadcrump_active %}
+    <li class="active">Информация о мониторинге</li>
+{% endblock %}
+
+{% block inner_content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="treetable" style="height: 100%; width:690px;"></div>
+        </div>
+    </div>
+
+{% endblock %}

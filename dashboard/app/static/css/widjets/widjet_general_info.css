@@ -1,0 +1,21 @@
+#server-info .widjet-list {
+}
+
+#server-info .widjet-item {
+    width: 100%;
+    border-bottom: 1px solid #c5c5c5;
+}
+#server-info .widjet-item-label {
+    width: 20%;
+    border-right: 1px solid #aaaaaa;
+    padding: 3px 0px 0px 3px;
+    float: left;
+}
+#server-info .widjet-item-value {
+    width: 80%;
+    margin-left: 20%;
+    padding: 3px 0px 0px 5px;
+}
+#server-info .widjet-item:last-child {
+    border-bottom: 1px solid #d5d5d5;
+}

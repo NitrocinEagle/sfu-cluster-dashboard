@@ -1,0 +1,25 @@
+{% extends 'site/widjets/base_widjet.html' %}
+
+{% block widjet_column_size %}
+    <div class="col-lg-6">{% endblock %}
+{% block widjet_name %}server-info{% endblock %}
+{% block widjet_header_inner %}
+    <i class="fa fa-question-circle"></i> Информация о сервере мониторинга
+{% endblock %}
+{% block widjet_body_inner %}
+    <div class="widjet-list">
+        {% for item in server_info %}
+            <div class="widjet-item">
+                <div class="widjet-item-label">
+                    <i title="{{ item.label }}" class="fa {{ item.fa_icon }}"></i> {{ item.name }}
+                </div>
+                <div class="widjet-item-value">
+                    {{ item.value }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block widjet_footer_inner %}
+
+{% endblock %}

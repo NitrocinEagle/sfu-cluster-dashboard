@@ -1,25 +1,25 @@
-{% extends "base/base.html" %}
+{% extends "site/base/base.html" %}
 {% block head %}
     <meta charset="utf-8">
     {% block title %}
     <title>API</title>
     {% endblock %}
     {% block load_static %}
-        {% include "base/statics.html" %}
+        {% include "site/base/statics.html" %}
     {% endblock %}
 {% endblock %}
 
 {% block body %}
 <div class="header">
     {% block header %}
-    {% include "base/header.html" %}
+    {% include "site/base/header.html" %}
     {% endblock %}
 </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-2 col-md-2 sidebar">
             {% block sidebar %}
-            {% include "base/sidebar.html" %}
+            {% include "site/base/sidebar.html" %}
             {% endblock %}
         </div>
         <div class="col-lg-10 col-md-10 col-md-offset-2 col-lg-offset-2" style="top: 51px;">

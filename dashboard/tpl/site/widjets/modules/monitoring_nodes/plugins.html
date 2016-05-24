@@ -1,0 +1,30 @@
+{% extends 'site/widjets/base_widjet.html' %}
+
+{% block widjet_local_static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'widjets/modules/monitoring_nodes/widjet_plugins.css' %}">
+{% endblock %}
+
+{% block widjet_column_size %}
+    <div class="col-lg-6">{% endblock %}
+{% block widjet_name %}widjet-plugins{% endblock %}
+{% block widjet_header_inner %}
+    <i class="fa fa-plug"></i> Плагины
+{% endblock %}
+{% block widjet_body_inner %}
+    <div class="widjet-list">
+        {% for item in plugins %}
+            <div class="widjet-item">
+                <div class="widjet-item-label">
+                    {{ item.plugin_name }}
+                </div>
+                <div class="widjet-item-value">
+                    {{ item.description }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block widjet_footer_inner %}
+
+{% endblock %}

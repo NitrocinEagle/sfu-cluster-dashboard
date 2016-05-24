@@ -1,0 +1,61 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper"
+     role="navigation">
+    <ul class="nav sidebar-nav">
+        <li class="sidebar-brand"><a href="/">Система мониторинга</a>
+        </li>
+        <li class="divider">Общее</li>
+        <li><a href="#"><i class="fa fa-fw fa-list"></i> Информация о
+            мониторинге </a></li>
+        <li><a href="#"><i class="fa fa-fw fa-question"></i> FAQ </a></li>
+        <li class="divider">Модули</li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Мониторинг узлов
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-background" role="menu">
+                <li class="divider"></li>
+                <li><a href="{% url 'modules:monitoring_nodes:index' %}">Общая информация</a></li>
+                <li><a href="{% url 'modules:monitoring_nodes:info:index' %}">Таблица мониторинга</a></li>
+                <li><a href="{% url 'modules:monitoring_nodes:nodes:index' %}">Узлы</a></li>
+                <li><a href="{% url 'modules:monitoring_nodes:groups:index' %}">Группы</a></li>
+                <li><a href="{% url 'modules:monitoring_nodes:plugins:index' %}">Плагины</a></li>
+                <li><a href="{% url 'modules:monitoring_nodes:graphs:index' %}">Графики</a></li>
+                <li><a href="{% url 'modules:monitoring_nodes:configs:index' %}">Настройки</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle"
+               data-toggle="dropdown">
+                Мониторинг пользователей <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="divider"></li>
+                <li><a href="#">Общая информация</a></li>
+                <li><a href="#">Графики</a></li>
+                <li><a href="#">Настройки</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Мониторинг инженерных параметров
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li class="divider"></li>
+                <li><a href="#"><i class="fa fa-fw fa-info"></i> Общая
+                    информация</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-area-chart"></i>
+                    Графики</a></li>
+                <li><a href="#"><i class="fa fa-fw fa-gear"></i> Настройки</a>
+                </li>
+                <li><a href="#"><i class="fa fa-fw fa-list"></i> Отчёты</a></li>
+            </ul>
+        </li>
+        <li class="divider">Администрирование</li>
+        <li><a href="#"><i class="fa fa-fw fa-user"></i> Личный
+            кабинет</a></li>
+        <li><a href="#"><i class="fa fa-fw fa-gear"></i>
+            Настройки</a>
+        </li>
+    </ul>
+</nav>

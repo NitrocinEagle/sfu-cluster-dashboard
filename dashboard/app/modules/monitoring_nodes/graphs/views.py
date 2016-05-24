@@ -5,9 +5,9 @@ from .forms import ShowGraphForm
 
 
 class GraphsView(FormView):
-    template_name = "monitoring_nodes/graphs/index.html"
+    template_name = "site/modules/monitoring_nodes/graphs/index.html"
     form_class = ShowGraphForm
-    success_url = 'monitoring_nodes/graphs'
+    success_url = '/modules/monitoring_nodes/graphs'
 
     def form_valid(self, form):
         form_data = {}
@@ -20,7 +20,7 @@ class GraphsView(FormView):
 
 
 class ShowGraphView(TemplateView):
-    template_name = 'monitoring_nodes/graphs/graph.html'
+    template_name = 'site/modules/monitoring_nodes/graphs/graph.html'
 
     def get_context_data(self, **kwargs):
         kwargs['graphs_info'] = [{

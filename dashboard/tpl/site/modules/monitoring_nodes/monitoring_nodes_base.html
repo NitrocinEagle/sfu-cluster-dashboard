@@ -1,0 +1,6 @@
+{% extends 'site/modules/modules_base.html' %}
+
+{% block breadcrump_inactive %}
+{{ block.super }}
+    <li><a href="{% url 'modules:monitoring_nodes:index' %}">Мониторинг узлов</a></li>
+{% endblock %}

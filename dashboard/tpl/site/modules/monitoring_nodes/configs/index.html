@@ -1,0 +1,37 @@
+{% extends 'site/modules/monitoring_nodes/monitoring_nodes_base.html' %}
+{% block title %}Настройки мониторинга{% endblock %}
+{% block static_local %}
+    {{ block.super }}
+    {% load static %}
+    <link href="{% static 'modules/monitoring_nodes/configs/settings.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="{% static 'modules/monitoring_nodes/configs/monitoring_settings.js' %}"></script>
+    <script src="{% static 'api/api.js' %}"></script>
+{% endblock %}
+
+{% block breadcrump_active %}
+    <li class="active">Настройки мониторинга узлов</li>
+{% endblock %}
+
+{% block inner_content %}
+    <div class="row">
+        <form class="form-horizontal post-form" method="post">
+            {% csrf_token %}
+            {% for input in form %}
+                <div class="form-group">
+                    <div class="col-sm-4">
+                        {{ input.label_tag }}
+                    </div>
+                    <div class="col-sm-8">
+                        {{ input }}
+                        {{ input.errors }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-primary">Настроить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

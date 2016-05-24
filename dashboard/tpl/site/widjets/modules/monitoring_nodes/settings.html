@@ -1,0 +1,40 @@
+{% extends 'site/widjets/base_widjet.html' %}
+
+{% block widjet_column_size %}
+    <div class="col-lg-8">{% endblock %}
+{% block widjet_name %}notifications{% endblock %}
+{% block widjet_header_inner %}
+    <i class="fa fa-inbox"></i> Уведомления
+{% endblock %}
+{% block widjet_body_inner %}
+    <div class="widjet-list">
+        {% for item in notifications %}
+            <div class="widjet-item" id="{{ item.id }}">
+                <div class="widjet-item-label">
+                    <i class="fa
+                     {% if item.type == 'critical' %}
+                        fa-close
+                        {% elif item.type == 'info' %}
+                        fa-info
+                        {% elif item.type == 'config' %}
+                        fa-gear
+                        {% elif item.type == '4' %}
+                        fa-gear
+                        {% elif item.type == 'warning' %}
+                        fa-warning
+                     {% endif %}
+                     fa-2x"></i>
+                </div>
+                <div class="widjet-item-value">
+                    {{ item.text }}
+                </div>
+                <div class="widjet-item-time">
+                    {{ item.time }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block widjet_footer_inner %}
+
+{% endblock %}

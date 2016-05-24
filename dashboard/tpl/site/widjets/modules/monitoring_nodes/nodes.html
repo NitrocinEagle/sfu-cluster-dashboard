@@ -1,0 +1,44 @@
+{% extends 'site/widjets/base_widjet.html' %}
+{% block widjet_local_static %}
+    {% load static %}
+    <link rel="stylesheet"
+          href="{% static 'widjets/modules/monitoring_nodes/widjet_nodes.css' %}">
+{% endblock %}
+
+{% block widjet_column_size %}
+    <div class="col-lg-6">{% endblock %}
+{% block widjet_name %}widjet-nodes{% endblock %}
+{% block widjet_header_inner %}
+    <i class="fa fa-server"></i> Узлы
+{% endblock %}
+{% block widjet_body_inner %}
+    <div class="widjet-list">
+        <div class="widjet-item">
+            <div class="widjet-item-name header">
+                Имя узла
+            </div>
+            <div class="widjet-item-ip header">
+                IP-адрес
+            </div>
+            <div class="widjet-item-plugins header">
+                Подключенные плагины
+            </div>
+        </div>
+        {% for item in nodes %}
+            <div class="widjet-item">
+                <div class="widjet-item-name">
+                    {{ item.node_name }}
+                </div>
+                <div class="widjet-item-ip">
+                    {{ item.node_ip }}
+                </div>
+                <div class="widjet-item-plugins">
+                    {{ item.enabled_plugins }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block widjet_footer_inner %}
+
+{% endblock %}

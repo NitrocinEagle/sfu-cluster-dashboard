@@ -1,0 +1,43 @@
+#notifications .widjet-list {
+}
+
+#notifications .widjet-item {
+    width: 100%;
+    border-bottom: 1px solid #c5c5c5;
+    height: 40px;
+}
+#notifications .widjet-item-label {
+    width: 8%;
+    height: 40px;
+    border-right: 1px solid #aaaaaa;
+    padding: 3px 0px 0px 3px;
+    float: left;
+    text-align: center;
+}
+#notifications .widjet-item-value {
+    width: 76%;
+    height: 40px;
+    border-right: 1px solid #aaaaaa;
+    padding: 0px 0px 0px 10px;
+    font-size: 14px;
+    float: left;
+    line-height: 30px;
+}
+
+#notifications .widjet-item-time {
+    width: 16%;
+    height: 40px;
+    margin-left: 84%;
+    padding: 3px 0px 0px 0px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 26px;
+}
+
+#notifications .widjet-item-value a {
+    text-decoration-line: none;
+}
+
+#notifications .widjet-item:last-child {
+    border-bottom: 1px solid #d5d5d5;
+}

@@ -9,7 +9,28 @@ body {
 body,
 html {
     height: 100%;
-    background-color: dimgray;
+    background-color: lightslategrey;
+    background-color: white;
+
+}
+
+.content {
+    width: 90%;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    padding: 0px 30px 0px 30px;
+}
+
+.dashboard-title {
+    font-family: Menlo, Consolas, "Andale Mono", "Lucida Console", monospace;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #0d0d0d;
+    margin-bottom: -10px;
+    padding: 10px;
+}
+.dashboard-title hr {
+    margin: 0;
 }
 
 .nav .open > a {
@@ -68,7 +89,7 @@ html {
 }
 
 #page-content-wrapper {
-    padding-top: 70px;
+    padding-top: 10px;
     width: 100%;
 }
 
@@ -271,19 +292,19 @@ html {
 
 .hamburger.is-closed .hamb-top {
     -webkit-transition: all 0.35s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 175, 0, 0.8);
     top: 5px;
 }
 
 .hamburger.is-closed .hamb-middle {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 175, 0, 0.8);
     margin-top: -2px;
     top: 50%;
 }
 
 .hamburger.is-closed .hamb-bottom {
     -webkit-transition: all 0.35s ease-in-out;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 175, 0, 0.8);
     bottom: 5px;
 }
 
@@ -308,14 +329,14 @@ html {
 }
 
 .hamburger.is-open .hamb-middle {
-    background-color: #fff;
+    background-color: darkorange;
     display: none;
 }
 
 .hamburger.is-open .hamb-bottom {
     -webkit-transform: rotate(-45deg);
     -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.73, 1, 0.28, 0.08);
-    background-color: #fff;
+    background-color: darkorange;
     margin-top: -2px;
     top: 50%;
 }
@@ -362,4 +383,16 @@ body a {
 
 body a:hover {
     color: orangered;
+}
+
+.footer {
+    font-size: 14px;
+    line-height: 20px;
+    padding: 10px;
+    font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+    text-align: center;
+}
+
+hr {
+    margin: 10px;
 }

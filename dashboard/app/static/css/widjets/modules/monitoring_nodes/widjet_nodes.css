@@ -1,0 +1,43 @@
+#widjet-nodes .widjet-list {
+}
+
+#widjet-nodes .widjet-item {
+    width: 100%;
+    border-bottom: 1px solid #c5c5c5;
+}
+
+#widjet-nodes .widjet-item-name {
+    width: 35%;
+    height: 40px;
+    border-right: 1px solid #aaaaaa;
+    padding: 3px 0px 0px 3px;
+    float: left;
+    font-size: 14px;
+}
+
+#widjet-nodes .widjet-item-ip {
+    width: 20%;
+    height: 40px;
+    border-right: 1px solid #aaaaaa;
+    padding: 3px 3px 0px 5px;
+    float: left;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+#widjet-nodes .widjet-item-plugins {
+    width: 45%;
+    height: 40px;
+    margin-left: 55%;
+    padding: 3px 3px 0px 5px;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+#widjet-nodes a {
+    text-decoration-line: none;
+}
+
+#widjet-nodes .widjet-item:last-child {
+    border-bottom: 1px solid #d5d5d5;
+}

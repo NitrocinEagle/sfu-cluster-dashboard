@@ -10,7 +10,7 @@ connect("test_monitoring")
 
 
 class NodesView(View):
-    template_name = 'monitoring_nodes/nodes/nodes.html'
+    template_name = 'site/modules/monitoring_nodes/nodes/nodes.html'
 
     def get(self, request, *args, **kwargs):
         nodes_render = []

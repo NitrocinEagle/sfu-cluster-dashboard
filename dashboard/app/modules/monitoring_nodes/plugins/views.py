@@ -6,13 +6,10 @@ from app.mongo_models import PluginInfo, ParamInfo
 from mongoengine import connect
 
 connect("test_monitoring")
-
-
 # connect('test', host='192.168.1.106', port=27017)
 
-
 class PluginsView(View):
-    template_name = 'monitoring_nodes/plugins/plugins.html'
+    template_name = 'site/modules/monitoring_nodes/plugins/plugins.html'
 
     def get(self, request, *args, **kwargs):
         plugins_render = []

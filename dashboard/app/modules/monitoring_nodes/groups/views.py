@@ -5,7 +5,7 @@ from app.mongo_models import NodeGroups
 
 
 class GroupsView(TemplateView):
-    template_name = "monitoring_nodes/groups/groups.html"
+    template_name = "site/modules/monitoring_nodes/groups/groups.html"
 
     def get_context_data(self, **kwargs):
         kwargs['groups'] = NodeGroups.objects()

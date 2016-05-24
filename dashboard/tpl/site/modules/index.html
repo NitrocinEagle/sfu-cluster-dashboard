@@ -1,0 +1,13 @@
+{% extends 'site/modules/modules_base.html' %}
+
+{% block title %}Модули{% endblock %}
+{% block breadcrump_active %}
+    <li class="active">Общая информация</li>
+{% endblock %}
+
+{% block inner_content %}
+    <div class="row">
+    Подключенные модули: <br>
+        <a href="{% url 'modules:monitoring_nodes:index' %}">1. Модуль по мониторингу серверов</a>
+    </div>
+{% endblock %}
