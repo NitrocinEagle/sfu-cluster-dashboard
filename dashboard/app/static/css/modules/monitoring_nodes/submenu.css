@@ -1,0 +1,65 @@
+.subnavbar {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+    border: 1px solid black;
+}
+
+.subnavbar-inner {
+    height: 60px;
+    background: #fff;
+}
+
+.subnavbar .subnavbar-container > ul {
+    display: inline-block;
+    height: 80px;
+    padding: 0;
+    margin: 0;
+
+}
+
+.subnavbar .subnavbar-container > ul > li {
+    float: left;
+
+    min-width: 90px;
+    height: 60px;
+    padding: 0;
+    margin: 0;
+
+    text-align: center;
+    list-style: none;
+    background-color: #fbf9ee;
+    border-right: 1px solid #b2b2b2;
+}
+
+.subnavbar .subnavbar-container > ul > li > a {
+    display: block;
+
+    height: 100%;
+    padding: 0 15px;
+    color: #4c4c4c;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.subnavbar .subnavbar-container > ul > li > a:hover {
+    color: #0d0d0d;
+    text-decoration: none;
+}
+
+.subnavbar .subnavbar-container > ul > li > a > i {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    margin-top: 11px;
+    margin-bottom: -3px;
+    font-size: 20px;
+}
+
+.subnavbar .subnavbar-container > ul > li > a > span {
+    display: block;
+}
+.subnavbar .subnavbar-container > ul > li:hover > a {
+    border-bottom: 3px solid orange;
+    color: #383838;
+}

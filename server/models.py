@@ -88,3 +88,11 @@ class PreviewCostructor(Document):
     node_ip = StringField(max_length=lengths['ip'])
     plugin_name = StringField(max_length=lengths['plugin'])
     param_name = StringField(max_length=lengths['param'])
+
+
+class MonitoringNodesData(Document):
+    node = StringField(max_length=lengths['node_name'])
+    plugin = StringField(max_length=lengths['plugin'])
+    param = StringField(max_length=lengths['param'])
+    data = DynamicField()
+    timestamp = DateTimeField()

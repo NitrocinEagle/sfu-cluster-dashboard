@@ -16,11 +16,10 @@
 {% endblock %}
 
 {% block breadcrump_active %}
-    <li class="active">Выбор графиков для просмотра</li>
+    <li class="active">{{ graph.node_name }} - {{ graph.plugin_name }} - {{ graph.param_name }}</li>
 {% endblock %}
 
 {% block inner_content %}
-    {% for graph in graphs_info %}
         <div class="row">
             <div class="graph_info" style="margin-left: 10%">
                 Узел: {{ graph.node_name }}<br>
@@ -35,5 +34,4 @@
                  param-name="{{ graph.param_name }}">
             </div>
         </div>
-    {% endfor %}
 {% endblock %}

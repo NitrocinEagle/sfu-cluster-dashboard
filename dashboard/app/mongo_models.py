@@ -27,15 +27,11 @@ class NodeGroups(Document):
     enabled_nodes = ListField(StringField(max_length=lengths['node_name']))
 
 
-class ServerInfoDict(EmbeddedDocument):
+class ServerGeneralInfo(Document):
     name = StringField()
     value = StringField()
     fa_icon = StringField()
     label = StringField()
-
-
-class ServerInfo(Document):
-    info = EmbeddedDocumentListField(ServerInfoDict)
 
 
 class NodeInfo(Document):
@@ -88,3 +84,30 @@ class PreviewCostructor(Document):
     node_ip = StringField(max_length=lengths['ip'])
     plugin_name = StringField(max_length=lengths['plugin'])
     param_name = StringField(max_length=lengths['param'])
+
+
+class MonitoringNodesData(Document):
+    node = StringField(max_length=lengths['node_name'])
+    plugin = StringField(max_length=lengths['plugin'])
+    param = StringField(max_length=lengths['param'])
+    data = DynamicField()
+    timestamp = DateTimeField()
+
+
+# from mongoengine import connect
+# from datetime import datetime
+# connect("test_monitoring")
+# from app.mongo_models import MonitoringNodesData
+# node = 'node1'
+# plugin = 'plugin1'
+# param = 'param1'
+# data = [{'a': 1, 'b': 2}, {'a': 1, 'b': 2}]
+# timestamp = datetime.now()
+# a = MonitoringNodesData(node=node, plugin=plugin, param=param, data=data, timestamp=timestamp)
+
+# [{'name': 'IP', 'value': '172.20.30.11', 'fa_icon': 'fa-globe', 'label': 'IP'},
+# {'name': 'CPU', 'value': 'Intel(R) Xeon(R) CPU', 'fa_icon': 'fa-cubes', 'label': 'CPU'},
+# {'name': 'Cores', 'value': '8', 'fa_icon': 'fa-info', 'label': 'Cores'},
+# {'name': 'OS', 'value': 'CentOS', 'fa_icon': 'fa-laptop', 'label': 'OS'},
+# {'name': 'HDD', 'value': '68.4 Gb', 'fa_icon': 'fa-hdd-o', 'label': 'HDD'},
+# {'name': 'RAM', 'value': '3791 Mb', 'fa_icon': 'fa-bars', 'label': 'RAM'}]

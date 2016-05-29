@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView, TemplateView
 from django.views.generic.base import View
-from ..mongo_models import ServerInfo, PluginInfo, NodeInfo
+from ..mongo_models import ServerGeneralInfo, PluginInfo, NodeInfo
 
 
 # login 'test' password 'test1234'
@@ -33,28 +33,7 @@ class DashboardView(TemplateView):
     template_name = 'site/index/new_dashboard.html'
 
     def get_context_data(self, **kwargs):
-        # kwargs['server_info'] = ServerInfo.objects.first().info
-        kwargs['server_info'] = [{
-            'name': 'name',
-            'value': '11',
-            'fa_icon': 'fa-gear',
-            'label': 'label'
-        }, {
-            'name': 'name',
-            'value': '11',
-            'fa_icon': 'fa-gear',
-            'label': 'label'
-        }, {
-            'name': 'name',
-            'value': '11',
-            'fa_icon': 'fa-gear',
-            'label': 'label'
-        }, {
-            'name': 'name',
-            'value': '11',
-            'fa_icon': 'fa-gear',
-            'label': 'label'
-        }]
+        kwargs['server_info'] = ServerGeneralInfo.objects()
 
         kwargs['monitoring_states'] = [{
             'label': '2',
@@ -74,45 +53,44 @@ class DashboardView(TemplateView):
             'name': u'Мониторинг инженерных параметров',
             'url': '/',
             'value': u'Warning'
-        },
-        ]
+        },]
+
         kwargs['notifications'] = [{
             'id': 1,
-            'type': 'critical',
-            'text': u'Случилось что-то страшное',
-            'time': '12:43 12.09.2016',
+            'type': 'info',
+            'text': u'Система оповещений находится в разработке',
+            'time': '08:00 20.05.2016',
         }, {
             'id': 1,
             'type': 'critical',
-            'text': u'Случилось что-то страшное',
-            'time': '12:43 12.09.2016',
+            'text': u'Проверьте узел ULK416-cluster1-0',
+            'time': '16:04 21.05.2016',
         }, {
             'id': 1,
             'type': 'critical',
-            'text': u'Случилось что-то страшное',
-            'time': '12:43 12.09.2016',
+            'text': u'Проверьте узел ULK416-cluster1-1',
+            'time': '17:14 22.05.2016',
         }, {
             'id': 2,
             'type': 'config',
-            'text': u'Изменен таймаут параметра А в узле Б',
-            'time': '12:43 12.09.2016',
+            'text': u'Изменен таймаут параметра cpu_percent в узле ULK416-cluster1-0',
+            'time': '13:34 26.05.2016',
         }, {
             'id': 3,
             'type': 'info',
-            'text': u'Добавлен узел С',
-            'time': '12:43 12.09.2016',
+            'text': u'Добавлен узел ULK416-cluster1-2',
+            'time': '11:39 27.05.2016',
         }, {
             'id': 3,
             'type': 'critical',
-            'text': u'Случилось что-то страшное',
-            'time': '12:43 12.09.2016',
+            'text': u'Проверьте узел ULK416-cluster1-2',
+            'time': '12:43 28.05.2016',
         }, {
             'id': 4,
             'type': 'warning',
-            'text': u'Параметр В выше нормы',
-            'time': '12:43 12.09.2016',
-        },
-        ]
+            'text': u'Параметр cpu_pecent на узле ULK416-cluster1-2 выше нормы',
+            'time': '09:21 29.05.2016',
+        },]
         kwargs['plugins'] = PluginInfo.objects()
         kwargs['nodes'] = NodeInfo.objects()
         return super(DashboardView, self).get_context_data(**kwargs)

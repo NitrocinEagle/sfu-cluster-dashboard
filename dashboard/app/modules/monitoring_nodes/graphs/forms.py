@@ -4,7 +4,8 @@ from django.utils.safestring import mark_safe
 from app.mongo_models import NodeInfo
 
 ATTRS = {'class': 'form-control'}
-NODES_LIST = [(item.node_name, item.node_name) for item in NodeInfo.objects()]
+NODES_LIST = [('choose_node', u'Выберите узел')]
+[NODES_LIST.append((item.node_name, item.node_name)) for item in NodeInfo.objects]
 
 class CheckboxSelectMultiple(forms.CheckboxSelectMultiple):
     def render(self, name, value, attrs=None, choices=()):

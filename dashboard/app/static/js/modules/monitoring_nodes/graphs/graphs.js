@@ -27,6 +27,7 @@ function buildGraphs(chartsInfo) {
             url: graphAPI_URL + v.node_name + '/' + v.plugin_name + '/' + v.param_name + '/?format=json',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 renderGraph(v.canvas_id, data);
             }
         });

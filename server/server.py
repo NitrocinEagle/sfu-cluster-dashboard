@@ -2,7 +2,7 @@ import jsonrpclib
 from mongoengine import connect
 from tornado import ioloop
 from models import *
-import time
+from datetime import datetime
 
 
 def get_data_from_node(server, node_ip, node_name, plugin_name, param_name):
@@ -13,21 +13,19 @@ def get_data_from_node(server, node_ip, node_name, plugin_name, param_name):
         try:
             result = endpoint()
             print "%s - %s - %s: " % (node_ip, plugin_name, param_name), result
+            kwargs = {
+                'node': node_name,
+                'plugin': plugin_name,
+                'param': param_name
+            }
+            data = MonitoringNodesData.objects(**kwargs)
+            kwargs.update({
+                'data': result,
+                'timestamp': datetime.now()
+            })
+            MonitoringNodesData(**kwargs).save()
         except:
             print "Couldn't get ", param_name, " from ", node_ip
-            # print 'result from ', server, ' - ', node_ip, ' - ', node_name
-
-            # node_data = NodeData()
-            # node_data.node_name = node_name
-            # node_data.node_ip = node_ip
-            # # TODO: parameter can be not equal to the name of plugin
-            # node_data.param_name = plugin_name
-            # node_data.plugin_name = plugin_name
-            # data = LineChartMetric()
-            # data.value = result['data']
-            # data.timestamp = time.time()
-            # node_data.data = data
-            # node_data.save()
 
     return callback
 
@@ -50,9 +48,8 @@ if __name__ == "__main__":
                 'param_name': info.param
             }
             timeout = 1000 * info.timeout
-            callbacks.append(
-                ioloop.PeriodicCallback(get_data_from_node(**kwargs), timeout,
-                                        loop))
+            callbacks.append(ioloop.PeriodicCallback(
+                get_data_from_node(**kwargs), timeout,loop))
 
     map(lambda callback: callback.start(), callbacks)
     loop.start()

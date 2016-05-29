@@ -5,8 +5,7 @@ from django.views.generic import View
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from mongoengine import connect
-from ..init_test_db.test_data import nodes_data, params_info
-from ..mongo_models import NodeData, ParamInfo
+from ..mongo_models import MonitoringNodesData, ParamInfo
 
 connect("test_monitoring")
 
@@ -26,16 +25,28 @@ class GraphsAPIView(APIView):
         plugin_name = kwargs.get("plugin_name")
         param_name = kwargs.get("param_name")
 
-        node_data = NodeData.objects(node_name=node_name, plugin_name=plugin_name, param_name=param_name)[0].data
         param_info = ParamInfo.objects(plugin_name=plugin_name, param_name=param_name)[0]
+        filter = {
+            'node': node_name,
+            'plugin': plugin_name,
+            'param': param_name
+        }
+        count = MonitoringNodesData.objects(**filter).count()
+        monitoring_data = MonitoringNodesData.objects(**filter)[count-10:count]
 
-        if node_data and param_info:
+        metric = []
+        if param_info.graph_type == 'line_chart':
+            for data in monitoring_data:
+                metric.append({'value': data.data[param_name], 'timestamp': data.timestamp})
+
+
+        if metric and param_info:
             return Response({
                 'graph_type': param_info.graph_type,
                 'graph_name': param_info.param_name,
                 'axis_y': param_info.axis_y_title,
                 'axis_x': param_info.axis_x_title,
-                'data': node_data
+                'data': metric
             })
 
         return Response({

@@ -1,8 +1,8 @@
 {% extends "site/modules/monitoring_nodes/graphs/base_graphs.html" %}
-{% load static %}
 {% block title %}Выбор графиков для просмотра{% endblock %}
 
 {% block static_local %}
+    {% load static %}
     <script src="{% static 'modules/monitoring_nodes/graphs/graphs.js' %}"></script>
     <script src="{% static 'api/api.js' %}"></script>
     <script src="{% static 'modules/monitoring_nodes/graphs/show_graphs_form.js' %}"></script>
@@ -15,65 +15,63 @@
 {% block inner_content %}
     <div class="row well">
         <h5>Показать графики по параметру</h5>
-        <form class="form-inline" role="form" method="POST">
-            {% csrf_token %}
-            {% for input in form %}
-                <div class="form-group">
-                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
-                    <div>{{ input }}</div>
-                </div>
-            {% endfor %}
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Показать графики</button>
+        <div class="row form-group">
+            <div class="col-lg-3">
+                <select class="form-control" name="" id="select-graphs-param">
+                    <option value="choose_param">Выберите параметр</option>
+                </select>
             </div>
-        </form>
+            <div class="col-lg-3">
+                <button class="btn btn-primary" type="button" id="btn-graphs-param">Показать графики</button>
+            </div>
+        </div>
     </div>
 
     <div class="row well">
         <h5>Показать графики по плагину</h5>
-        <form class="form-inline" role="form" method="POST">
-            {% csrf_token %}
-            {% for input in form %}
-                <div class="form-group">
-                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
-                    <div>{{ input }}</div>
-                </div>
-            {% endfor %}
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Показать графики</button>
+                <div class="row form-group">
+            <div class="col-lg-3">
+                <select class="form-control" name="" id="select-graphs-plugin">
+                    <option value="choose_plugin">Выберите плагин</option>
+                </select>
             </div>
-        </form>
+            <div class="col-lg-3">
+                <button class="btn btn-primary" type="button" id="btn-graphs-plugin">Показать графики</button>
+            </div>
+        </div>
     </div>
 
     <div class="row well">
         <h5>Показать графики по узлу</h5>
-        <form class="form-inline" role="form" method="POST">
-            {% csrf_token %}
-            {% for input in form %}
-                <div class="form-group">
-                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
-                    <div>{{ input }}</div>
-                </div>
-            {% endfor %}
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Показать графики</button>
+        <div class="row form-group">
+            <div class="col-lg-3">
+                <select class="form-control" name="" id="select-graphs-node">
+                    <option value="choose_node">Выберите узел</option>
+                </select>
             </div>
-        </form>
+            <div class="col-lg-3">
+                <button class="btn btn-primary" type="button" id="btn-graphs-node">Показать графики</button>
+            </div>
+        </div>
     </div>
 
     <div class="row well">
         <h5>Выбрать график</h5>
-        <form class="form-inline" role="form" method="POST">
-            {% csrf_token %}
-            {% for input in form %}
-                <div class="form-group">
-                    <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
-                    <div>{{ input }}</div>
+        <div class="row form-group">
+            <form class="form-inline" role="form" method="POST">
+                <div class="col-lg-3">
+                    {% csrf_token %}
+                    {% for input in form %}
+                        <label for="{{ i.id }}" class="control-label">{{ input.label }}</label>
+                        <div>{{ input }}</div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-            <div class="form-group">
-                <button type="submit" class="btn btn-success">Показать графики</button>
-            </div>
-        </form>
+                <div class="col-lg-3">
+                    <button type="submit" class="btn btn-success">Показать
+                        графики
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}

@@ -1,8 +1,33 @@
 {% extends "site/modules/monitoring_nodes/monitoring_nodes_base.html" %}
 {% block title %}Мониторинг узлов{% endblock %}
 
+{% block load_static %}
+{% load static %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'modules/monitoring_nodes/submenu.css' %}">
+{% endblock %}
 {% block breadcrump_active %}
     <li class="active">Общая информация</li>
+{% endblock %}
+
+{% block submenu %}
+<div class="row">
+    <div class="subnavbar visible-desktop visible-tablet">
+        <div class="subnavbar-inner">
+            <div class="subnavbar-container">
+                <ul class="mainnav">
+                    <li><a href=""><i class="fa fa-dashboard"></i><span>General</span> </a> </li>
+                    <li><a href=""><i class="fa fa-hdd-o"></i><span>Disk</span> </a> </li>
+                    <li><a href=""><i class="fa fa-check"></i><span>CPU</span> </a> </li>
+                    <li><a href=""><i class="fa fa-list-alt"></i><span>RAM</span> </a> </li>
+                    <li><a href=""><i class="fa fa-user"></i><span>Users</span> </a> </li>
+                    <li><a href=""><i class="fa fa-exchange"></i><span>Network</span> </a> </li>
+                    <li><a href=""><i class="fa fa-list-alt"></i><span>Processes</span> </a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block inner_content %}
