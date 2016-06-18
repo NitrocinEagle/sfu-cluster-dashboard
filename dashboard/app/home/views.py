@@ -29,8 +29,7 @@ class LogoutView(View):
 
 
 class DashboardView(TemplateView):
-    # template_name = 'index/dashboard.html'
-    template_name = 'site/index/new_dashboard.html'
+    template_name = 'site/index/dashboard.html'
 
     def get_context_data(self, **kwargs):
         kwargs['server_info'] = ServerGeneralInfo.objects()

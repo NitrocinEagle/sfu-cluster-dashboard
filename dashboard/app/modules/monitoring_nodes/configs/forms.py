@@ -68,7 +68,7 @@ class MonitoringSettingsForm(forms.Form):
                               label=u'Операционная система')
     node_ip = forms.GenericIPAddressField(widget=forms.TextInput(attrs=ATTRS),
                                           required=False,
-                                          label=u'IP-адресс')
+                                          label=u'IP-адрес')
     plugins_list = forms.MultipleChoiceField(choices=PLUGINS_LIST,
                                              widget=CheckboxSelectMultiple,
                                              label=u'Выберите плагины',

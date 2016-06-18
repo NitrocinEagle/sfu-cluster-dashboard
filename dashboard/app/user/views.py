@@ -4,4 +4,4 @@ from mixins import UserProfileMixin
 
 
 class UserProfileView(UserProfileMixin, TemplateView):
-    template_name = 'user/profile.html'
+    template_name = 'site/user/profile.html'

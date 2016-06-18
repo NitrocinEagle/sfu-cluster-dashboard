@@ -1,0 +1,196 @@
+{% extends "site/base/base.html" %}
+
+{% block static_local %}
+    {{ block.super }}
+    {% load static %}
+    <link href="{% static 'user/profile.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="{% static 'user/dashboard_settings.js' %}"></script>
+    <script src="{% static 'api/api.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+    Страница пользователя {{ request.user }}
+{% endblock %}
+
+{% block breadcrump_active %}
+    <li class="active">Пользователи</li>
+    <li class="active">{{ user_profile.name }}</li>
+{% endblock %}
+
+{% block inner_content %}
+    <div class="row">
+        <div class="col-md-3 col-lg-3">
+            {% block user_block %}
+                <div class="profile-userpic">
+                    <img src="{{ user_profile.avatar.url }}" class="img-thumbnail img-responsive" alt="">
+                </div>
+                <div class="profile-usertitle">
+                    <small>Администратор</small>
+                </div>
+                <div class="profile-usermenu">
+                    <ul class="nav nav-tabs nav-stacked">
+                        <li>
+                            <a href="#profile" class="active" data-toggle="tab">
+                                <i class="fa fa-user"></i>
+                                Профиль
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#user-settings" data-toggle="tab">
+                                <i class="fa fa-gear"></i>
+                                Персональные настройки
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#dashboard-settings" data-toggle="tab">
+                                <i class="fa fa-dashboard"></i>
+                                Настройки Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#monitoring-settings" data-toggle="tab">
+                                <i class="fa fa-server"></i>Настройки мониторинга
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            {% endblock %}
+        </div>
+        <div class="col-md-9 col-lg-9">
+            <div class="tab-content">
+                <div class="tab-pane active" id="profile">
+                    <div class="user-profile-container">
+                        <h1>Информация о пользователе</h1>
+                        <h2>Имя</h2>
+                        <hr>
+                        <div class="user-profile-info">
+                            {{ user_profile.name }}
+                        </div>
+                        <h2>E-mail</h2>
+                        <hr>
+                        <div class="user-profile-info">
+                            {{ user_profile.email }}
+                        </div>
+                        <h2>Дата регистрации</h2>
+                        <hr>
+                        <div class="user-profile-info">
+                            {{ user_profile.date_joined|date }} <br>
+                        </div>
+                        <h2>О себе</h2>
+                        <hr>
+                        <div class="user-profile-info">
+                            {{ user_profile.about }}
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="dashboard-settings">
+                    <div class="user-profile-container">
+                        <h1>Настройки Dashboard</h1>
+                        <br>
+                        <form class="form-horizontal post-form" method="post">
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="id_select_node">Выберите узел</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="id_select_node" name="select_node"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="id_select_plugin">Выберите плагин</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="id_select_plugin" name="select_plugin"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-4">
+                                    <label for="id_select_param">Выберите параметр</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="id_select_param" name="select_param"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary">Добавить график на Dashboard</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane" id="user-settings">
+                    <div class="user-profile-container">
+                        <h1>Персональные настройки</h1>
+                        <form class="form-horizontal" role="form">
+                            <h3>Изменить E-mail</h3>
+                            <hr>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">E-mail</label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="inputEmail3" placeholder="Введите ваше новый e-mail">
+                                </div>
+                            </div>
+                            <h3>Изменить пароль</h3>
+                            <hr>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Старый пароль</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Введите ваш старый пароль">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Новый пароль</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Введите ваш новый пароль">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Новый пароль</label>
+                                <div class="col-sm-10">
+                                    <input type="password" class="form-control" id="inputPassword3" placeholder="Повторите ваш новый пароль">
+                                </div>
+                            </div>
+                            <h3>Изменить фото</h3>
+                            <hr>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Фото</label>
+                                <div class="col-sm-10">
+                                    <input type="file">
+                                </div>
+                            </div>
+                            <h3>Изменить информацию о себе</h3>
+                            <hr>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">О себе</label>
+                                <div class="col-sm-10">
+                                    <textarea name="" id="" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="submit" class="btn btn-primary">
+                                        Сохранить изменения
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="tab-pane" id="monitoring-settings">
+                    <div class="user-profile-container">
+                        <h1>Настройки мониторинга</h1>
+                        <h3>Настройки модуля загрузкт узлов</h3>
+                        <hr>
+                        <a href="{% url 'modules:monitoring_nodes:configs:index' %}" class="btn btn-primary">
+                            Перейти к настройками модуля загрузки узлов
+                        </a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

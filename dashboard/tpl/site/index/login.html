@@ -3,51 +3,31 @@
 {% block load_static %}
     {% load static %}
     {{ block.super }}
-    <link href="{% static 'index/login.css' %}" rel="stylesheet" type="text/css" media="all"/>
+    <link href="{% static 'index/login.css' %}" rel="stylesheet" type="text/css"
+          media="all"/>
 {% endblock %}
 
 {% block inner_content %}
     <div class="wrapper">
         <div class="form-container">
-            <div class="form-header">
-                Авторизация
-            </div>
             <div class="form-body">
                 <form class="form-signin" action="" method="post">
                     {% csrf_token %}
                     {{ form.next }}
-                    <div class="username">
-                        <div class="username-input">
-                            <input autofocus="autofocus" type="text"
-                                   class="form-control"
-                                   placeholder="Имя пользователя"
-                                   name="username">
-                        </div>
-                        <div class="username-errors">
-                            {% if form.username.errors %}
-                                Это поле обязательно
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="password">
-                        <div class="password-input">
-                            <input type="password" class="form-control"
-                                   placeholder="Пароль" name="password">
-                        </div>
-                        <div class="password-errors">
-                            {% if form.password.errors %}
-                                Это поле обязательно
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="button-submit">
-                        <button type="submit">
-                            <span>Войти</span>
-                        </button>
-                    </div>
+                    <h2 class="form-signin-heading">Авторизация</h2>
+                    <input autofocus="autofocus" type="text"
+                           class="form-control" required=""
+                           placeholder="Имя пользователя" name="username">
+                    <input class="form-control" placeholder="Пароль"
+                           name="password" type="password">
+                    <label class="checkbox">
+                        <input value="remember-me" type="checkbox"> Запомнить
+                    </label>
+                    <button class="btn btn-lg btn-primary btn-block"
+                            type="submit">Войти
+                    </button>
                 </form>
             </div>
         </div>
     </div>
 {% endblock %}
-

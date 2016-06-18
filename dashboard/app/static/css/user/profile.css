@@ -9,26 +9,21 @@
     background: #fff;
 }
 
-.profile-userpic img {
-    float: none;
-    margin: 0 auto;
-    width: 144px;
-    height: 144px;
-    -webkit-border-radius: 50% !important;
-    -moz-border-radius: 50% !important;
-    border-radius: 50% !important;
-}
+/*.profile-userpic img {*/
+    /*float: none;*/
+    /*margin: 0 auto;*/
+    /*width: 144px;*/
+    /*height: 144px;*/
+    /*-webkit-border-radius: 50% !important;*/
+    /*-moz-border-radius: 50% !important;*/
+    /*border-radius: 50% !important;*/
+/*}*/
 
 .profile-usertitle {
     text-align: center;
-    margin-top: 20px;
-}
-
-.profile-usertitle-name {
-    color: #5a7391;
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 7px;
+    margin-top: 5px;
+    font-size: 18px;
+    font-family: Calibri;
 }
 
 .profile-usertitle-job {
@@ -57,11 +52,17 @@
 }
 
 .profile-usermenu {
+    border: 1px solid #c5c5c5;
     margin-top: 30px;
+    background-color: #e5f1ff;
 }
-
+.profile-usermenu ul li .active {
+    border: none;
+    margin-right: -1px;
+    border-radius: 0;
+}
 .profile-usermenu ul li {
-    border-bottom: 1px solid #f0f4f7;
+    border-bottom: 1px solid #959595;
 }
 
 .profile-usermenu ul li:last-child {
@@ -69,9 +70,10 @@
 }
 
 .profile-usermenu ul li a {
-    color: #93a3b5;
+    color: #0d6df2;
     font-size: 14px;
     font-weight: 400;
+    text-decoration: none;
 }
 
 .profile-usermenu ul li a i {
@@ -111,4 +113,22 @@
 
 a #send_another_file {
     color: #3c3c3c;
+}
+
+.user-profile-container {
+    margin-top: 5px;
+    padding: 15px;
+}
+
+.user-profile-info {
+    font-size: 18px;
+    font-family: Tahoma, Arial;
+    color: #0d6df2;
+}
+.user-profile-info:hover {
+    color: #65a0ff;
+}
+.user-profile-container a {
+    text-decoration: none;
+    color: white;
 }

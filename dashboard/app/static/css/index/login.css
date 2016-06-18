@@ -1,153 +1,51 @@
-.form-signin > input {
-}
-
 body {
-    background-image: url("../../img/index/background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
 }
 
-.wrapper {
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top: 14%;
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-signin-heading {
     text-align: center;
 }
 
-.form-container {
-    box-shadow: 0 0 4px orangered;
+.form-signin .checkbox {
+    font-weight: normal;
+    margin-left: 25px;
 }
 
-.form-header {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    background-color: orangered;
-    border-top: 3px solid black;
-    border-left: 3px solid black;
-    border-right: 3px solid black;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    color: black;
-    font-size: 18px;
-    font-family: Tahoma;
-}
-
-.form-body {
-    padding-top: 10px;
-    background-color: #adadad;
-    border: 3px solid black;
-}
-
-.form-body > form > div > div > input {
-    border: 1px solid orangered;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -khtml-border-radius: 3px;
-    background: #ffffff !important; /* желательно прописывать, так как в Chrome при сохранных данных оно может быть желтым */
-    outline: none; /* удаляет обводку в браузерах хром(желтая) и сафари(синяя)*/
-    height: 24px;
-    color: black;
-    font-size: 14px;
-    font-family: Tahoma;
-}
-
-.username-input > input:focus {
-    border: 1px solid #000000
-}
-
-.password-input > input:focus {
-    border: 1px solid #000000
-}
-
-.username {
-    width: 50%;
-    margin-left: 25%;
-    height: 40px;
-}
-
-.username-input {
-    height: 24px;
-}
-
-.username-errors {
-    height: 16px;
-    font-size: 12px;
-    font-style: oblique;
-    font-family: Tahoma;
-    font-weight: bold;
-    padding: 0 0 0 0;
-    color: darkred;
-}
-
-.username-errors > ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.password {
-    width: 50%;
-    margin-left: 25%;
-    height: 40px;
-}
-
-.password-input {
-    height: 24px;
-}
-
-.password-errors {
-    height: 16px;
-    font-size: 12px;
-    font-style: oblique;
-    font-family: Tahoma;
-    font-weight: bold;
-    color: darkred;
-}
-
-.password-errors > ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.button-submit > button {
-    display: inline-block;
-    border-radius: 4px;
-    height: 30px;
-    background-color: orangered;
-    border: 1px solid black;
-    color: black;
-    text-align: center;
-    font-size: 20px;
-    padding: 2px;
-    width: 50%;
-    transition: all 0.5s;
-    cursor: pointer;
-}
-
-.button-submit > button span {
-    cursor: pointer;
-    display: inline-block;
+.form-signin .form-control {
     position: relative;
-    transition: 0.5s;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
 }
 
-.button-submit > button span:after {
-    content: '»';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
+.form-signin .form-control:focus {
+    z-index: 2;
 }
 
-.button-submit > button:hover span {
-    padding-right: 25px;
+.form-signin input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
-.button-submit > button:hover span:after {
-    opacity: 1;
-    right: 0;
+.form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
