@@ -12,11 +12,14 @@
             {% block static_base %}
                 <script src="{% static 'jquery/jquery-2.1.4.min.js' %}"></script>
                 <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+                <script src="{% static 'moment/moment-with-locales.js' %}"></script>
+                <script src="{% static 'datetimepicker/jquery.datetimepicker.full.min.js' %}"></script>
+                <script src="{% static 'bootstrap-select/js/bootstrap-select-min.js' %}"></script>
                 <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" media="all"/>
                 <link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" rel="stylesheet" type="text/css" media="all"/>
                 <link href="{% static 'bootstrap/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css" media="all"/>
-                <link href="http://designmodo.github.io/Flat-UI/dist/css/flat-ui.min.css" rel="stylesheet">
-                <link href="https://daneden.github.io/animate.css/animate.min.css" rel="stylesheet">
+                <link rel="stylesheet" href="{% static 'datetimepicker/jquery.datetimepicker.min.css' %}">
+                <link rel="stylesheet" href="{% static 'bootstrap-select/css/bootstrap-select-min.css' %}">
                 <link rel="stylesheet" href="{% static 'index/dashboard.css' %}"/>
                 <script src="{% static 'index/dashboard.js' %}"></script>
             {% endblock %}

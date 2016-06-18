@@ -47,8 +47,8 @@ class ParamInfo(Document):
     description = StringField(max_length=lengths['description'])
     axis_y_title = StringField(max_length=20, default=param_name)
     axis_x_title = StringField(max_length=20, default="Time line")
-    graph_type = StringField(max_length=30)
-    timeout = IntField(default=10)
+    graph_types = ListField(StringField(max_length=30))
+    default_timeout = IntField(default=10)
 
 
 class PluginInfo(Document):
@@ -91,7 +91,7 @@ class MonitoringNodesData(Document):
     plugin = StringField(max_length=lengths['plugin'])
     param = StringField(max_length=lengths['param'])
     data = DynamicField()
-    timestamp = DateTimeField()
+    stamp = FloatField()
 
 
 # from mongoengine import connect

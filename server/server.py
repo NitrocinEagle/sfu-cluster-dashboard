@@ -3,6 +3,7 @@ from mongoengine import connect
 from tornado import ioloop
 from models import *
 from datetime import datetime
+import time
 
 
 def get_data_from_node(server, node_ip, node_name, plugin_name, param_name):
@@ -21,7 +22,7 @@ def get_data_from_node(server, node_ip, node_name, plugin_name, param_name):
             data = MonitoringNodesData.objects(**kwargs)
             kwargs.update({
                 'data': result,
-                'timestamp': datetime.now()
+                'stamp': time.mktime(datetime.now().timetuple())
             })
             MonitoringNodesData(**kwargs).save()
         except:

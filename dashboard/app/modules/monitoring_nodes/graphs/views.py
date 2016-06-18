@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 from django.views.generic import FormView, TemplateView
 from .forms import ShowGraphForm
-from app.mongo_models import MonitoringInfo
+from app.mongo_models import MonitoringInfo, ParamInfo
 
 
 class GraphsView(FormView):
@@ -40,11 +40,14 @@ class NodeGraphsView(TemplateView):
         graphs_info = MonitoringInfo.objects.filter(node=kwargs['node_name'])
         kwargs['graphs_info'] = []
         for info in graphs_info:
+            param_info = ParamInfo.objects.filter(plugin_name=info.plugin,
+                                                  param_name=info.param).first()
             kwargs['graphs_info'].append({
                 'id': len(kwargs['graphs_info']) + 1,
                 'node_name': info.node,
                 'plugin_name': info.plugin,
-                'param_name': info.param
+                'param_name': info.param,
+                'types': param_info.graph_types
             })
         return super(NodeGraphsView, self).get_context_data(**kwargs)
 
@@ -73,10 +76,13 @@ class ParamGraphsView(TemplateView):
         graphs_info = MonitoringInfo.objects.filter(param=kwargs['param_name'])
         kwargs['graphs_info'] = []
         for info in graphs_info:
+            param_info = ParamInfo.objects.filter(plugin_name=info.plugin,
+                                                  param_name=info.param).first()
             kwargs['graphs_info'].append({
                 'id': len(kwargs['graphs_info']) + 1,
                 'node_name': info.node,
                 'plugin_name': info.plugin,
-                'param_name': info.param
+                'param_name': info.param,
+                'types': param_info.graph_types
             })
         return super(ParamGraphsView, self).get_context_data(**kwargs)

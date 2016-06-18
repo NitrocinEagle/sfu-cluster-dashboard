@@ -1,54 +1,119 @@
-function getCanvases() {
-    return $('.graphs');
+function toUnix(dateString) {
+    return moment(dateString, 'YYYY-MM-DD hh:mm:ss').unix();
+}
+
+$(document).ready(function () {
+    moment.locale('ru');
+    //$('.date-time-input').datetimepicker({
+    //    locale: 'ru'
+    //});
+    $.datetimepicker.setLocale('ru');
+    $('.date-time-input').datetimepicker({
+        format: 'Y-m-d H:i:s',
+        lang: 'ru',
+        maxDate: '+1970/01/01'
+    });
+
+    $('.btn-graph-refresh').on('click', function (e) {
+        var graph = $(e.currentTarget).parents('.graph');
+        var graph_type = $(graph).find('.graph-actions-type select').val();
+        var selected_time = $(graph).find('.graph-actions-select-time select').val();
+        var time_from = toUnix($(graph).find('.graph-actions-from input').val());
+        var time_to = toUnix($(graph).find('.graph-actions-to input').val());
+        var node_name = $(graph).attr('node-name');
+        var plugin_name = $(graph).attr('plugin-name');
+        var param_name = $(graph).attr('param-name');
+
+        var options = {
+            node_name: node_name,
+            plugin_name: plugin_name,
+            param_name: param_name,
+            time_from: time_from,
+            time_to: time_to,
+            selected_time: selected_time,
+            selected_graph_type: graph_type
+        };
+        console.log("options: ", options);
+        $.ajax({
+            url: '/api/modules/monitoring-nodes/get-monitoring-data/',
+            dataType: 'json',
+            data: options,
+            success: function (data) {
+                console.log("data: ", data);
+                renderGraph(graph, graph_type, data);
+            }
+        });
+    });
+
+    var chartsInfo = getChartsInfo();
+    buildGraphs(chartsInfo);
+});
+
+function getGraphBlocks() {
+    return $('.graph');
 }
 function getChartsInfo() {
     var chartsInfo = [];
-    $.each(getCanvases(), function (key, value) {
-        var canvasID = value.getAttribute('id');
-        var node_name = value.getAttribute('node-name');
-        var plugin_name = value.getAttribute('plugin-name');
-        var param_name = value.getAttribute('param-name');
-        chartsInfo.push(
-            {
-                'canvas_id': canvasID,
-                'node_name': node_name,
-                'plugin_name': plugin_name,
-                'param_name': param_name,
-            }
-        );
+    $.each(getGraphBlocks(), function (key, value) {
+        var node_name = $(value).attr('node-name');
+        var plugin_name = $(value).attr('plugin-name');
+        var param_name = $(value).attr('param-name');
+        var time_from = toUnix($(value).find('.graph-actions-from input').val());
+        var time_to = toUnix($(value).find('.graph-actions-to input').val());
+        var selected_time = $(value).find('.graph-actions-select-time input').val();
+        var selected_graph_type = $(value).find('.graph-actions-select-time input').val();
+        chartsInfo.push({
+            'graph': value,
+            'node_name': node_name,
+            'plugin_name': plugin_name,
+            'param_name': param_name,
+            'time_from': time_from,
+            'time_to': time_to,
+            'selected_time': selected_time,
+            'selected_graph_type': $(value).find('.graph-actions-type select').val(),
+        });
     });
     return chartsInfo;
 }
 
 function buildGraphs(chartsInfo) {
-    var graphAPI_URL = '/api/graphs/';
     $.each(chartsInfo, function (k, v) {
+        var options = {
+            node_name: v.node_name,
+            plugin_name: v.plugin_name,
+            param_name: v.param_name,
+            time_from: v.time_from,
+            time_to: v.time_to,
+            selected_time: v.selected_time,
+            selected_graph_type: v.selected_graph_type
+        };
         $.ajax({
-            url: graphAPI_URL + v.node_name + '/' + v.plugin_name + '/' + v.param_name + '/?format=json',
+            url: '/api/modules/monitoring-nodes/get-monitoring-data/',
             dataType: 'json',
+            data: options,
             success: function (data) {
-                console.log(data);
-                renderGraph(v.canvas_id, data);
+                renderGraph(v.graph, v.selected_graph_type, data);
             }
         });
     });
 };
 
 
-function renderGraph(canvasElementID, graphInfo) {
-    if (graphInfo.graph_type == 'line_chart') {
-        renderLineChart(canvasElementID, graphInfo);
-    }
-    else
-        renderPieChart(canvasElementID, graphInfo);
+function renderGraph(graphElement, type, graphInfo) {
+    var canvas = $(graphElement).find('.graphs').attr('id')
+    if (type == 'line_chart')
+        renderLineChart(canvas, graphInfo);
+    if (type == 'pie_chart')
+        renderPieChart(canvas, graphInfo);
+    return;
 }
 
 function renderLineChart(canvasElementID, graphInfo) {
     var dataPoints = [];
     $.each(graphInfo.data, function (k, v) {
         dataPoints.push({
-            'label': (new Date(v.timestamp)).toLocaleTimeString(),
-            'y': v.value
+            'label': moment.unix(v.timestamp).format("hh:mm"),
+            'y': (v.value.percent ? v.value.percent: v.value)
         });
     });
     var chart = new CanvasJS.Chart(canvasElementID, {
@@ -74,12 +139,10 @@ function renderLineChart(canvasElementID, graphInfo) {
 }
 
 function renderPieChart(canvasElementID, graphInfo) {
-    console.log (graphInfo);
     var dataPoints = [];
-    $.each(graphInfo.data[0].data, function (k, v) {
-        //TODO graphInfo.data[0] is a fast decision. Need to query only the last one object
+    $.each(graphInfo.data, function (k, v) {
         dataPoints.push({
-            'y': v.value,
+            'y': parseInt(v.value/1024/1024),
             'indexLabel': v.sector_name
         })
     });
@@ -95,8 +158,3 @@ function renderPieChart(canvasElementID, graphInfo) {
 
     chart.render();
 }
-
-window.onload = function () {
-    var chartsInfo = getChartsInfo();
-    buildGraphs(chartsInfo);
-};

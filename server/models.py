@@ -95,4 +95,4 @@ class MonitoringNodesData(Document):
     plugin = StringField(max_length=lengths['plugin'])
     param = StringField(max_length=lengths['param'])
     data = DynamicField()
-    timestamp = DateTimeField()
+    stamp = FloatField()

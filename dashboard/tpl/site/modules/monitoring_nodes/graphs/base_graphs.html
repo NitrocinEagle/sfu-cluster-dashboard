@@ -8,6 +8,7 @@
 
 {% block static_local %}
     <script src="{% static 'modules/monitoring_nodes/graphs/graphs.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'modules/monitoring_nodes/graphs/graphs.css' %}">
 {% endblock %}
 
 {% block breadcrump_inactive %}
@@ -22,17 +23,56 @@
 {% block inner_content %}
     {% for graph in graphs_info %}
         <div class="row">
-            <div class="graph_info" style="margin-left: 10%">
-                Узел: {{ graph.node_name }}<br>
-                Плагин: {{ graph.plugin_name }}<br>
-                Параметр: {{ graph.param_name }}<br>
-            </div>
-            <div id="{{ graph.id }}"
-                 style="height: 300px; width: 80%; margin-left: 10%"
-                 class="graphs"
+            <div class="col-lg-10 col-lg-offset-1 graph"
                  plugin-name="{{ graph.plugin_name }}"
                  node-name="{{ graph.node_name }}"
                  param-name="{{ graph.param_name }}">
+                <div class="graph-title">{{ graph.node_name }} /{{ graph.plugin_name }} / {{ graph.param_name }}</div>
+                <div class="graph-actions-container">
+                    <div class="graph-actions graph-actions-type">
+                        <select class="form-control selectpicker show-tick" title="Тип графика">
+                            {% for type in graph.types %}
+                                <option value="{{ type }}">{{ type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="graph-actions graph-actions-select-time">
+                        <div class='input-group'>
+                            <select class="form-control selectpicker show-tick" title="Показать данные за">
+                                <option value="default">По умолчанию</option>
+                                <option value="hour">За последний час</option>
+                                <option value="6-hours">За последние 6 часов</option>
+                                <option value="day">За последний день</option>
+                                <option value="week">За последнюю неделю</option>
+                                <option value="month">За последний месяц</option>
+                                <option value="half-year">За последние полгода</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="graph-actions graph-actions-from">
+                        <div class='input-group'>
+                            <input type='text' class="form-control date-time-input" title="time-from">
+                            <span class="input-group-addon">
+                                От &nbsp;<span class="fa fa-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="graph-actions graph-actions-to">
+                        <div class='input-group'>
+                            <input type='text' class="form-control date-time-input" title="time-to">
+                            <span class="input-group-addon">
+                                До &nbsp;<span class="fa fa-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="graph-actions graph-actions-refresh">
+                        <button class="btn btn-default btn-graph-refresh">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="canvas_{{ graph.id }}"
+                     class="graph-canvas graphs"></div>
             </div>
         </div>
     {% endfor %}
