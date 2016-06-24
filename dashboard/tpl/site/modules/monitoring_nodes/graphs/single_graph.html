@@ -1,37 +1,5 @@
-{% extends "site/modules/monitoring_nodes/monitoring_nodes_base.html" %}
-
-{% block static_charts %}
-    {% load static %}
-    <script src="{% static 'chart/Chart.min.js' %}"></script>
-    <script src="{% static 'chart/canvasjs.min.js' %}"></script>
-{% endblock %}
-
-{% block static_local %}
-    <script src="{% static 'modules/monitoring_nodes/graphs/graphs.js' %}"></script>
-{% endblock %}
-
-{% block breadcrump_inactive %}
-    {{ block.super }}
-    <li><a href="{% url 'modules:monitoring_nodes:graphs:index' %}">Графики</a></li>
-{% endblock %}
+{% extends "site/modules/monitoring_nodes/graphs/base_graphs.html" %}
 
 {% block breadcrump_active %}
-    <li class="active">{{ graph.node_name }} - {{ graph.plugin_name }} - {{ graph.param_name }}</li>
-{% endblock %}
-
-{% block inner_content %}
-        <div class="row">
-            <div class="graph_info" style="margin-left: 10%">
-                Узел: {{ graph.node_name }}<br>
-                Плагин: {{ graph.plugin_name }}<br>
-                Параметр: {{ graph.param_name }}<br>
-            </div>
-            <div id="{{ graph.id }}"
-                 style="height: 300px; width: 80%; margin-left: 10%"
-                 class="graphs"
-                 plugin-name="{{ graph.plugin_name }}"
-                 node-name="{{ graph.node_name }}"
-                 param-name="{{ graph.param_name }}">
-            </div>
-        </div>
+    <li class="active">{{ graphs_info.0.node_name }} - {{ graphs_info.0.plugin_name }} - {{ graphs_info.0.param_name }}</li>
 {% endblock %}

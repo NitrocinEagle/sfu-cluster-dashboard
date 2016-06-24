@@ -1,17 +1,30 @@
+DATETIME_FORMAT = 'YYYY-MM-DD hh:mm:ss';
+
 function toUnix(dateString) {
-    return moment(dateString, 'YYYY-MM-DD hh:mm:ss').unix();
+    if (dateString)
+        return moment(dateString, DATETIME_FORMAT).unix();
+    return null;
+}
+
+function setDefaultTimes(graph) {
+    //var offset = 7;
+    //var timeTo_stamp = new Date(new Date().getTime() + offset * 3600 * 1000).getTime() / 1000;
+    //var timeFrom_stamp = new Date(new Date().getTime() + offset * 3600 * 1000).getTime() / 1000 - 7200;
+    $(graph).find('.graph-actions-from input').val(moment().subtract(3600, 's').format(DATETIME_FORMAT));
+    $(graph).find('.graph-actions-to input').val(moment().format(DATETIME_FORMAT));
 }
 
 $(document).ready(function () {
     moment.locale('ru');
-    //$('.date-time-input').datetimepicker({
-    //    locale: 'ru'
-    //});
     $.datetimepicker.setLocale('ru');
     $('.date-time-input').datetimepicker({
         format: 'Y-m-d H:i:s',
         lang: 'ru',
         maxDate: '+1970/01/01'
+    });
+
+    $.each(getGraphBlocks(), function (k, graph) {
+        setDefaultTimes(graph);
     });
 
     $('.btn-graph-refresh').on('click', function (e) {
@@ -33,6 +46,7 @@ $(document).ready(function () {
             selected_time: selected_time,
             selected_graph_type: graph_type
         };
+
         console.log("options: ", options);
         $.ajax({
             url: '/api/modules/monitoring-nodes/get-monitoring-data/',

@@ -70,13 +70,6 @@ class GetMonitoringDataAPIView(APIView):
         time_to = qs.get("time_to")
         selected_time = qs.get("selected_time")
 
-        day_before_now = datetime.now() - timedelta(days=1)
-        day_before_now = time.mktime(day_before_now.timetuple())
-
-        time_to = time_to if time_to else time.mktime(
-            datetime.now().timetuple())
-        time_from = time_from if time_from else day_before_now
-
         param_info = \
         ParamInfo.objects(plugin_name=plugin_name, param_name=param_name)[0]
         filter = {
@@ -86,6 +79,8 @@ class GetMonitoringDataAPIView(APIView):
             'stamp__lt': time_to,
             'stamp__gt': time_from,
         }
+        print "filter['time_to']: ", filter['stamp__lt']
+        print "type: ", type(filter['stamp__gt'])
         # count = MonitoringNodesData.objects(**filter).count()
 
 

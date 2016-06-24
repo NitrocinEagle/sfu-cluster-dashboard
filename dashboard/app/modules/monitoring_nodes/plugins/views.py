@@ -22,7 +22,6 @@ class PluginsView(View):
                 new_params.append({
                     'name': param.param_name,
                     'description': param.description,
-                    'timeout': param.timeout
                 })
             plugins_render.append({
                 'name': plugin.plugin_name,

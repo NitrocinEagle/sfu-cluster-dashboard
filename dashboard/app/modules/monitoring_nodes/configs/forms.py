@@ -15,7 +15,7 @@ MONITORING_SETTINGS_OPERATIONS = (
     ('add_node_to_monitor', u'Начать мониторить узел'),
     ('stop_to_monitor_node', u'Перестать мониторить узел'),
     ('stop_to_monitor_param', u'Перестать мониторить параметр у узла'),
-    ('change_param_timeout', u'Поменять таймоут параметра'),
+    ('change_param_timeout', u'Поменять таймаут параметра'),
 )
 
 

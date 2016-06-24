@@ -24,12 +24,23 @@ class SingleGraphView(TemplateView):
     template_name = 'site/modules/monitoring_nodes/graphs/single_graph.html'
 
     def get_context_data(self, **kwargs):
-        kwargs['graph'] = {
-            'id': 1,
-            'node_name': kwargs['node_name'],
-            'plugin_name': kwargs['plugin_name'],
-            'param_name': kwargs['param_name']
+        filter = {
+            'node': kwargs['node_name'],
+            'plugin': kwargs['plugin_name'],
+            'param': kwargs['param_name']
         }
+        graphs_info = MonitoringInfo.objects.filter(**filter)
+        kwargs['graphs_info'] = []
+        for info in graphs_info:
+            param_info = ParamInfo.objects.filter(plugin_name=info.plugin,
+                                                  param_name=info.param).first()
+            kwargs['graphs_info'].append({
+                'id': len(kwargs['graphs_info']) + 1,
+                'node_name': info.node,
+                'plugin_name': info.plugin,
+                'param_name': info.param,
+                'types': param_info.graph_types
+            })
         return super(SingleGraphView, self).get_context_data(**kwargs)
 
 

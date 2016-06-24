@@ -94,10 +94,10 @@ class MonitoringNodesData(Document):
     stamp = FloatField()
 
 
-# from mongoengine import connect
-# from datetime import datetime
-# connect("test_monitoring")
-# from app.mongo_models import MonitoringNodesData
+from mongoengine import connect
+from datetime import datetime
+connect("test_monitoring")
+from app.mongo_models import MonitoringNodesData
 # node = 'node1'
 # plugin = 'plugin1'
 # param = 'param1'
