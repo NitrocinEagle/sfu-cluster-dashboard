@@ -27,15 +27,11 @@ class NodeGroups(Document):
     enabled_nodes = ListField(StringField(max_length=lengths['node_name']))
 
 
-class ServerInfoDict(EmbeddedDocument):
+class ServerGeneralInfo(Document):
     name = StringField()
     value = StringField()
     fa_icon = StringField()
     label = StringField()
-
-
-class ServerInfo(Document):
-    info = EmbeddedDocumentListField(ServerInfoDict)
 
 
 class NodeInfo(Document):
@@ -51,8 +47,8 @@ class ParamInfo(Document):
     description = StringField(max_length=lengths['description'])
     axis_y_title = StringField(max_length=20, default=param_name)
     axis_x_title = StringField(max_length=20, default="Time line")
-    graph_type = StringField(max_length=30)
-    timeout = IntField(default=10)
+    graph_types = ListField(StringField(max_length=30))
+    default_timeout = IntField(default=10)
 
 
 class PluginInfo(Document):

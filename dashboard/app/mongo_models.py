@@ -96,6 +96,7 @@ class MonitoringNodesData(Document):
 
 from mongoengine import connect
 from datetime import datetime
+
 connect("test_monitoring")
 from app.mongo_models import MonitoringNodesData
 # node = 'node1'
